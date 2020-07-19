@@ -14,19 +14,21 @@ class Survey extends Component {
         }
     }
     
-    getSurvey() {
-        fetch(apiBase + '/surveys/1')
+    getSurvey(surveyId) {
+        fetch(apiBase + '/surveys/' + surveyId)
         .then(res => res.json())
         .then(data => {
+            let numQuestions = data != null ? data.questions.length : 0
           this.setState({
               survey: data,
-              numQuestions: data.questions.length    
+              numQuestions: numQuestions   
           })
         })
       }
     
       componentDidMount() {
-        this.getSurvey()
+        const { id } = this.props.match.params
+        this.getSurvey(id)
       }
 
     checkComplete() {

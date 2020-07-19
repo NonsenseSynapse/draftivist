@@ -3,19 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Survey from './components/survey/survey';
+import SurveyList from './components/surveyList/surveyList';
 import * as serviceWorker from './serviceWorker';
 import { 
   BrowserRouter as Router, 
-  Route, 
-  Link, 
-  Switch 
+  Route
 } from 'react-router-dom';
 
 const routing = (
   <Router>
     <div>
       <Route exact path="/" component={App} />
-      <Route exact path="/survey" component={Survey} />
+      <Route exact path="/surveys" component={SurveyList} />
+      <Route exact path="/surveys/:id" component={Survey} />
     </div>
   </Router>
 )
