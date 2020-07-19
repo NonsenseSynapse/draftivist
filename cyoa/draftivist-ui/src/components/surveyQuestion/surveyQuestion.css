@@ -1,0 +1,7 @@
+.question-wrapper.active {
+    display: block;
+}
+
+.question-wrapper.inactive {
+    display: none;
+}

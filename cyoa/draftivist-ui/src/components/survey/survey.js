@@ -11,7 +11,9 @@ class Survey extends Component {
             isComplete: false,
             isInvalidId: false,
             selectedOptions: {},
-            numQuestions: null
+            numQuestions: null,
+            currentPage: 0,
+            pagesCompleted: 0
         }
     }
     
@@ -44,8 +46,10 @@ class Survey extends Component {
       }
 
     checkComplete() {
+        let pagesCompleted = Object.keys(this.state.selectedOptions).length
         this.setState({
-            isComplete: this.state.numQuestions === Object.keys(this.state.selectedOptions).length
+            isComplete: this.state.numQuestions === pagesCompleted,
+            pagesCompleted: pagesCompleted
         })
       }
 
@@ -62,6 +66,19 @@ class Survey extends Component {
         
     }
 
+    backButton = () => {
+        console.log('yo bud');
+        this.setState({
+            currentPage: this.state.currentPage - 1
+        })
+    }
+
+    nextButton = () => {
+        this.setState({
+            currentPage: this.state.currentPage + 1
+        })
+    }
+
     render() {
         if (this.state.isInvalidId) {
             return <div>
@@ -76,11 +93,26 @@ class Survey extends Component {
         return (
             <div>
 
+                <button 
+                    disabled={this.state.currentPage === 0}
+                    className="btn btn-primary"
+                    onClick={this.backButton}>
+                        Back
+                </button>
+
+                <button
+                    disabled={this.state.pagesCompleted <= this.state.currentPage || this.state.currentPage === this.state.numQuestions - 1}
+                    className="btn btn-primary"
+                    onClick={this.nextButton}>
+                        Next
+                </button>
+
                 <h1>{this.state.survey.name}</h1>
 
-                {this.state.survey.questions.map((question) => (
+                {this.state.survey.questions.map((question, index) => (
                     <SurveyQuestion
-                        key={question.id} 
+                        key={question.id}
+                        showQuestion={index === this.state.currentPage} 
                         surveyQuestion={question} 
                         selectQuestionOption={this.selectQuestionOption} 
                     />
