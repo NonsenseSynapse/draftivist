@@ -9,6 +9,7 @@ class Survey extends Component {
         this.state = {
             survey: null,
             isComplete: false,
+            isInvalidId: false,
             selectedOptions: {},
             numQuestions: null
         }
@@ -16,13 +17,24 @@ class Survey extends Component {
     
     getSurvey(surveyId) {
         fetch(apiBase + '/surveys/' + surveyId)
-        .then(res => res.json())
+        .then(res => {
+            if (res.status >= 400) {
+                this.setState({
+                    isInvalidId: true
+                })
+            }
+            return res.json()
+        })
         .then(data => {
+            if (this.state.isInvalidId) {
+                return null;
+            }
+
             let numQuestions = data != null ? data.questions.length : 0
-          this.setState({
-              survey: data,
-              numQuestions: numQuestions   
-          })
+            this.setState({
+                survey: data,
+                numQuestions: numQuestions   
+            })
         })
       }
     
@@ -51,6 +63,12 @@ class Survey extends Component {
     }
 
     render() {
+        if (this.state.isInvalidId) {
+            return <div>
+                No Survey matching that ID :(
+            </div>
+        }
+        
         if (!this.state.survey) {
             return <div />
         }

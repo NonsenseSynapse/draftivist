@@ -8,7 +8,7 @@ class App extends Component {
 
     return (
        <div>
-          <h1>Welcome home, dude</h1>
+          <h1>Welcome to Draftivist</h1>
           <Link to="/surveys">Available Surveys</Link> 
        </div>
        
