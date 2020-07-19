@@ -1,9 +1,16 @@
 import React, {Component} from 'react'
-import SurveyQuestionOption from '../surveyQuestionOption/surveyQuestionOption';
 
 class SurveyQuestion extends Component {
-    selectOption(optionText){
-        
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            id: props.surveyQuestion.id
+        }
+    }
+    
+    selectOption(optionId){
+        this.props.selectQuestionOption(this.state.id, optionId);
     }
     
     render() {
@@ -15,7 +22,13 @@ class SurveyQuestion extends Component {
             <div>
             <h2>{this.props.surveyQuestion.question_text}</h2>
             {this.props.surveyQuestion.options.map((questionOption) => (
-                <SurveyQuestionOption surveyQuestionOption={questionOption} selectQuestionOption={this.selectQuestionOption} />
+
+                <div key={questionOption.id}>
+                    <button class='survey-question-option btn btn-secondary' 
+                            onClick={() => this.selectOption(questionOption.id)}>
+                                {questionOption.description} 
+                    </button>
+                </div>
     
             ))}
             </div>
