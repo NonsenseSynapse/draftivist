@@ -7,11 +7,15 @@ class SurveyQuestion extends Component {
 
         this.state = {
             id: props.surveyQuestion.id,
-            showQuestion: props.showQuestion
+            showQuestion: props.showQuestion,
+            selectedOption: null
         }
     }
     
     selectOption(optionId){
+        this.setState({
+            selectedOption: optionId
+        })
         this.props.selectQuestionOption(this.state.id, optionId);
     }
     
@@ -26,7 +30,8 @@ class SurveyQuestion extends Component {
                 {this.props.surveyQuestion.options.map((questionOption) => (
 
                     <div key={questionOption.id}>
-                        <button class='survey-question-option btn btn-secondary' 
+                        <button className={`survey-question-option btn btn-secondary 
+                                            ${this.state.selectedOption === questionOption.id ? "btn-success" : "btn-secondary"}`} 
                                 onClick={() => this.selectOption(questionOption.id)}>
                                     {questionOption.description} 
                         </button>

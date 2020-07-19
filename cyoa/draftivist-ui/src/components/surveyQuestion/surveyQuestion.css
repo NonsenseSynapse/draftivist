@@ -5,3 +5,8 @@
 .question-wrapper.inactive {
     display: none;
 }
+
+.survey-question-option {
+    margin-bottom: 5px;
+    width: 300px;
+}
