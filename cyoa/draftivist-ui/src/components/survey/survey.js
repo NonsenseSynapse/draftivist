@@ -67,7 +67,6 @@ class Survey extends Component {
     }
 
     backButton = () => {
-        console.log('yo bud');
         this.setState({
             currentPage: this.state.currentPage - 1
         })
@@ -77,6 +76,11 @@ class Survey extends Component {
         this.setState({
             currentPage: this.state.currentPage + 1
         })
+    }
+
+    submitAnswers = () => {
+        console.log('submitting answers...');
+        console.log(this.state.selectedOptions);
     }
 
     render() {
@@ -118,7 +122,7 @@ class Survey extends Component {
                     />
                 ))}
 
-                {this.state.isComplete ? <div>Survey complete!</div> : <div></div>}
+                {this.state.isComplete ? <button className={"btn btn-primary"} onClick={this.submitAnswers}>Survey complete!</button> : <div></div>}
 
             </div>
 
