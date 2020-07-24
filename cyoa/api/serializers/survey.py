@@ -25,9 +25,21 @@ class SurveySerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'created', 'questions']
 
 
+class ResponseQuestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = ['id', 'question_text']
+
+
+class ResponseQuestionOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QuestionOption
+        fields = ['id', 'description']
+
+
 class SurveyAnswerSerializer(serializers.ModelSerializer):
-    question = serializers.PrimaryKeyRelatedField(queryset=Question.objects.all())
-    question_option = serializers.PrimaryKeyRelatedField(queryset=QuestionOption.objects.all())
+    question = ResponseQuestionSerializer()
+    question_option = ResponseQuestionOptionSerializer()
 
     class Meta:
         model = SurveyAnswer
@@ -40,7 +52,7 @@ class SurveyResponseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SurveyResponse
-        fields = '__all__'
+        exclude = ['created']
 
 
 class SurveySubmitSerializer(serializers.Serializer):
