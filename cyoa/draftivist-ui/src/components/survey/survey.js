@@ -18,7 +18,7 @@ class Survey extends Component {
     }
     
     getSurvey(surveyId) {
-        fetch(apiBase + '/surveys/' + surveyId)
+        fetch(`${apiBase}/surveys/${surveyId}/`)
         .then(res => {
             if (res.status >= 400) {
                 this.setState({
@@ -79,8 +79,26 @@ class Survey extends Component {
     }
 
     submitAnswers = () => {
-        console.log('submitting answers...');
         console.log(this.state.selectedOptions);
+        let payload = {answers: []};
+        for (let question_id in this.state.selectedOptions) {
+            payload['answers'].push({
+                question: parseInt(question_id),
+                question_option: parseInt(this.state.selectedOptions[question_id])
+            })
+        }
+        
+        fetch(apiBase + `/surveys/${this.state.survey.id}/submit/`, {
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            },
+            body: JSON.stringify(payload),
+            method: "POST"
+        })
+        .then(res => res.json())
+        .then(data => {
+            this.props.history.push(`/draft/${data.id}`)
+        })
     }
 
     render() {

@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import Survey from './components/survey/survey';
 import SurveyList from './components/surveyList/surveyList';
+import SurveyResult from './components/surveyResult/surveyResult';
 import * as serviceWorker from './serviceWorker';
 import { 
   BrowserRouter as Router, 
@@ -16,6 +17,7 @@ const routing = (
       <Route exact path="/" component={App} />
       <Route exact path="/surveys" component={SurveyList} />
       <Route exact path="/surveys/:id" component={Survey} />
+      <Route exact path="/draft/:id" component={SurveyResult} />
     </div>
   </Router>
 )

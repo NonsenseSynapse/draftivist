@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import SurveyQuestion from '../surveyQuestion/surveyQuestion';
 import {apiBase} from '../../settings';
 import {Link} from 'react-router-dom';
 
@@ -14,7 +13,7 @@ class Survey extends Component {
     }
     
     getSurveys() {
-        fetch(apiBase + '/surveys')
+        fetch(`${apiBase}/surveys`)
         .then(res => res.json())
         .then(data => {
           this.setState({
@@ -37,9 +36,17 @@ class Survey extends Component {
 
                 <h1>Available Surveys</h1>
 
+                <ol>
+
                 {this.state.surveyList.map((survey) => (
-                    <Link to={`/surveys/${survey.id}`}>{survey.name}</Link>
+                    <li key={survey.id}>
+                        <Link to={`/surveys/${survey.id}`}>{survey.name}</Link>
+                    </li>
                 ))}
+                
+                </ol>
+
+                
 
             </div>
 
