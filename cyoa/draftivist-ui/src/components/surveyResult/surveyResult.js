@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {apiBase} from '../../settings';
 
-
 class SurveyResult extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            surveyResponse: null
+            surveyResponse: null,
+            responseText: null
         }
     }
 
@@ -16,16 +16,24 @@ class SurveyResult extends Component {
         fetch(`${apiBase}/survey_response/${surveyResponseId}`)
         .then(res => res.json())
         .then(data => {
-          this.setState({
-            surveyResponse: data
-          })
+            let responseText = data.answers
+                .map(answer => answer.question_option.description)
+                .reduce((acc, currentValue) => `${acc} ${currentValue}`)
+            this.setState({
+                surveyResponse: data,
+                responseText: responseText
+            })
         })
       }
     
-      componentDidMount() {
-        const { id } = this.props.match.params
-        this.getSurveyResponse(id)
-      }
+    componentDidMount() {
+    const { id } = this.props.match.params
+    this.getSurveyResponse(id)
+    }
+
+    copyToClipboard() {
+        console.log('copying to clipboard!')
+    }
 
     render() {
         if (!this.state.surveyResponse) {
@@ -45,8 +53,6 @@ class SurveyResult extends Component {
                         </span>
                     ))}
                 </div>
-
-             
 
             </div>
 
