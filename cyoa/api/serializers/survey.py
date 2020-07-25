@@ -73,6 +73,9 @@ class SurveySubmitSerializer(serializers.Serializer):
             if 'question' not in answer_set or 'question_option' not in answer_set:
                 raise ValidationError('Either "question" or "question_option" key missing from an answer.')
 
+            if not isinstance(answer_set['question'], int) or not isinstance(answer_set['question_option'], int):
+                raise ValidationError('Invalid data time for question or question_option id.')
+
             question_ids.append(answer_set['question'])
             question_option_ids.append(answer_set['question_option'])
 
@@ -82,7 +85,7 @@ class SurveySubmitSerializer(serializers.Serializer):
                                 ).count()
 
         if num_valid_selections != len(value):
-            raise ValidationError('Not all questions have been answered.')
+            raise ValidationError('One or more of the selected options are not valid for this survey.')
 
         return value
 
