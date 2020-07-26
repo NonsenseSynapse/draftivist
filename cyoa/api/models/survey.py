@@ -5,17 +5,26 @@ class Survey(models.Model):
     name = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Question(models.Model):
     question_text = models.CharField(max_length=1024)
     survey = models.ForeignKey('Survey', on_delete=models.CASCADE, related_name='questions')
     created = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.question_text
+
 
 class QuestionOption(models.Model):
     description = models.CharField(max_length=1024)
     question = models.ForeignKey('Question', on_delete=models.CASCADE, related_name='options')
     created = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.description
 
 
 class SurveyResponse(models.Model):
