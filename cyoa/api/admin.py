@@ -36,7 +36,7 @@ class QuestionAdmin(admin.ModelAdmin):
     def link_to_survey(self, obj):
         parent_survey = obj.survey
         link = reverse(f'admin:{obj._meta.app_label}_{parent_survey._meta.model_name}_change',
-                       args=str(obj.pk))
+                       args=str(parent_survey.id))
         return mark_safe(f'<a href={link}>{parent_survey.name}</a>')
     link_to_survey.short_description = 'Parent Survey'
 
