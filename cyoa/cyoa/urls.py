@@ -20,8 +20,8 @@ from api.views.user import UserViewSet, GroupViewSet
 from api.views.survey import SurveyViewSet, SurveyResponseView
 
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'groups', GroupViewSet)
+# router.register(r'users', UserViewSet)
+# router.register(r'groups', GroupViewSet)
 router.register(r'surveys', SurveyViewSet)
 
 urlpatterns = [

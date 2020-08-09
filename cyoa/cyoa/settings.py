@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'b)7$nz1dt8f)3!la#w8cvkr)vb0v04p1r=+s8@a%&7+wswr0i)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -77,16 +77,29 @@ WSGI_APPLICATION = 'cyoa.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cyoa',
-        'USER': 'root',
-        'PASSWORD': 'password',
-        'HOST': '127.0.0.1',
-        'PORT': '3306'
+if os.getenv('GAE_APPLICATION', None):
+    # Running on production App Engine, so connect to Google Cloud SQL using
+    # the unix socket at /cloudsql/<your-cloudsql-connection string>
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '/cloudsql/draftivist:us-west1:draftivist-db',
+            'USER': 'root',
+            'PASSWORD': 'C8hjnFz9v!6hwJG',
+            'NAME': 'draftivist_prod'
+        }
     }
-}
+else:
+    DATABASES = {
+         'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'cyoa',
+            'USER': 'root',
+            'PASSWORD': 'password',
+            'HOST': '127.0.0.1',
+            'PORT': '3306'
+        }
+    }
 
 
 # Password validation
@@ -125,6 +138,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
