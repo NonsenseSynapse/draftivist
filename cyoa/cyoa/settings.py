@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+from google.cloud import secretmanager
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -80,12 +82,18 @@ WSGI_APPLICATION = 'cyoa.wsgi.application'
 if os.getenv('GAE_APPLICATION', None):
     # Running on production App Engine, so connect to Google Cloud SQL using
     # the unix socket at /cloudsql/<your-cloudsql-connection string>
+    secrets = secretmanager.SecretManagerServiceClient()
+
+    prod_password = (
+        secrets.access_secret_version("projects/546649520762/secrets/draftivist_db_prod_password/versions/latest")
+        .payload.data.decode("utf-8"))
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '/cloudsql/draftivist:us-west1:draftivist-db',
             'USER': 'root',
-            'PASSWORD': 'C8hjnFz9v!6hwJG',
+            'PASSWORD': prod_password,
             'NAME': 'draftivist_prod'
         }
     }

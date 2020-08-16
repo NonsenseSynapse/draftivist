@@ -8,3 +8,5 @@ env/
 .idea/
 
 .DS_Store
+
+draftivist-secret*
