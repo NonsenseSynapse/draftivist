@@ -17,15 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from api.views.user import UserViewSet, GroupViewSet
-from api.views.survey import SurveyViewSet, SurveyResponseView
+from api.views.campaign import CampaignViewSet, CampaignResponseView
 
 router = routers.DefaultRouter()
 # router.register(r'users', UserViewSet)
 # router.register(r'groups', GroupViewSet)
-router.register(r'surveys', SurveyViewSet)
+router.register(r'campaigns', CampaignViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
-    path('survey_response/<int:pk>/', SurveyResponseView.as_view())
+    path('response/<int:pk>/', CampaignResponseView.as_view())
 ]

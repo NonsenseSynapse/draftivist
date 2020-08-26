@@ -1,12 +1,12 @@
 from django.contrib import admin
-from api.models.survey import Survey, SurveyAnswer, SurveyResponse, QuestionOption, Question
+from api.models.campaign import Campaign, StatementSelection, CampaignResponse, Statement, Issue
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 
 
-class QuestionInline(admin.StackedInline):
-    model = Question
-    fields = ['question_text', 'get_edit_link']
+class IssueInline(admin.StackedInline):
+    model = Issue
+    fields = ['prompt_text', 'get_edit_link']
     readonly_fields = ['get_edit_link']
 
     def get_edit_link(self, obj):
@@ -15,34 +15,34 @@ class QuestionInline(admin.StackedInline):
                           args=str(obj.pk))
             return mark_safe(f'<a href={url}>Edit</a>')
         return '-'
-    get_edit_link.short_description = 'Add/Edit Options'
+    get_edit_link.short_description = 'Add/Edit Statements'
 
 
-class SurveyAdmin(admin.ModelAdmin):
-    inlines = (QuestionInline,)
+class CampaignAdmin(admin.ModelAdmin):
+    inlines = (IssueInline,)
 
 
-class QuestionOptionInline(admin.StackedInline):
-    model = QuestionOption
-    readonly_fields = ['question']
+class StatementInline(admin.StackedInline):
+    model = Statement
+    readonly_fields = ['issue']
 
 
-class QuestionAdmin(admin.ModelAdmin):
-    readonly_fields = ['survey']
-    inlines = (QuestionOptionInline,)
-    fields = ['question_text', 'link_to_survey']
-    readonly_fields = ['link_to_survey']
+class IssueAdmin(admin.ModelAdmin):
+    readonly_fields = ['campaign']
+    inlines = (StatementInline,)
+    fields = ['question_text', 'link_to_campaign']
+    readonly_fields = ['link_to_campaign']
 
-    def link_to_survey(self, obj):
-        parent_survey = obj.survey
-        link = reverse(f'admin:{obj._meta.app_label}_{parent_survey._meta.model_name}_change',
-                       args=str(parent_survey.id))
-        return mark_safe(f'<a href={link}>{parent_survey.name}</a>')
-    link_to_survey.short_description = 'Parent Survey'
+    def link_to_campaign(self, obj):
+        parent_campaign = obj.campaign
+        link = reverse(f'admin:{obj._meta.app_label}_{parent_campaign._meta.model_name}_change',
+                       args=str(parent_campaign.id))
+        return mark_safe(f'<a href={link}>{parent_campaign.name}</a>')
+    link_to_campaign.short_description = 'Parent Campaign'
 
 
-admin.site.register(Survey, SurveyAdmin)
-# admin.site.register(SurveyAnswer)
-# admin.site.register(SurveyResponse)
-admin.site.register(Question, QuestionAdmin)
-# admin.site.register(QuestionOption)
+admin.site.register(Campaign, CampaignAdmin)
+# admin.site.register(StatementSelection)
+# admin.site.register(CampaignResponse)
+admin.site.register(Issue, IssueAdmin)
+# admin.site.register(Statement)
