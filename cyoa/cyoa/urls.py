@@ -16,12 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from api.views.user import UserViewSet, GroupViewSet
 from api.views.campaign import CampaignViewSet, CampaignResponseView
 
 router = routers.DefaultRouter()
-# router.register(r'users', UserViewSet)
-# router.register(r'groups', GroupViewSet)
 router.register(r'campaigns', CampaignViewSet)
 
 urlpatterns = [
