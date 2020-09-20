@@ -1,0 +1,10 @@
+version: "3.8"
+image: "3.8.5-buster"
+services:
+  draftivist_api:
+    build: ./cyoa
+    depends_on:
+      - db
+  db:
+    image: mysql
+env_file: .env
