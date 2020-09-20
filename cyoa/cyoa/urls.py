@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from api.views.campaign import CampaignViewSet, CampaignResponseView
+from api.views.campaign import CampaignViewSet, DraftView
 
 router = routers.DefaultRouter()
 router.register(r'campaigns', CampaignViewSet)
@@ -24,5 +24,5 @@ router.register(r'campaigns', CampaignViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
-    path('response/<int:pk>/', CampaignResponseView.as_view())
+    path('draft/<int:pk>/', DraftView.as_view())
 ]

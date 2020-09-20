@@ -101,7 +101,7 @@ else:
     DATABASES = {
          'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'cyoa',
+            'NAME': 'draftivist_dev',
             'USER': 'root',
             'PASSWORD': 'password',
             'HOST': '127.0.0.1',

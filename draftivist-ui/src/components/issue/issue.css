@@ -1,12 +1,12 @@
-.question-wrapper.active {
+.issue-wrapper.active {
     display: block;
 }
 
-.question-wrapper.inactive {
+.issue-wrapper.inactive {
     display: none;
 }
 
-.survey-question-option {
+.statement {
     margin-bottom: 5px;
     width: 300px;
 }

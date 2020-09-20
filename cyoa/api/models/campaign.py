@@ -77,17 +77,16 @@ class Statement(models.Model):
         return self.statement_text
 
 
-class CampaignResponse(models.Model):
-    campaign = models.ForeignKey('Campaign', on_delete=models.CASCADE, related_name='responses')
+class Draft(models.Model):
+    campaign = models.ForeignKey('Campaign', on_delete=models.CASCADE, related_name='drafts')
     created = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = "campaign_response"
+        db_table = "draft"
 
 
 class StatementSelection(models.Model):
-    campaign_response = models.ForeignKey('CampaignResponse', on_delete=models.CASCADE,
-                                          related_name='selected_statements')
+    draft = models.ForeignKey('Draft', on_delete=models.CASCADE, related_name='selected_statements')
     issue = models.ForeignKey('Issue', on_delete=models.CASCADE)
     statement = models.ForeignKey('Statement', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now=True)

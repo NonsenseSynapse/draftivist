@@ -1,26 +1,26 @@
 import React, {Component} from 'react';
 import {apiBase} from '../../settings';
 
-class SurveyResult extends Component {
+class Draft extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            surveyResponse: null,
+            draft: null,
             responseText: null
         }
     }
 
     
-    getSurveyResponse(surveyResponseId) {
-        fetch(`${apiBase}/survey_response/${surveyResponseId}`)
+    getDraft(draftId) {
+        fetch(`${apiBase}/draft/${draftId}`)
         .then(res => res.json())
         .then(data => {
-            let responseText = data.answers
-                .map(answer => answer.question_option.description)
+            let responseText = data.selected_statements
+                .map(selection => selection.statement.statement_text)
                 .reduce((acc, currentValue) => `${acc} ${currentValue}`)
             this.setState({
-                surveyResponse: data,
+                draft: data,
                 responseText: responseText
             })
         })
@@ -28,7 +28,7 @@ class SurveyResult extends Component {
     
     componentDidMount() {
     const { id } = this.props.match.params
-    this.getSurveyResponse(id)
+    this.getDraft(id)
     }
 
     copyToClipboard() {
@@ -36,7 +36,7 @@ class SurveyResult extends Component {
     }
 
     render() {
-        if (!this.state.surveyResponse) {
+        if (!this.state.draft) {
             return <div />
         }
     
@@ -46,9 +46,9 @@ class SurveyResult extends Component {
                 <h1>Your Draft</h1>               
 
                 <div>
-                    {this.state.surveyResponse.answers.map((answer) => (
-                        <span key={answer.question_option.id} title={answer.question.question_text}>
-                            {answer.question_option.description}
+                    {this.state.draft.selected_statements.map((selected_statement) => (
+                        <span key={selected_statement.statement.id} title={selected_statement.issue.prompt_text}>
+                            {selected_statement.statement.statement_text}
                             &nbsp;
                         </span>
                     ))}
@@ -62,4 +62,4 @@ class SurveyResult extends Component {
 
 }
 
-export default SurveyResult
+export default Draft

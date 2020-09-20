@@ -9,7 +9,7 @@ class App extends Component {
     return (
        <div>
           <h1>Welcome to Draftivist</h1>
-          <Link to="/surveys">Available Surveys</Link> 
+          <Link to="/campaigns">Available Campaigns</Link> 
        </div>
        
     )

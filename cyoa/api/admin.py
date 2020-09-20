@@ -1,5 +1,5 @@
 from django.contrib import admin
-from api.models.campaign import Campaign, StatementSelection, CampaignResponse, Statement, Issue
+from api.models.campaign import Campaign, StatementSelection, Draft, Statement, Issue
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 
@@ -30,7 +30,7 @@ class StatementInline(admin.StackedInline):
 class IssueAdmin(admin.ModelAdmin):
     readonly_fields = ['campaign']
     inlines = (StatementInline,)
-    fields = ['question_text', 'link_to_campaign']
+    fields = ['prompt_text', 'link_to_campaign']
     readonly_fields = ['link_to_campaign']
 
     def link_to_campaign(self, obj):

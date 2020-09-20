@@ -3,50 +3,48 @@ import {apiBase} from '../../settings';
 import {Link} from 'react-router-dom';
 
 
-class Survey extends Component {
+class CampaignList extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            surveyList: null
+            campaignList: null
         }
     }
     
-    getSurveys() {
-        fetch(`${apiBase}/surveys`)
+    getCampaigns() {
+        fetch(`${apiBase}/campaigns`)
         .then(res => res.json())
         .then(data => {
           this.setState({
-            surveyList: data.results
+            campaignList: data.results
           })
         })
       }
     
       componentDidMount() {
-        this.getSurveys()
+        this.getCampaigns()
       }
 
     render() {
-        if (!this.state.surveyList) {
+        if (!this.state.campaignList) {
             return <div />
         }
     
         return (
             <div>
 
-                <h1>Available Surveys</h1>
+                <h1>Available Campaigns</h1>
 
                 <ol>
 
-                {this.state.surveyList.map((survey) => (
-                    <li key={survey.id}>
-                        <Link to={`/surveys/${survey.id}`}>{survey.name}</Link>
+                {this.state.campaignList.map((campaign) => (
+                    <li key={campaign.id}>
+                        <Link to={`/campaigns/${campaign.id}`}>{campaign.name}</Link>
                     </li>
                 ))}
                 
                 </ol>
-
-                
 
             </div>
 
@@ -56,4 +54,4 @@ class Survey extends Component {
 
 }
 
-export default Survey
+export default CampaignList
