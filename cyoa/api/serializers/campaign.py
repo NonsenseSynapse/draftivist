@@ -55,6 +55,10 @@ class DraftSerializer(serializers.ModelSerializer):
         exclude = ['created']
 
 
+class DraftSelectionSerializer(serializers.Serializer):
+    issue = serializers.PrimaryKeyRelatedField(required=True, queryset=Issue.objects.all())
+    statement = serializers.PrimaryKeyRelatedField(required=True, queryset=Statement.objects.all())
+
 class DraftSubmitSerializer(serializers.Serializer):
     campaign_id = serializers.PrimaryKeyRelatedField(required=True, queryset=Campaign.objects.all())
     selections = serializers.ListField(required=True)
@@ -62,32 +66,18 @@ class DraftSubmitSerializer(serializers.Serializer):
     class Meta:
         fields = ['campaign_id', 'selections']
 
-    # def validate_selections(self, value):
-    #     issue_ids = []
-    #     statement_ids = []
-    #
-    #     for selection_set in value:
-    #         if not isinstance(selection_set, dict):
-    #             raise ValidationError('One or more selections are not in a JSON parsable format.')
-    #
-    #         if 'issue' not in selection_set or 'statement' not in selection_set:
-    #             raise ValidationError('Either "issue" or "statement" key missing from an answer.')
-    #
-    #         if not isinstance(selection_set['issue'], int) or not isinstance(selection_set['statement'], int):
-    #             raise ValidationError('Invalid data time for issue or statement id.')
-    #
-    #         issue_ids.append(selection_set['issue'])
-    #         statement_ids.append(selection_set['statement'])
-    #
-    #     num_valid_selections = (Statement.objects
-    #                             .filter(id__in=statement_ids)
-    #                             .filter(issue__campaign_id=self.initial_data['campaign_id'])
-    #                             ).count()
-    #
-    #     if num_valid_selections != len(value):
-    #         raise ValidationError('One or more of the selected options are not valid for this campaign.')
-    #
-    #     return value
+    def validate_selections(self, value):
+        for selection_set in value:
+            if not isinstance(selection_set, dict):
+                raise ValidationError('One or more selections are not in a JSON parsable format.')
+
+            if 'issue' not in selection_set or 'statement' not in selection_set:
+                raise ValidationError('Either "issue" or "statement" key missing from an answer.')
+
+            if not isinstance(selection_set['issue'], int) or not isinstance(selection_set['statement'], int):
+                raise ValidationError('Invalid data time for issue or statement id.')
+
+        return value
 
     def create(self, validated_data):
         draft = Draft(campaign=validated_data['campaign_id'])
