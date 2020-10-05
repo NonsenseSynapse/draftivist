@@ -1,24 +1,24 @@
 import React, {Component} from 'react';
-import SurveyQuestion from '../surveyQuestion/surveyQuestion';
+import Issue from '../issue/issue';
 import {apiBase} from '../../settings';
 
-class Survey extends Component {
+class Campaign extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            survey: null,
+            campaign: null,
             isComplete: false,
             isInvalidId: false,
-            selectedOptions: {},
-            numQuestions: null,
+            selectedStatements: {},
+            numIssues: null,
             currentPage: 0,
             pagesCompleted: 0
         }
     }
     
-    getSurvey(surveyId) {
-        fetch(`${apiBase}/surveys/${surveyId}/`)
+    getCampaign(campaignId) {
+        fetch(`${apiBase}/campaigns/${campaignId}/`)
         .then(res => {
             if (res.status >= 400) {
                 this.setState({
@@ -32,32 +32,32 @@ class Survey extends Component {
                 return null;
             }
 
-            let numQuestions = data != null ? data.questions.length : 0
+            let numIssues = data != null ? data.issues.length : 0
             this.setState({
-                survey: data,
-                numQuestions: numQuestions   
+                campaign: data,
+                numIssues: numIssues   
             })
         })
       }
     
       componentDidMount() {
         const { id } = this.props.match.params
-        this.getSurvey(id)
+        this.getCampaign(id)
       }
 
     checkComplete() {
-        let pagesCompleted = Object.keys(this.state.selectedOptions).length
+        let pagesCompleted = Object.keys(this.state.selectedStatements).length
         this.setState({
-            isComplete: this.state.numQuestions === pagesCompleted,
+            isComplete: this.state.numIssues === pagesCompleted,
             pagesCompleted: pagesCompleted
         })
       }
 
-    selectQuestionOption = (questionId, questionOptionId) => {
+    selectStatement = (issueId, statementId) => {
         this.setState(prevState => ({
-            selectedOptions: {
-                ...prevState.selectedOptions,
-                [questionId]: questionOptionId
+            selectedStatements: {
+                ...prevState.selectedStatements,
+                [issueId]: statementId
             }
         }),
         this.checkComplete
@@ -78,17 +78,16 @@ class Survey extends Component {
         })
     }
 
-    submitAnswers = () => {
-        console.log(this.state.selectedOptions);
-        let payload = {answers: []};
-        for (let question_id in this.state.selectedOptions) {
-            payload['answers'].push({
-                question: parseInt(question_id),
-                question_option: parseInt(this.state.selectedOptions[question_id])
+    submitDraft = () => {
+        let payload = {selections: []};
+        for (let issueId in this.state.selectedStatements) {
+            payload['selections'].push({
+                issue: parseInt(issueId),
+                statement: parseInt(this.state.selectedStatements[issueId])
             })
         }
         
-        fetch(apiBase + `/surveys/${this.state.survey.id}/submit/`, {
+        fetch(apiBase + `/campaigns/${this.state.campaign.id}/submit/`, {
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8'
             },
@@ -104,11 +103,11 @@ class Survey extends Component {
     render() {
         if (this.state.isInvalidId) {
             return <div>
-                No Survey matching that ID :(
+                No Campaign matching that ID :(
             </div>
         }
         
-        if (!this.state.survey) {
+        if (!this.state.campaign) {
             return <div />
         }
     
@@ -123,24 +122,24 @@ class Survey extends Component {
                 </button>
 
                 <button
-                    disabled={this.state.pagesCompleted <= this.state.currentPage || this.state.currentPage === this.state.numQuestions - 1}
+                    disabled={this.state.pagesCompleted <= this.state.currentPage || this.state.currentPage === this.state.numIssues - 1}
                     className="btn btn-primary"
                     onClick={this.nextButton}>
                         Next
                 </button>
 
-                <h1>{this.state.survey.name}</h1>
+                <h1>{this.state.campaign.name}</h1>
 
-                {this.state.survey.questions.map((question, index) => (
-                    <SurveyQuestion
-                        key={question.id}
-                        showQuestion={index === this.state.currentPage} 
-                        surveyQuestion={question} 
-                        selectQuestionOption={this.selectQuestionOption} 
+                {this.state.campaign.issues.map((issue, index) => (
+                    <Issue
+                        key={issue.id}
+                        showIssue={index === this.state.currentPage} 
+                        issue={issue} 
+                        selectStatement={this.selectStatement} 
                     />
                 ))}
 
-                {this.state.isComplete ? <button className={"btn btn-primary"} onClick={this.submitAnswers}>Survey complete!</button> : <div></div>}
+                {this.state.isComplete ? <button className={"btn btn-primary"} onClick={this.submitDraft}>Create Draft!</button> : <div></div>}
 
             </div>
 
@@ -150,4 +149,4 @@ class Survey extends Component {
 
 }
 
-export default Survey
+export default Campaign

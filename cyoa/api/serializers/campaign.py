@@ -1,4 +1,4 @@
-from api.models.campaign import Campaign, Statement, Issue, StatementSelection, CampaignResponse
+from api.models.campaign import Campaign, Statement, Issue, StatementSelection, Draft
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
@@ -10,7 +10,7 @@ class StatementSerializer(serializers.ModelSerializer):
 
 
 class IssueSerializer(serializers.ModelSerializer):
-    options = StatementSerializer(many=True)
+    statements = StatementSerializer(many=True)
 
     class Meta:
         model = Issue
@@ -25,37 +25,41 @@ class CampaignSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'created', 'issues']
 
 
-class ResponseIssueSerializer(serializers.ModelSerializer):
+class DraftIssueSerializer(serializers.ModelSerializer):
     class Meta:
         model = Issue
         fields = ['id', 'prompt_text']
 
 
-class ResponseStatementSerializer(serializers.ModelSerializer):
+class DraftStatementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Statement
         fields = ['id', 'statement_text']
 
 
 class StatementSelectionSerializer(serializers.ModelSerializer):
-    issue = ResponseIssueSerializer()
-    statement = ResponseStatementSerializer()
+    issue = DraftIssueSerializer()
+    statement = DraftStatementSerializer()
 
     class Meta:
         model = StatementSelection
         fields = ['issue', 'statement']
 
 
-class CampaignResponseSerializer(serializers.ModelSerializer):
+class DraftSerializer(serializers.ModelSerializer):
     campaign = serializers.PrimaryKeyRelatedField(queryset=Campaign.objects.all())
-    selections = StatementSelectionSerializer(many=True)
+    selected_statements = StatementSelectionSerializer(many=True)
 
     class Meta:
-        model = CampaignResponse
+        model = Draft
         exclude = ['created']
 
 
-class CampaignSubmitSerializer(serializers.Serializer):
+class DraftSelectionSerializer(serializers.Serializer):
+    issue = serializers.PrimaryKeyRelatedField(required=True, queryset=Issue.objects.all())
+    statement = serializers.PrimaryKeyRelatedField(required=True, queryset=Statement.objects.all())
+
+class DraftSubmitSerializer(serializers.Serializer):
     campaign_id = serializers.PrimaryKeyRelatedField(required=True, queryset=Campaign.objects.all())
     selections = serializers.ListField(required=True)
 
@@ -63,9 +67,6 @@ class CampaignSubmitSerializer(serializers.Serializer):
         fields = ['campaign_id', 'selections']
 
     def validate_selections(self, value):
-        issue_ids = []
-        statement_ids = []
-
         for selection_set in value:
             if not isinstance(selection_set, dict):
                 raise ValidationError('One or more selections are not in a JSON parsable format.')
@@ -76,27 +77,16 @@ class CampaignSubmitSerializer(serializers.Serializer):
             if not isinstance(selection_set['issue'], int) or not isinstance(selection_set['statement'], int):
                 raise ValidationError('Invalid data time for issue or statement id.')
 
-            issue_ids.append(selection_set['issue'])
-            statement_ids.append(selection_set['statement'])
-
-        num_valid_selections = (Statement.objects
-                                .filter(id__in=statement_ids)
-                                .filter(issue__campaign_id=self.initial_data['campaign_id'])
-                                ).count()
-
-        if num_valid_selections != len(value):
-            raise ValidationError('One or more of the selected options are not valid for this campaign.')
-
         return value
 
     def create(self, validated_data):
-        campaign_response = CampaignResponse(campaign=validated_data['campaign_id'])
-        campaign_response.save()
+        draft = Draft(campaign=validated_data['campaign_id'])
+        draft.save()
 
         for selection_set in validated_data['selections']:
-            answer = StatementSelection(campaign_response=campaign_response,
-                                        issue_id=selection_set['issue'],
-                                        statement_id=selection_set['statement'])
-            answer.save()
+            statement_selection = StatementSelection(draft=draft,
+                                                     issue_id=selection_set['issue'],
+                                                     statement_id=selection_set['statement'])
+            statement_selection.save()
 
-        return CampaignResponseSerializer(campaign_response).data
+        return DraftSerializer(draft).data

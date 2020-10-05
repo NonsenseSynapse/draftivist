@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Survey from './components/survey/survey';
-import SurveyList from './components/surveyList/surveyList';
-import SurveyResult from './components/surveyResult/surveyResult';
+import Campaign from './components/campaign/campaign';
+import CampaignList from './components/campaignList/campaignList';
+import Draft from './components/draft/draft';
 import * as serviceWorker from './serviceWorker';
 import { 
   BrowserRouter as Router, 
@@ -15,9 +15,9 @@ const routing = (
   <Router>
     <div>
       <Route exact path="/" component={App} />
-      <Route exact path="/surveys" component={SurveyList} />
-      <Route exact path="/surveys/:id" component={Survey} />
-      <Route exact path="/draft/:id" component={SurveyResult} />
+      <Route exact path="/campaigns" component={CampaignList} />
+      <Route exact path="/campaigns/:id" component={Campaign} />
+      <Route exact path="/draft/:id" component={Draft} />
     </div>
   </Router>
 )
