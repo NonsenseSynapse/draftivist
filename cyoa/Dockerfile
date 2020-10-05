@@ -5,6 +5,3 @@ RUN mkdir /code/draftivist_api
 WORKDIR /code/draftivist_api
 COPY requirements.txt /code/draftivist_api/
 RUN pip install -r requirements.txt
-
-# COPY . /code/
-# CMD ["python", "cyoa/manage.py", "runserver", "0.0.0.0:8000"]
