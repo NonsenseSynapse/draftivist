@@ -10,6 +10,15 @@ services:
     depends_on:
       - db
     env_file: .env
+  draftivist_ui:
+    build: ./draftivist-ui
+    command: yarn start
+    volumes:
+      - ./draftivist-ui:/code/draftivist_ui
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    env_file: .env
   db:
     image: postgres
     volumes:
