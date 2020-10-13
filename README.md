@@ -24,6 +24,12 @@ process.)
 
 See below for more helpful Docker commands.
 
+#### Initializing the database
+When first setting up your environment (or any time there are changes to the database schema), just run the following to 
+update your database to the latest:
+```
+docker-compose run draftivist_api python manage.py migrate
+```
 
 ### Manual (optional)
 
@@ -156,6 +162,10 @@ docker-compose stop
 
 # Remove any dangling docker containers, resources, AND volumes
 docker system prune --volumes
+
+# Rebuild your containers
+docker-compose build
+docker-compose up
 ```
 
 #### More Info...
