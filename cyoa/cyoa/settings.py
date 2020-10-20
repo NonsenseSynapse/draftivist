@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-from google.cloud import secretmanager
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -75,39 +77,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cyoa.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-if os.getenv('GAE_APPLICATION', None):
-    # Running on production App Engine, so connect to Google Cloud SQL using
-    # the unix socket at /cloudsql/<your-cloudsql-connection string>
-    secrets = secretmanager.SecretManagerServiceClient()
-
-    prod_password = (
-        secrets.access_secret_version("projects/546649520762/secrets/draftivist_db_prod_password/versions/latest")
-        .payload.data.decode("utf-8"))
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/draftivist:us-west1:draftivist-db',
-            'USER': 'root',
-            'PASSWORD': prod_password,
-            'NAME': 'draftivist_prod'
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'draftivist',
+        'USER': 'docker',
+        'PASSWORD': 'docker',
+        'HOST': 'db',
+        'PORT': 5432,
     }
-else:
-    DATABASES = {
-         'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'draftivist_dev',
-            'USER': 'root',
-            'PASSWORD': 'password',
-            'HOST': '127.0.0.1',
-            'PORT': '3306'
-        }
-    }
+}
 
 
 # Password validation

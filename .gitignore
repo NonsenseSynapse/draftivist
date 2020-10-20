@@ -3,7 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#virtualenv
 env/
+#local environment variables
+.env
 
 .idea/
 
