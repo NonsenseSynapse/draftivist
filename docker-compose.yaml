@@ -12,7 +12,7 @@ services:
     env_file: .env
   draftivist_ui:
     build: ./draftivist-ui
-    command: yarn start
+    command: yarn run start
     volumes:
       - ./draftivist-ui:/code/draftivist_ui
     ports:
