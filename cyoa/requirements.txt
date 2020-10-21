@@ -3,3 +3,6 @@ Django==3.0.8
 django-cors-headers==3.4.0
 djangorestframework==3.11.0
 psycopg2==2.8.6
+
+# TODO: Prod only
+gunicorn==20.0.4

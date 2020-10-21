@@ -8,3 +8,12 @@ services:
     ports:
       - '80:80'
     restart: always
+  draftivist_api:
+    build:
+      context: ./cyoa
+      dockerfile: Dockerfile.prod
+    command: >
+      bash -c '
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      gunicorn cyoa.wsgi -b 0.0.0.0:8000'
