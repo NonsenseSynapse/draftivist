@@ -13,7 +13,7 @@
         "model": "api.issue",
         "pk": 1,
         "fields": {
-            "prompt_text": "The Evil Alliance has inordinately harmed some of our city’s most vulnerable populations, like children.",
+            "prompt_text": "The Evil Alliance has inordinately harmed some of our city's most vulnerable populations, like children.",
             "campaign_id": 1,
             "is_active": true,
             "created": "2020-10-01"
@@ -23,7 +23,7 @@
         "model": "api.issue",
         "pk": 2,
         "fields": {
-            "prompt_text": "The Evil Alliance steals billions from the city’s budget every year, which could be used for schools, health care, social programs, and more.",
+            "prompt_text": "The Evil Alliance steals billions from the city's budget every year, which could be used for schools, health care, social programs, and more.",
             "campaign_id": 1,
             "is_active": true,
             "created": "2020-10-01"
@@ -43,7 +43,7 @@
         "model": "api.issue",
         "pk": 4,
         "fields": {
-            "prompt_text": "Most civic emergencies don’t require the kind of violent intervention that the Evil Alliance enacts.",
+            "prompt_text": "Most civic emergencies don't require the kind of violent intervention that the Evil Alliance enacts.",
             "campaign_id": 1,
             "is_active": true,
             "created": "2020-10-01"
@@ -63,7 +63,7 @@
         "model": "api.issue",
         "pk": 6,
         "fields": {
-            "prompt_text": "Evil Alliance members live on the moon, and aren’t part of the communities that they enforce rules upon.",
+            "prompt_text": "Evil Alliance members live on the moon, and aren't part of the communities that they enforce rules upon.",
             "campaign_id": 1,
             "is_active": true,
             "created": "2020-10-01"
@@ -97,7 +97,7 @@
         "fields": {
             "campaign_id": 1,
             "issue_id": 1,
-            "statement_text": "The Evil Alliance’s \"halt and search\" policy allows Evil Alliance members to accost anyone due to arbitrary and prejudiced reasons, such as wearing a cap with a tiny propeller on it.",
+            "statement_text": "The Evil Alliance's \"halt and search\" policy allows Evil Alliance members to accost anyone due to arbitrary and prejudiced reasons, such as wearing a cap with a tiny propeller on it.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -108,7 +108,7 @@
         "fields": {
             "campaign_id": 1,
             "issue_id": 1,
-            "statement_text": "The Evil Alliance shut down the local orphanage due to minor violations, removing a critical resource for Metropolis’ child citizens.",
+            "statement_text": "The Evil Alliance shut down the local orphanage due to minor violations, removing a critical resource for Metropolis' child citizens.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -273,7 +273,7 @@
         "fields": {
             "campaign_id": 1,
             "issue_id": 5,
-            "statement_text": "Because Acme Inc. provides weapons to the Evil Alliance, they  can avoid key city taxes, which goes right into their shareholders’ pockets.",
+            "statement_text": "Because Acme Inc. provides weapons to the Evil Alliance, they  can avoid key city taxes, which goes right into their shareholders' pockets.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -295,7 +295,7 @@
         "fields": {
             "campaign_id": 1,
             "issue_id": 6,
-            "statement_text": "The Evil Alliance don’t live in Metropolis, so our city pays evildoers who don’t pay taxes that go back into our economy.",
+            "statement_text": "The Evil Alliance don't live in Metropolis, so our city pays evildoers who don't pay taxes that go back into our economy.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -306,7 +306,7 @@
         "fields": {
             "campaign_id": 1,
             "issue_id": 6,
-            "statement_text": "The Evil Alliance doesn’t have a personal stake in protecting our community because they themselves aren’t a part of it.",
+            "statement_text": "The Evil Alliance doesn't have a personal stake in protecting our community because they themselves aren't a part of it.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -317,7 +317,7 @@
         "fields": {
             "campaign_id": 1,
             "issue_id": 6,
-            "statement_text": "The Evil Alliance doesn’t understand our community, culture, or values because they don’t live on earth.",
+            "statement_text": "The Evil Alliance doesn't understand our community, culture, or values because they don't live on earth.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -328,7 +328,7 @@
         "fields": {
             "campaign_id": 1,
             "issue_id": 6,
-            "statement_text": "The Evil Alliance tries to hold lunar standards to a terrestrial community to which they don’t apply.",
+            "statement_text": "The Evil Alliance tries to hold lunar standards to a terrestrial community to which they don't apply.",
             "is_active": true,
             "created": "2020-10-01"
         }
