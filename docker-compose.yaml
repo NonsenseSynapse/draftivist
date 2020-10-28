@@ -1,20 +1,20 @@
 version: "3.8"
 services:
   draftivist_api:
-    build: ./cyoa
+    build: ./draftivist_api
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./cyoa:/code/draftivist_api
+      - ./draftivist_api:/code/draftivist_api
     ports:
       - "8000:8000"
     depends_on:
       - db
     env_file: .env
   draftivist_ui:
-    build: ./draftivist-ui
+    build: ./draftivist_ui
     command: yarn run start
     volumes:
-      - ./draftivist-ui:/code/draftivist_ui
+      - ./draftivist_ui:/code/draftivist_ui
     ports:
       - "3000:3000"
     stdin_open: true  # Prevents the docker container from trying to open a browser window when the react app starts
