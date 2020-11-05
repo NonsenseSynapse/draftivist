@@ -10,7 +10,7 @@ The only thing you need to download/have installed is Docker.
 Please refer to the [official Docker documentation](https://docs.docker.com/compose/install/) for instructions on how
 to install Docker locally. Please not that if you do not download the Docker Desktop client and install Docker in a 
 different way, you need to make sure you install both Docker AND Docker-Compose. The Docker Desktop client handles 
-installing both for you.
+installing both for you. [Docker Desktop documentation for Macs](https://docs.docker.com/docker-for-mac/install/) [Docker Desktop Documentation for Windows](https://docs.docker.com/docker-for-windows/install/)
 
 #### Building the Docker containers
 Once you have Docker and Docker-Compose installed, clone this repo and open a terminal window in the root project 
@@ -41,7 +41,7 @@ docker-compose run draftivist_api python manage.py loaddata api/fixtures/test_ca
 ### Manual (optional)
 
 #### Frontend
-TODO
+Starting the Docker containers using the `docker-compose up` command launches the application at port 3000, and it will be mounted at http://localhost:3000.
 
 #### Backend
 TODO
