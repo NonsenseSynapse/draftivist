@@ -31,6 +31,13 @@ update your database to the latest:
 docker-compose run draftivist_api python manage.py migrate
 ```
 
+#### Seeding local test data
+To load an initial campaign that is pre-populated with issues and statements (note, you must run the database initialize
+command above first so the expected DB tables are already set up):
+```
+docker-compose run draftivist_api python manage.py loaddata api/fixtures/test_campaign.json
+```
+
 ### Manual (optional)
 
 #### Frontend
