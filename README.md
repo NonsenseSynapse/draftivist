@@ -44,8 +44,52 @@ docker-compose run draftivist_api python manage.py loaddata api/fixtures/test_ca
 TODO
 
 #### Backend
-TODO
+Note that this method is a longer process and prone to more errors than using the docker configurations. You will also
+have to ensure you have Postgres installed locally (this is included in the instructions below for Mac setup).  
 
+1. install postgresql, pyenv, and pyenv-virtualenv (Mac Only)
+```
+brew install pyenv pyenv-virtualenv postgresql
+```
+Then add the following to `~/.zshrc` (or `~/.bash_profile` if you are not using zsh) to automatically initialize the 
+virtualenv when you are in this directory
+```
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+if which pyenv-virtualenv-init > /dev/null; then
+  eval "$(pyenv virtualenv-init -)"
+fi
+```
+Restart your shell. Now that `PYENV_ROOT` is set, install python version 3.9.0 and create a virtualenv for draftivist: 
+```
+pyenv install 3.9.0
+pyenv virtualenv 3.9 draftivist
+```
+Restart your shell once more. At this point, if you navigate to `draftivist/draftivist_api` in a terminal, you should 
+see something like this:
+```
+(draftivist) knewman@Keiths-MacBook-Pro draftivist_api %
+```
+indicating that you are within the draftivist virtual environment. The reason it says "(draftivist)" is because of the
+`.python-version` file in the `draftivist_api/` directory.
+
+To further verify that it is working correctly, you can run this:
+```
+pyenv which pip
+```
+Which should point to the local paths we set up within `PYENV_ROOT`. Something like:
+```
+/Users/knewman/.pyenv/versions/draftivist/bin/pip
+```
+Once we know that we are inside the virtualenv, you can just install the requirements:
+```
+pip install -r requirements.txt
+```
 ## Help and FAQs
 ### Aliases
 Sometimes it can be helpful to add an alias for a terminal command that you know you will use frequently. Since 
