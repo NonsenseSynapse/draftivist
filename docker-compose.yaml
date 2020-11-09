@@ -9,7 +9,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    env_file: .env
+    env_file: draftivist_api/.env
   draftivist_ui:
     build: ./draftivist_ui
     command: yarn run start
@@ -18,7 +18,7 @@ services:
     ports:
       - "3000:3000"
     stdin_open: true  # Prevents the docker container from trying to open a browser window when the react app starts
-    env_file: .env
+    env_file: draftivist_api/.env
   db:
     image: postgres
     volumes:
@@ -26,6 +26,6 @@ services:
       - ./startup:/docker-entrypoint-initdb.d
     ports:
           - "5432:5432"
-    env_file: .env
+    env_file: draftivist_api/.env
 volumes:
   db_data: {}
