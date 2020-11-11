@@ -12,7 +12,7 @@ services:
     env_file: .env
   draftivist_ui:
     build: ./draftivist_ui
-    command: yarn run start
+    command: "/bin/sh -c 'while true; do sleep 15; done'"
     volumes:
       - ./draftivist_ui:/code/draftivist_ui
     ports:
@@ -25,7 +25,7 @@ services:
       - db_data:/var/lib/postgresql/data/
       - ./startup:/docker-entrypoint-initdb.d
     ports:
-          - "5432:5432"
+          - "5433:5432"
     env_file: .env
 volumes:
   db_data: {}
