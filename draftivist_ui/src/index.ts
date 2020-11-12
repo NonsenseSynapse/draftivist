@@ -1,4 +1,4 @@
 import * as m from "mithril";
-import App from "./App";
+import Campaign from "./components/Campaign";
 
-m.render(document.body, m(App))
+m.mount(document.body, Campaign)
