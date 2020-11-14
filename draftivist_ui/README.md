@@ -1,68 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is configured to work with docker-compose. 
 
-## Available Scripts
+## Development tips
 
-In the project directory, you can run:
+It was a bit of a PITA to get JSX and Typescript to work together with Mithril. I was able to hack a solution which uses [closure components](https://mithril.js.org/components.html#closure-component-state) to handle state, which is the recommended approach in the Mithril docs. The returned component object needs to conform to the `JSX.Element` type to work with JSX/Typescript, so I include dummy `elementAttrs` in each component object, and the closure function returns a `BaseComponent` defined in `src/components/base.tsx`. Mithril-provided components like `Link` also need to be wrapped, so use the `Link` component in `src/components/base.tsx` rather than the default Mithril component.
 
-### `yarn start`
+If you can figure out a better approach please do!
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Working with VSCode
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+VSCode has a nifty feature called [remote containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers). Follow the instructions to attach to a running container. Now your IDE environment is localized to your Docker container and you can make updates without worrying about polluting your local machine. One nice thing is you can access the container shell directly from VSCode.
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

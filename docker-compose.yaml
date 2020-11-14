@@ -12,7 +12,7 @@ services:
     env_file: .env
   draftivist_ui:
     build: ./draftivist_ui
-    command: "/bin/sh -c 'while true; do sleep 15; done'"
+    command: "yarn start"
     volumes:
       - ./draftivist_ui:/code/draftivist_ui
     ports:
