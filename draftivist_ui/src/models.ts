@@ -28,13 +28,26 @@ export class Campaign {
     description: string
 
     issues: Issue[]
-    selectedIssues: Set<number> = new Set()
+    selectedIssues: number[]
 
     constructor(id: number, title: string, creator: string, description: string) {
         this.id = id
         this.title = title
         this.creator = creator
         this.description = description
+    }
+
+    selectIssue(id: number) {
+        if (this.selectedIssues.indexOf(id) == -1) {
+            this.selectedIssues.push(id)
+        }
+    }
+
+    deselectIssue(id: number) {
+        const index = this.selectedIssues.indexOf(id)
+        if (index > -1) {
+            this.selectedIssues = this.selectedIssues.splice(index, 1)
+        }
     }
 
     static parse(campaignData: any) {

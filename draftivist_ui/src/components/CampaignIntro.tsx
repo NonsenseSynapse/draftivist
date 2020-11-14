@@ -11,11 +11,11 @@ export default function() : BaseComponent<Attrs> {
     let campaign: Campaign
 
     function selectIssue(id: number) {
-        campaign.selectedIssues.add(id)
+        campaign.selectIssue(id)
     }
 
     function deselectIssue(id: number) {
-        campaign.selectedIssues.delete(id)
+        campaign.deselectIssue(id)
     }
 
     return {

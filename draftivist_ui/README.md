@@ -9,4 +9,3 @@ If you can figure out a better approach please do!
 ## Working with VSCode
 
 VSCode has a nifty feature called [remote containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers). Follow the instructions to attach to a running container. Now your IDE environment is localized to your Docker container and you can make updates without worrying about polluting your local machine. One nice thing is you can access the container shell directly from VSCode.
-
