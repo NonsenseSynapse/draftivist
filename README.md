@@ -8,24 +8,26 @@
 The only thing you need to download/have installed is Docker.
 
 Please refer to the [official Docker documentation](https://docs.docker.com/compose/install/) for instructions on how
-to install Docker locally. Please not that if you do not download the Docker Desktop client and install Docker in a 
-different way, you need to make sure you install both Docker AND Docker-Compose. The Docker Desktop client handles 
-installing both for you. [Docker Desktop documentation for Macs](https://docs.docker.com/docker-for-mac/install/) [Docker Desktop Documentation for Windows](https://docs.docker.com/docker-for-windows/install/)
+to install Docker locally. Please not that if you do not download the Docker Desktop client and install Docker in a
+different way, you need to make sure you install both Docker AND Docker-Compose. The Docker Desktop client handles
+installing both for you.
+- [Docker Desktop documentation for Macs](https://docs.docker.com/docker-for-mac/install/)
+- [Docker Desktop Documentation for Windows](https://docs.docker.com/docker-for-windows/install/)
 
 #### Building the Docker containers
-Once you have Docker and Docker-Compose installed, clone this repo and open a terminal window in the root project 
+Once you have Docker and Docker-Compose installed, clone this repo and open a terminal window in the root project
 directory (`draftivist/`).
 
 From there, just run `docker-compose up` and all of the containers will be built and started! It will probably take a
 while to build the first time, but subsequent runs will be significantly faster.
 
-To stop all of the containers, you can just use `Ctrl+C` (the standard terminal command for stopping the current 
+To stop all of the containers, you can just use `Ctrl+C` (the standard terminal command for stopping the current
 process.)
 
 See below for more helpful Docker commands.
 
 #### Initializing the database
-When first setting up your environment (or any time there are changes to the database schema), just run the following to 
+When first setting up your environment (or any time there are changes to the database schema), just run the following to
 update your database to the latest:
 ```
 docker-compose run draftivist_api python manage.py migrate
@@ -48,28 +50,28 @@ TODO
 
 ## Help and FAQs
 ### Aliases
-Sometimes it can be helpful to add an alias for a terminal command that you know you will use frequently. Since 
+Sometimes it can be helpful to add an alias for a terminal command that you know you will use frequently. Since
 `docker-compose` can be annoying to keep typing, I recommend adding this line to your currently shell profile:
 ```
 alias dc="docker-compose"
 ```
 This will allow you to just type `dc` instead of `docker-compose` every time.
 
-Note: depending on your operation system and which terminal shell you are using, the location and name of your shell 
+Note: depending on your operation system and which terminal shell you are using, the location and name of your shell
 profile may vary. Some common options are:
 1. Mac/Linux
     1. `~/.zshrc` (if using zsh, the new standard on macs)
     1. `~/.bash_profile` (if using an older/standard terminal)
 1. Windows
-    1. Unfortunately, bash profiles and aliases are a bit more complicated to set up in Windows. If you are on a 
-    Windows machine and this becomes an issue for you, please raise your concern and we can lock down an official 
-    recommended protocol. 
- 
+    1. Unfortunately, bash profiles and aliases are a bit more complicated to set up in Windows. If you are on a
+    Windows machine and this becomes an issue for you, please raise your concern and we can lock down an official
+    recommended protocol.
+
 ### Docker Commands
-Here are a list of some of the most helpful Docker and Docker-Compose commands. Unless otherwise noted, you can assume 
+Here are a list of some of the most helpful Docker and Docker-Compose commands. Unless otherwise noted, you can assume
 that these should all be run in the project's root directory.
 
-Also, there are some commands where I mention being able to pass in a container name. To view the list of possible 
+Also, there are some commands where I mention being able to pass in a container name. To view the list of possible
 containers, check the `docker-compose.yaml` file. The containers are each listed at the first nested level, under
 `services` (i.e. `draftivist_api`, `db`, `draftivist_ui`).
 
@@ -95,7 +97,7 @@ docker-compose stop
 ```
 
 #### Run a command on a specific container
-You can run pretty much any `docker-compose` command by passing in a specific container's name as the last argument. 
+You can run pretty much any `docker-compose` command by passing in a specific container's name as the last argument.
 For example:
 ```
 # Only starts draftivist_api in detached mode
@@ -121,8 +123,8 @@ docker-compose run draftivist_api python manage.py migrate
 ```
 
 #### View terminal output for a container
-Having all of the console output streaming to a single terminal window can be hard to follow. Often, it is easier to 
-start all containers in detached mode, and then use the following command to get a live readout of the terminal output 
+Having all of the console output streaming to a single terminal window can be hard to follow. Often, it is easier to
+start all containers in detached mode, and then use the following command to get a live readout of the terminal output
 for a given container.
 ```
 docker-compose logs -ft <container name>
@@ -132,7 +134,7 @@ docker-compose logs -ft draftivist_api
 ```
 
 #### Clean up any lingering containers
-Each time you kick off a different command, you are creating a new docker container. For example, try running the 
+Each time you kick off a different command, you are creating a new docker container. For example, try running the
 following commands:
 ```
 docker-compose up -d
@@ -141,7 +143,7 @@ docker-compose run draftivist_api bash
 # Ctrl+D to exit the bash shell you just opened
 
 docker ps -a
-``` 
+```
 You will notice 4 containers. 1 for the DB, 1 for the UI, 1 for the API, and 1 for the `bash` command that you just ran.
 
 In order to fix this, you can do the following:
@@ -157,11 +159,11 @@ docker system prune
 ```
 
 #### Completely nuke your environment
-By default, Docker has a concept called Volumes. A Volume represents data that persists between instances of the 
+By default, Docker has a concept called Volumes. A Volume represents data that persists between instances of the
 application. This is the reason you can start and stop your containers without affecting your local database. Becaus
 the database is defined as a Volume.
 
-If you run into a situation where you want to completely remove and rebuild all containers AND volumes, do the 
+If you run into a situation where you want to completely remove and rebuild all containers AND volumes, do the
 following:
 ```
 # Ensure all containers are stopped
@@ -176,5 +178,5 @@ docker-compose up
 ```
 
 #### More Info...
-The official [Docker-Compose documentation](https://docs.docker.com/compose/reference/) is very good. Feel free to 
+The official [Docker-Compose documentation](https://docs.docker.com/compose/reference/) is very good. Feel free to
 check there to look into the other commands not listed here.
