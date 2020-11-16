@@ -43,9 +43,9 @@ docker-compose run draftivist_api python manage.py loaddata api/fixtures/test_ca
 ### Manual (optional)
 
 #### Frontend
-Starting the Docker containers using the `docker-compose up` command launches the application at port 3000, and it will be mounted at http://localhost:3000.
-1. Ensure Node v14 is installed. [Node installation](https://nodejs.org/en/download/)
-2. Ensure `yarn` is installed.  [yarn installation docs](https://classic.yarnpkg.com/en/docs/install/#mac-stable)
+To start the the Draftivist UI app:
+1. Ensure Node v14 is installed: [Node installation](https://nodejs.org/en/download/)
+2. Ensure `yarn` is installed: [yarn installation docs](https://classic.yarnpkg.com/en/docs/install/#mac-stable)
 3. Run `yarn install` to install all packages.
 4. Run `yarn start` to manually run the application. Once running, the application will be available at http://localhost:3000.
 
