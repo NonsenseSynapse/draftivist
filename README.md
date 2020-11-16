@@ -10,7 +10,7 @@ The only thing you need to download/have installed is Docker.
 Please refer to the [official Docker documentation](https://docs.docker.com/compose/install/) for instructions on how
 to install Docker locally. Please not that if you do not download the Docker Desktop client and install Docker in a
 different way, you need to make sure you install both Docker AND Docker-Compose. The Docker Desktop client handles
-installing both for you.
+installing both for you:
 - [Docker Desktop documentation for Macs](https://docs.docker.com/docker-for-mac/install/)
 - [Docker Desktop Documentation for Windows](https://docs.docker.com/docker-for-windows/install/)
 
