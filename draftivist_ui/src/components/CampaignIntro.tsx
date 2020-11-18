@@ -28,7 +28,7 @@ export default function() : BaseComponent<Attrs> {
                 <p>Select two issues to focus on:</p>
                 <ul>
                 {campaign.issues.map(issue => 
-                    campaign.selectedIssues.has(issue.id) ? 
+                    campaign.isSelected(issue.id) ? 
                     <li onclick={deselectIssue.bind(this, issue.id)}>
                         <b>{issue.description}</b>
                     </li> :

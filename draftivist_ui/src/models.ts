@@ -28,7 +28,7 @@ export class Campaign {
     description: string
 
     issues: Issue[]
-    selectedIssues: number[]
+    selectedIssues: number[] = []
 
     constructor(id: number, title: string, creator: string, description: string) {
         this.id = id
@@ -38,7 +38,7 @@ export class Campaign {
     }
 
     selectIssue(id: number) {
-        if (this.selectedIssues.indexOf(id) == -1) {
+        if (!this.isSelected(id)) {
             this.selectedIssues.push(id)
         }
     }
@@ -46,8 +46,12 @@ export class Campaign {
     deselectIssue(id: number) {
         const index = this.selectedIssues.indexOf(id)
         if (index > -1) {
-            this.selectedIssues = this.selectedIssues.splice(index, 1)
+            this.selectedIssues.splice(index, 1)
         }
+    }
+
+    isSelected(id: number) : boolean {
+        return this.selectedIssues.indexOf(id) > -1
     }
 
     static parse(campaignData: any) {
