@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker-compose -f docker-compose.yaml -f docker-prod.yaml up -d --build
+docker-compose -f docker-prod.yaml up -d --build
