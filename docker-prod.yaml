@@ -5,6 +5,7 @@ services:
       context: ./draftivist_api
       dockerfile: Dockerfile.prod
     command: gunicorn cyoa.wsgi -b 0.0.0.0:8000
+    restart: always
   draftivist_ui:
     build:
       context: ./draftivist_ui
