@@ -18,7 +18,6 @@ services:
     ports:
       - "3000:3000"
     stdin_open: true  # Prevents the docker container from trying to open a browser window when the react app starts
-    env_file: draftivist_api/.env
   db:
     image: postgres
     volumes:
