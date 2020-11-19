@@ -2,14 +2,14 @@ import * as m from "mithril";
 import { Campaign } from "../models"
 import localData from "../data"
 import CampaignIntro from "./CampaignIntro";
-import SelectIssueStatements from './SelectIssueStatements';
+import SelectIssueStatements from "./SelectIssueStatements";
 import { BaseComponent, Link, elementAttrs } from "./base"
 
 type Attrs = {
     index: number
 }
 
-export default function() : BaseComponent<Attrs> {
+export default function (): BaseComponent<Attrs> {
 
     let campaign: Campaign
 
@@ -23,11 +23,13 @@ export default function() : BaseComponent<Attrs> {
             <div>
                 <h1>{campaign.title}</h1>
                 <div>{campaign.description}</div>
-                { vnode.attrs.index == 0 && <CampaignIntro campaign={campaign} /> }
-                {
-                    vnode.attrs.index === 1 && <SelectIssueStatements />
-                }
-                { vnode.attrs.index == 1 && <Link href="/draft/0">Go back</Link>}
+                {vnode.attrs.index == 0 && <CampaignIntro campaign={campaign} />}
+                {vnode.attrs.index == 1 && (
+                    <div>
+                        <SelectIssueStatements campaign={campaign} />
+                        <Link href="/draft/0">Go back to select an issue</Link>
+                    </div>
+                )}
             </div>
     }
 }
