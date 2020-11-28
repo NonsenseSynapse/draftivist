@@ -1,1 +1,1 @@
-export const apiBase = 'http://draftivist_api:8000';
+export const apiBase = 'http://localhost:8000';
