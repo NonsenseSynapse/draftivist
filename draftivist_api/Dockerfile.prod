@@ -3,7 +3,7 @@ FROM python:3.9-buster
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-pip install --upgrade pip
+RUN pip install --upgrade pip
 
 RUN mkdir /code
 RUN mkdir /code/draftivist_api
