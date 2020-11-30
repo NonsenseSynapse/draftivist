@@ -1,7 +1,29 @@
+from django.shortcuts import render
 from rest_framework import viewsets
-from api.models.models import Campaign, Recipient, Issue, Statement, Draft
-from api.serializers.serializers import CampaignSerializer, RecipientSerializer, IssueSerializer, StatementSerializer, DraftSerializer
 
+from api.models.models import (
+    Campaign,
+    Recipient,
+    Issue,
+    Statement,
+    Draft,
+    StatementSubmission,
+    SessionMeta,
+    Organization,
+    Member,
+)
+
+from api.serializers.serializers import (
+    CampaignSerializer,
+    RecipientSerializer,
+    IssueSerializer,
+    StatementSerializer,
+    DraftSerializer,
+    StatementSubmissionSerializer,
+    SessionMetaSerializer,
+    OrganizationSerializer,
+    MemberSerializer,
+)
 
 class CampaignViewSet(viewsets.ModelViewSet):
     queryset = Campaign.objects.all()
@@ -26,3 +48,23 @@ class StatementViewSet(viewsets.ModelViewSet):
 class DraftViewSet(viewsets.ModelViewSet):
     queryset = Draft.objects.all()
     serializer_class = DraftSerializer
+
+
+class StatementSubmissionViewSet(viewsets.ModelViewSet):
+    queryset = StatementSubmission.objects.all()
+    serializer_class = StatementSubmissionSerializer
+
+
+class SessionMetaViewSet(viewsets.ModelViewSet):
+    queryset = SessionMeta.objects.all()
+    serializer_class = SessionMetaSerializer
+
+
+class OrganizationViewSet(viewsets.ModelViewSet):
+    queryset = Organization.objects.all()
+    serializer_class = OrganizationSerializer
+
+
+class MemberViewSet(viewsets.ModelViewSet):
+    queryset = Member.objects.all()
+    serializer_class = MemberSerializer

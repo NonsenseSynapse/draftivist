@@ -16,7 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from api.views.views import CampaignViewSet, RecipientViewSet, IssueViewSet, StatementViewSet, DraftViewSet
+from api.views.views import (
+	CampaignViewSet,
+	RecipientViewSet,
+	IssueViewSet,
+	StatementViewSet,
+	DraftViewSet,
+	StatementSubmissionViewSet,
+	SessionMetaViewSet,
+	OrganizationViewSet,
+	MemberViewSet,
+)
 
 router = routers.DefaultRouter()
 router.register(r'campaign', CampaignViewSet)
@@ -24,6 +34,10 @@ router.register(r'recipient', RecipientViewSet)
 router.register(r'issue', IssueViewSet)
 router.register(r'statement', StatementViewSet)
 router.register(r'draft', DraftViewSet)
+router.register(r'statementsubmission', StatementSubmissionViewSet)
+router.register(r'sessionmeta', SessionMetaViewSet)
+router.register(r'organization', OrganizationViewSet)
+router.register(r'member', MemberViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
