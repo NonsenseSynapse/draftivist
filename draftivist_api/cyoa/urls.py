@@ -42,4 +42,6 @@ router.register(r'member', MemberViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
+    # path('accounts/', include('django.contrib.auth.urls')), # is this needed?
 ]
