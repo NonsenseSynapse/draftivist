@@ -70,22 +70,22 @@ class Draft(models.Model):
     issue = models.ForeignKey(Issue, null=True, on_delete=models.SET_NULL, related_name='drafts')
     statements = models.ManyToManyField(Statement, related_name='drafts')
     created = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=20, default='STARTED')
-    session_key = models.CharField(max_length=40)
+    status = models.CharField(max_length=20, default='STARTED', choices=[('STARTED', 'Started'), ('IN_PROGRESS', 'In Progress'), ('COMPLETED', 'Completed')])
+    session_key = models.CharField(max_length=40, null=True)
 
     class Meta:
         db_table = "draft"
         ordering = ['id']
 
     def __str__(self):
-        return self.pk
+        return f'{str(self.pk)}'
 
 
 class StatementSubmission(models.Model):
     issue = models.ForeignKey(Issue, null=True, on_delete=models.SET_NULL, related_name='+')
     text = models.CharField(max_length=1024)
     created = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=20, default='NEEDS_REVIEW')
+    status = models.CharField(max_length=20, default='NEEDS_REVIEW', choices=[('NEEDS_REVIEW', 'Needs Review'), ('REJECTED', 'Rejected'), ('ACCEPTED', 'Accepted')])
     reviewer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='+')
 
     class Meta:
@@ -105,22 +105,28 @@ class SessionMeta(models.Model):
         db_table = "session_meta"
         ordering = ['id']
 
+    def __str__(self):
+        return f'{str(self.pk)}: {self.session_key}'
+
 
 class Organization(models.Model):
-    name = models.TextField(max_length=255)
-    created = models.DateTimeField(auto_now=True)
     group = models.OneToOneField(Group, on_delete=models.SET_NULL, null=True, related_name='organization')
 
     class Meta:
         db_table = "organization"
         ordering = ['id']
 
+    def __str__(self):
+        return self.group.name
+
 
 class Member(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, related_name='member')
-    organization = models.ForeignKey('Organization', on_delete=models.SET_NULL, null=True, related_name='members') # manyToMany?
     contact = PhoneNumberField()
 
     class Meta:
         db_table = "member"
         ordering = ['id']
+
+    def __str__(self):
+        return self.user.username

@@ -40,7 +40,7 @@ class DraftSerializer(serializers.ModelSerializer):
     campaign = serializers.PrimaryKeyRelatedField(queryset=Campaign.objects.all(), allow_null=False)
     issue = serializers.PrimaryKeyRelatedField(queryset=Issue.objects.all(), allow_null=True)
     statements = serializers.PrimaryKeyRelatedField(queryset=Statement.objects.all(), allow_null=True, many=True)
-    status = serializers.ChoiceField(choices=[('STARTED', 'Started'), ('IN_PROGRESS', 'In Progress'), ('COMPLETED', 'Completed')])
+    status = serializers.ChoiceField(default='STARTED', choices=[('STARTED', 'Started'), ('IN_PROGRESS', 'In Progress'), ('COMPLETED', 'Completed')])
 
     class Meta:
         model = Draft
