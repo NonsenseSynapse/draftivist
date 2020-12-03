@@ -17,19 +17,24 @@ export default() : BaseComponent<Attrs>  => {
       console.log("in select statements")
       const firstIssueId = vnode.attrs.campaign.selectedIssues[0];
       firstSelectedIssue = vnode.attrs.campaign.issues[firstIssueId];
+      console.log(firstSelectedIssue)
     },
     view: (vnode) => (
       <div>
+        <h2>
+          {
+            firstSelectedIssue && firstSelectedIssue.description
+          }
+        </h2>
         <h3>
           Select a statement for this issue:
         </h3>
-        <h2>
-          {
-            vnode.attrs.campaign.selectedIssues[0]
-          }
-        </h2>
         <ul>
-          {firstSelectedIssue.statements.map}
+          {firstSelectedIssue && firstSelectedIssue.statements.map(statement => (
+            <li>
+              {statement.description}
+            </li>
+          ))}
         </ul>
       </div>
     )

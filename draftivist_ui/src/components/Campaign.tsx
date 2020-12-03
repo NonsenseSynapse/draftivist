@@ -26,7 +26,10 @@ export default function (): BaseComponent<Attrs> {
                 {vnode.attrs.index == 0 && <CampaignIntro campaign={campaign} />}
                 {vnode.attrs.index == 1 && (
                     <div>
-                        <SelectIssueStatements campaign={campaign} />
+                        {
+                            campaign.selectedIssues &&
+                            <SelectIssueStatements campaign={campaign} />
+                        }
                         <Link href="/draft/0">Go back to select an issue</Link>
                     </div>
                 )}

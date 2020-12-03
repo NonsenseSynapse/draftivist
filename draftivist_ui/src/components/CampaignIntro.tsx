@@ -38,7 +38,10 @@ export default function() : BaseComponent<Attrs> {
                     </li>
                 )}
                 </ul>
+                {
+                    campaign.selectedIssues.length > 0 &&
                 <Link href="/draft/1">Next page</Link>
+                }
             </div>
     }
 
