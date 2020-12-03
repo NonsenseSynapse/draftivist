@@ -19,6 +19,14 @@ export class Issue {
 
     statements: Statement[]
     selectedStatement: number = -1
+
+    selectStatement(id: number) {
+        this.selectedStatement = id
+    }
+
+    isSelected(id: number) : boolean {
+        return this.selectedStatement === id
+    }
 }
 
 export class Campaign {
@@ -37,9 +45,14 @@ export class Campaign {
         this.description = description
     }
 
+    getIssue(id: number): Issue {
+        return this.issues.find(issue => issue.id === id)
+    }
+
     selectIssue(id: number) {
         if (!this.isSelected(id)) {
             this.selectedIssues.push(id)
+            this.selectedIssues.sort()
         }
     }
 

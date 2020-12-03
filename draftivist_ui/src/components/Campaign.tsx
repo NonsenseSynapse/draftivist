@@ -1,11 +1,16 @@
 import * as m from "mithril";
 import { Campaign } from "../models"
 import localData from "../data"
-import CampaignIntro from "./CampaignIntro";
+
+import CampaignIssueSelection from "./CampaignIssueSelection";
+import CampaignLanding from "./CampaignLanding";
+import CampaignIssue from "./CampaignIssue";
+
 import { BaseComponent, Link, elementAttrs } from "./base"
 
 type Attrs = {
-    index: number
+    page: string
+    id?: string // issue id specified in query string, optional
 }
 
 export default function() : BaseComponent<Attrs> {
@@ -14,15 +19,20 @@ export default function() : BaseComponent<Attrs> {
 
     return {
         ...elementAttrs,
-        oninit: () => {
+        oninit: (vnode) => {
             campaign = Campaign.parse(localData)
         },
-        view: (vnode) =>
-            <div>
-                <h1>{campaign.title}</h1>
-                <div>{campaign.description}</div>
-                { vnode.attrs.index == 0 && <CampaignIntro campaign={campaign} /> }
-                { vnode.attrs.index == 1 && <Link href="/draft/0">Go back</Link>}
-            </div>
+        view: (vnode) =>{
+            const { page, id } = vnode.attrs
+            return (
+                <div>
+                    { page != "landing" && <Link href="/draft/landing">Back to start</Link>}
+                    
+                    { page == "landing" && <CampaignLanding campaign={campaign} /> }
+                    { page == "issues" && <CampaignIssueSelection campaign={campaign} /> }
+                    { page == "issue" && id && <CampaignIssue campaign={campaign} issue={campaign.getIssue(+id)} /> }
+                </div>
+            )
+        }
     }
 }

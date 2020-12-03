@@ -25,7 +25,7 @@ export default function() : BaseComponent<Attrs> {
         },
         view: () => 
             <div>
-                <p>Select two issues to focus on:</p>
+                <h3>Select two issues to focus on:</h3>
                 <ul>
                 {campaign.issues.map(issue => 
                     campaign.isSelected(issue.id) ? 
@@ -37,7 +37,7 @@ export default function() : BaseComponent<Attrs> {
                     </li>
                 )}
                 </ul>
-                <Link href="/draft/1">Next page</Link>
+                <p><Link disabled={campaign.selectedIssues.length != 2} href={`/draft/issue?id=${campaign.selectedIssues[0]}`}>Next page</Link></p>
             </div>
     }
     
