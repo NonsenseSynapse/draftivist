@@ -3,10 +3,16 @@ import { Campaign } from "../models"
 import localData from "../data"
 import CampaignIntro from "./CampaignIntro";
 import SelectIssueStatements from "./SelectIssueStatements";
+
+import CampaignIssueSelection from "./CampaignIssueSelection";
+import CampaignLanding from "./CampaignLanding";
+import CampaignIssue from "./CampaignIssue";
+
 import { BaseComponent, Link, elementAttrs } from "./base"
 
 type Attrs = {
-    index: number
+    page: string
+    id?: string // issue id specified in query string, optional
 }
 
 export default function (): BaseComponent<Attrs> {
@@ -15,7 +21,7 @@ export default function (): BaseComponent<Attrs> {
 
     return {
         ...elementAttrs,
-        oninit: () => {
+        oninit: (vnode) => {
             campaign = Campaign.parse(localData)
             console.log(campaign)
         },

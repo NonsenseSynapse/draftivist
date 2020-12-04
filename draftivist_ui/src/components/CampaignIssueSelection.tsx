@@ -25,7 +25,7 @@ export default function() : BaseComponent<Attrs> {
         },
         view: () =>
             <div>
-                <p>Select two issues to focus on:</p>
+                <h3>Select two issues to focus on:</h3>
                 <ul>
                 {campaign.issues.map(issue =>
                     Array.isArray(campaign.selectedIssues) &&
