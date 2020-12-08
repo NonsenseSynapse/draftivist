@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from api.views.campaign import CampaignViewSet, DraftView
+from api.views.frontend import index
 
 router = routers.DefaultRouter()
 router.register(r'campaigns', CampaignViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('', index, name='index'),
+    path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('draft/<int:pk>/', DraftView.as_view())
 ]

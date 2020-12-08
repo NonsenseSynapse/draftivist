@@ -1,0 +1,27 @@
+# Frontend App
+FROM node:14 as build
+
+ENV API_HOST="https://draftivist.com/api"
+# TODO: change to CDN once CDN SSL cert is live
+ENV PUBLIC_URL="https://draftivist-space.sfo2.digitaloceanspaces.com"
+
+RUN mkdir -p /code/draftivist_ui
+WORKDIR /code/draftivist_ui
+COPY draftivist_ui/package.json /code/draftivist_ui/
+RUN yarn install
+COPY draftivist_ui /code/draftivist_ui/
+RUN yarn build
+
+# API Environment
+FROM python:3.9-buster
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+RUN mkdir -p /code/draftivist_api
+WORKDIR /code/draftivist_api
+COPY draftivist_api/requirements.txt /code/draftivist_api/
+RUN pip install -r requirements.txt
+COPY draftivist_api /code/draftivist_api
+
+COPY --from=build /code/draftivist_ui/build/index.html /code/draftivist_api/static/build
