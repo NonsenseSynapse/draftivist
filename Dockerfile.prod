@@ -24,4 +24,4 @@ COPY draftivist_api/requirements.txt /code/draftivist_api/
 RUN pip install -r requirements.txt
 COPY draftivist_api /code/draftivist_api
 
-COPY --from=build /code/draftivist_ui/build/index.html /code/draftivist_api/static/build
+#COPY --from=build /code/draftivist_ui/build/index.html /code/draftivist_api/static/build
