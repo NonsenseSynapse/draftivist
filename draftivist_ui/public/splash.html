@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Draftivist</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <% for (var css in htmlWebpackPlugin.files.css) { %>
+            <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+        <% } %> 
+    <body>
+        <h1>Draftivist</h1>
+    </body>
+</html>
