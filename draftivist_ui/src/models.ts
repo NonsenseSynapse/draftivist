@@ -19,9 +19,14 @@ export class Issue {
 
     statements: Statement[]
     selectedStatement: number = -1
+    customStatement: string
 
     selectStatement(id: number) {
         this.selectedStatement = id
+    }
+
+    saveCustomStatement(statement: string) {
+        this.customStatement = statement;
     }
 
     isSelected(id: number) : boolean {
@@ -71,7 +76,7 @@ export class Campaign {
         const campaign = new Campaign(campaignData.id, campaignData.title, campaignData.creator, campaignData.description)
         campaign.issues = campaignData.issues.map((issueData: any) => {
             const issue = new Issue(issueData.id, issueData.description)
-            issue.statements = issueData.statements.map((statementData: any) => 
+            issue.statements = issueData.statements.map((statementData: any) =>
                 new Statement(statementData.id, statementData.description))
             return issue
         })
