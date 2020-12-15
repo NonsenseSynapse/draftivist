@@ -8,3 +8,4 @@ python-dotenv==0.15.0
 
 # TODO: Prod only
 gunicorn==20.0.4
+boto3==1.16.36
