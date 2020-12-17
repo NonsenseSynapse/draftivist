@@ -1,6 +1,7 @@
 import * as m from "mithril";
 import { Campaign, Issue } from "../models"
 import { BaseComponent, Link, elementAttrs } from "./base"
+import CampaignIssueSelection from "./CampaignIssueSelection";
 
 type Attrs = {
     campaign: Campaign
@@ -17,6 +18,10 @@ export default function (): BaseComponent<Attrs> {
         issue.saveCustomStatement(customStatement);
     }
 
+    function isLinkDisabled(issue: Issue) {
+        return Boolean(issue.selectedStatement < 0 && !issue.customStatement)
+    }
+
     let customStatementValue = '';
 
     return {
@@ -24,7 +29,6 @@ export default function (): BaseComponent<Attrs> {
         view: (vnode) => {
             const { campaign, issue } = vnode.attrs
             const selectedIssueIndex = campaign.selectedIssues.indexOf(issue.id)
-            console.log("customStatementValue", customStatementValue)
 
             return (
                 <div>
@@ -39,16 +43,22 @@ export default function (): BaseComponent<Attrs> {
                         </li>
                     )}
                     <p>
-                    <h3>Or write your own statement:</h3>
-                    <form onSubmit={(e: KeyboardEvent)=> {e.preventDefault(); saveCustomStatement.bind(this, issue, customStatementValue)}}>
-                        <input type='text' value={this.customStatementValue} oninput={(e: Event) =>
-                        // @ts-ignore
-                            {customStatementValue = e.target.value}}/>
-                        <button type='submit' />
-                    </form>
+                        <h3>Or draft your own statement:</h3>
+                        {
+                            issue.customStatement ? (
+                                <div>{issue.customStatement}</div>
+                            ) : (
+                                    <form onsubmit={saveCustomStatement.bind(this, issue, customStatementValue)}>
+                                        <input type='text' value={this.customStatementValue} oninput={(e: Event) =>
+                                        // @ts-ignore
+                                        { customStatementValue = e.target.value }} />
+                                        <button type='submit'>Save Statement</button>
+                                    </form>
+                                )
+                        }
                         {selectedIssueIndex < campaign.selectedIssues.length - 1 ?
-                            <Link disabled={issue.selectedStatement < 0} href={`/draft/issue?id=${campaign.selectedIssues[selectedIssueIndex + 1]}`}>Next issue</Link> :
-                            <Link disabled={issue.selectedStatement < 0} href="/draft/intro">Next</Link>
+                            <Link disabled={isLinkDisabled(issue)} href={`/draft/issue?id=${campaign.selectedIssues[selectedIssueIndex + 1]}`}>Next issue</Link> :
+                            <Link disabled={isLinkDisabled(issue)} href="/draft/intro">Next</Link>
                         }
                     </p>
                 </div>
