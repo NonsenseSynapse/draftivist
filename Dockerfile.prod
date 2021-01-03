@@ -1,5 +1,5 @@
 # Frontend App
-#FROM node:14 as frontend_build
+FROM node:14 as frontend_build
 
 ENV API_HOST="https://draftivist.com/api"
 # TODO: change to CDN once CDN SSL cert is live
