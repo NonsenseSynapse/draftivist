@@ -5,7 +5,7 @@ load_dotenv(DOTENV_PATH)
 
 from .base import *
 
-if os.environ.get('PROJECT_ENVIRONMENT', '') == 'PROD':
+if IS_PROD:
     from .prod import *
 else:
     from .dev import *

@@ -13,18 +13,25 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework import routers
+
 from api.views.campaign import CampaignViewSet, DraftView
-from api.views.frontend import index
+from frontend.views import index
 
 router = routers.DefaultRouter()
 router.register(r'campaigns', CampaignViewSet)
 
 urlpatterns = [
-    path('', index, name='index'),
+    path('', index, name='ui'),
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
-    path('draft/<int:pk>/', DraftView.as_view())
+    path('draft/<int:pk>/', DraftView.as_view()),
+    re_path(r'^.*/$', index, name='ui_catchall')
 ]
+
+if not settings.IS_PROD:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

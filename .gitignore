@@ -13,5 +13,3 @@ env/
 .DS_Store
 
 draftivist-secret*
-
-draftivist_api/frontend/*

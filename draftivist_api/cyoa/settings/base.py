@@ -16,6 +16,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..'))
 
+IS_PROD = os.environ.get('PROJECT_ENVIRONMENT', '') == 'PROD'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -27,7 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'api'
+    'api',
+    'frontend'
 ]
 
 MIDDLEWARE = [
@@ -47,7 +50,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(PROJECT_ROOT, 'frontend')
+            os.path.join(PROJECT_ROOT, 'static')
         ],
         'APP_DIRS': True,
         'OPTIONS': {

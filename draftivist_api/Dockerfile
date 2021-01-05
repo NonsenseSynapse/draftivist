@@ -1,5 +1,6 @@
 FROM python:3.9-buster
 ENV PYTHONUNBUFFERED 1
+RUN apt-get update && apt-get install -y vim
 RUN mkdir /code
 RUN mkdir /code/draftivist_api
 WORKDIR /code/draftivist_api

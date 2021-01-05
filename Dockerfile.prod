@@ -1,9 +1,12 @@
 # Frontend App
 FROM node:14 as frontend_build
 
-ENV API_HOST="https://draftivist.com/api"
+ENV API_BASE="https://draftivist.com/api"
 # TODO: change to CDN once CDN SSL cert is live
 ENV PUBLIC_URL="https://draftivist-space.sfo2.digitaloceanspaces.com"
+
+# ENV PUBLIC_URL="http://127.0.0.1/static"
+# ENV API_BASE="http://127.0.0.1/api"
 
 RUN mkdir -p /code/draftivist_ui
 WORKDIR /code/draftivist_ui
@@ -18,6 +21,8 @@ FROM python:3.9-buster
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+RUN apt-get update && apt-get install -y vim
+
 RUN mkdir -p /code/draftivist_api
 WORKDIR /code/draftivist_api
 COPY draftivist_api/requirements.txt /code/draftivist_api/
@@ -25,6 +30,6 @@ RUN pip install -r requirements.txt
 COPY draftivist_api /code/draftivist_api
 
 RUN mkdir -p /code/draftivist_api/frontend
-COPY --from=frontend_build /code/draftivist_ui/build /code/draftivist_api/frontend/
+COPY --from=frontend_build /code/draftivist_ui/build /code/draftivist_api/frontend/static/
 
-RUN python scripts/upload_frontend_assets.py
+RUN python manage.py collectstatic
