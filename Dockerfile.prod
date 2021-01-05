@@ -2,11 +2,8 @@
 FROM node:14 as frontend_build
 
 ENV API_BASE="https://draftivist.com/api"
-# TODO: change to CDN once CDN SSL cert is live
-ENV PUBLIC_URL="https://draftivist-space.sfo2.digitaloceanspaces.com"
-
-# ENV PUBLIC_URL="http://127.0.0.1/static"
-# ENV API_BASE="http://127.0.0.1/api"
+# TODO: change once we move to Mithril and are on the CDN
+ENV PUBLIC_URL="https://draftivist-space.sfo2.digitaloceanspaces.com/static/static"
 
 RUN mkdir -p /code/draftivist_ui
 WORKDIR /code/draftivist_ui
@@ -32,4 +29,6 @@ COPY draftivist_api /code/draftivist_api
 RUN mkdir -p /code/draftivist_api/frontend
 COPY --from=frontend_build /code/draftivist_ui/build /code/draftivist_api/frontend/static/
 
-RUN python manage.py collectstatic
+COPY ca-certificate.crt /root/.postgres/root.crt
+
+RUN python manage.py collectstatic --noinput

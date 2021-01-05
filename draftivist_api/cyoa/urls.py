@@ -26,7 +26,7 @@ router = routers.DefaultRouter()
 router.register(r'campaigns', CampaignViewSet)
 
 urlpatterns = [
-    path('', index, name='ui'),
+    path('', index, name='index'),
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('draft/<int:pk>/', DraftView.as_view()),
