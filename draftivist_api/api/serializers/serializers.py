@@ -69,7 +69,7 @@ class OrganizationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Organization
-        fields = ['id', 'name', 'created', 'group']
+        fields = ['id', 'group']
 
 
 class MemberSerializer(serializers.ModelSerializer):
@@ -77,4 +77,4 @@ class MemberSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Member
-        fields = ['id', 'user', 'organization', 'contact']
+        fields = ['id', 'user', 'contact']

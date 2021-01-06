@@ -7,7 +7,7 @@ class Campaign(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=1024)
     created = models.DateTimeField(auto_now=True)
-    start_date = models.DateField(auto_now=True)
+    start_date = models.DateField(null=True)
     end_date = models.DateField(null=True)
     is_active = models.BooleanField(default=True)
     allow_custom_statements = models.BooleanField(default=True)
@@ -25,9 +25,8 @@ class Recipient(models.Model):
     email_address = models.EmailField()
     full_name = models.CharField(max_length=255)
     phone = PhoneNumberField()
-    # mailing address?
     created = models.DateTimeField(auto_now=True)
-    campaigns = models.ManyToManyField(Campaign, related_name='recipients')
+    campaigns = models.ManyToManyField(Campaign, related_name='recipients', blank=True)
 
     class Meta:
         db_table = "recipient"
@@ -56,6 +55,7 @@ class Statement(models.Model):
     text = models.CharField(max_length=1024)
     created = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
+    submission_id = models.ForeignKey('StatementSubmission', null=True, on_delete=models.SET_NULL, related_name='statement')
 
     class Meta:
         db_table = "statement"
@@ -78,7 +78,7 @@ class Draft(models.Model):
         ordering = ['id']
 
     def __str__(self):
-        return f'{str(self.pk)}'
+        return f'{str(self.pk)}: {self.campaign} / {self.statements}'
 
 
 class StatementSubmission(models.Model):
