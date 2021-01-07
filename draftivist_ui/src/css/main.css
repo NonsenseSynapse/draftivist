@@ -5,4 +5,48 @@ body {
 .banner {
     display: flex;
     flex-direction: row;
+    background-color: #ffed60;
+}
+
+.body {
+    max-width: 375px;
+    margin: 0px 28px
+}
+
+.body-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+}
+
+
+@media (max-width: 599px) {
+    .banner {
+        display: flex;
+        flex-direction: column
+    }
+    .body {
+        max-width: 458px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .body {
+        max-width: 661px;
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, [col-start] 1fr);
+    gap: 20px;
+}
+
+.grid > * {
+    grid-column: col-start / span 12;
 }
