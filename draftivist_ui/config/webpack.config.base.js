@@ -17,23 +17,40 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           'css-loader',
         ],
-      }
+      },
+      // {
+      //   test: /\.(svg|png|jpe?g)$/,
+      //   use: [
+      //     {loader: 'file-loader',
+      //     options: {
+      //       name: '[name].[ext]',
+      //       outputPath: path.resolve(__dirname, '../public'),
+      //       publicPath: '/'
+      //     }}
+      //   ]
+      // },
+      // {
+      //   test: /\.html$/,
+      //   use: ['html-loader']
+      // }
     ],
-  },  
+  },
   plugins: [
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'splash.html',
       template: path.resolve(__dirname, '../public/splash.html'),
-      inject: false
-    })
+      inject: false,
+      // publicPath: '/'
+    }),
   ],
   resolve: {
     extensions: [ '.tsx', '.ts', '.js' ],
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist',),
+    // publicPath: '/'
   },
 };

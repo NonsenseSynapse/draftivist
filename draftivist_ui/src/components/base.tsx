@@ -1,8 +1,9 @@
-import { 
-    Component, 
+import {
+    Component,
     Vnode,
     route
 } from 'mithril'
+
 
 export const elementAttrs = {
     tag: "",

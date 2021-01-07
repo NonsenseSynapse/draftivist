@@ -1,13 +1,70 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Draftivist</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <% for (var css in htmlWebpackPlugin.files.css) { %>
-            <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
-        <% } %> 
-    <body>
-        <h1>Draftivist</h1>
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <title>Draftivist</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <% for (var css in htmlWebpackPlugin.files.css) { %>
+    <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+    <% } %>
+
+<body>
+    <div>
+        <!-- header -->
+        <h3>Draftivist</h1>
+            <!-- <img src="<%=require('assets/images/Draftivist_Logotype.svg')%>" alt="Draftivist logo"> -->
+        <div class="banner">
+            <!-- <img src="assets/images/koshu-kunii-BZOUKpla5tE-unsplash_1920px.jpg" alt="black and white image of crowd kneeling, holding phone lights"> -->
+            <div>
+                <h1>Local Activism.</h1>
+                <h1>Led by experts.</h1>
+                <h1>Powered by you.</h1>
+                <p>Coming soon.</p>
+
+            </div>
+        </div>
+        <div>
+            <h2>About Draftivist</h2>
+            <p>
+                Advocacy isn’t always easy.
+            </p>
+            <p>
+                It can be hard to know what policymakers to reach out to, when to reach out to them, and what exactly to say
+                when you do. And, how can you make sure your voice is being heard?
+
+            </p>
+            <p>
+                Meet Draftivist — a free tool to help progressive activist groups engage with their communities at scale,
+                educate them on localized issues, and empower them to message local officials in minutes.
+
+            </p>
+            <p>
+                Draftivist is designed to help citizens’ emails get past politicians’ inbox filters and keep them on-message
+                with larger movements, while representing each individual’s values and voice. After hitting send, Draftivist
+                can also show people how they can get further involved with the movement at hand.
+
+            </p>
+            <p>
+                Draftivist is 100% developed by volunteers, and is 100% free to use.
+            </p>
+            <p>
+                Draftivist will not log any personal user data, and will be radically transparent in its data policy.
+            </p>
+            <p>
+                If you’re an activist group interested in using Draftivist — or if you’re an individual looking to lend your
+                hand to help build it — please reach out to us at draftivist@gmail.com.
+            </p>
+
+        </div>
+    </div>
+    <!-- footer -->
+    <div>
+        <h3>
+            Draftivist
+        </h3>
+    </div>
+</body>
+</head>
+
 </html>
