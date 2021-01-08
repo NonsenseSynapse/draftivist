@@ -19,21 +19,6 @@ module.exports = {
           'css-loader',
         ],
       },
-      {
-        test: /\.(svg|png|jpe?g)$/,
-        use: [
-          {loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: path.resolve(__dirname, '../dist'),
-            publicPath: '/'
-          }}
-        ]
-      },
-      {
-        test: /\.html$/,
-        use: ['html-loader']
-      }
     ],
   },
   plugins: [
@@ -48,8 +33,8 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: './src/assets/images',
-          to: '../public/assets/images'
+          from: path.resolve(__dirname, '../src/assets/images'),
+          to: path.resolve(__dirname, '../dist'),
         }
       ]
     })
