@@ -1,3 +1,6 @@
+import * as Mithril from "mithril"
+import * as m from "mithril";
+
 export class Statement {
     id: number
     description: string
@@ -32,16 +35,14 @@ export class Issue {
 export class Campaign {
     id: number
     title: string
-    creator: string
     description: string
 
     issues: Issue[]
     selectedIssues: number[] = []
 
-    constructor(id: number, title: string, creator: string, description: string) {
+    constructor(id: number, title: string, description: string) {
         this.id = id
         this.title = title
-        this.creator = creator
         this.description = description
     }
 
@@ -68,13 +69,18 @@ export class Campaign {
     }
 
     static parse(campaignData: any) {
-        const campaign = new Campaign(campaignData.id, campaignData.title, campaignData.creator, campaignData.description)
+        const campaign = new Campaign(campaignData.id, campaignData.name, campaignData.description)
         campaign.issues = campaignData.issues.map((issueData: any) => {
-            const issue = new Issue(issueData.id, issueData.description)
+            const issue = new Issue(issueData.id, issueData.text)
             issue.statements = issueData.statements.map((statementData: any) => 
-                new Statement(statementData.id, statementData.description))
+                new Statement(statementData.id, statementData.text))
             return issue
         })
         return campaign
+    }
+
+    static load(id: number): Promise<Campaign> {
+        return m.request(`${__API_HOSTNAME__}/campaign/${id}`)
+        .then(this.parse)
     }
 }

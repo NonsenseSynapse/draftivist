@@ -1,0 +1,1 @@
+declare var __API_HOSTNAME__: string
