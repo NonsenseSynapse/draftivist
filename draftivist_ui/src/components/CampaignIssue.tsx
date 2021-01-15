@@ -8,6 +8,10 @@ type Attrs = {
     issue: Issue
 }
 
+interface MyEventTarget extends Event {
+    value: string
+}
+
 export default function (): BaseComponent<Attrs> {
 
     function selectStatement(issue: Issue, id: number) {
@@ -23,6 +27,12 @@ export default function (): BaseComponent<Attrs> {
     }
 
     let customStatementValue = '';
+
+    function onChangeHandler(e: Event) {
+        console.log(e.target)
+        // @ts-ignore
+        customStatementValue = e.target.value as string;
+    }
 
     return {
         ...elementAttrs,
@@ -49,9 +59,7 @@ export default function (): BaseComponent<Attrs> {
                                 <div>{issue.customStatement}</div>
                             ) : (
                                     <form onsubmit={saveCustomStatement.bind(this, issue, customStatementValue)}>
-                                        <input type='text' value={this.customStatementValue} oninput={(e: Event) =>
-                                        // @ts-ignore
-                                        { customStatementValue = e.target.value }} />
+                                        <input type='text' value={this.customStatementValue} oninput={onChangeHandler.bind(this)} />
                                         <button type='submit'>Save Statement</button>
                                     </form>
                                 )
