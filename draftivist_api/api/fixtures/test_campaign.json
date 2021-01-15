@@ -13,7 +13,7 @@
         "model": "api.issue",
         "pk": 1,
         "fields": {
-            "prompt_text": "The Evil Alliance has inordinately harmed some of our city's most vulnerable populations, like children.",
+            "text": "The Evil Alliance has inordinately harmed some of our city's most vulnerable populations, like children.",
             "campaign_id": 1,
             "is_active": true,
             "created": "2020-10-01"
@@ -23,7 +23,7 @@
         "model": "api.issue",
         "pk": 2,
         "fields": {
-            "prompt_text": "The Evil Alliance steals billions from the city's budget every year, which could be used for schools, health care, social programs, and more.",
+            "text": "The Evil Alliance steals billions from the city's budget every year, which could be used for schools, health care, social programs, and more.",
             "campaign_id": 1,
             "is_active": true,
             "created": "2020-10-01"
@@ -33,7 +33,7 @@
         "model": "api.issue",
         "pk": 3,
         "fields": {
-            "prompt_text": "Reform tools and training to attempt to transform the Evil Alliance into superheroes have repeatedly failed.",
+            "text": "Reform tools and training to attempt to transform the Evil Alliance into superheroes have repeatedly failed.",
             "campaign_id": 1,
             "is_active": true,
             "created": "2020-10-01"
@@ -43,7 +43,7 @@
         "model": "api.issue",
         "pk": 4,
         "fields": {
-            "prompt_text": "Most civic emergencies don't require the kind of violent intervention that the Evil Alliance enacts.",
+            "text": "Most civic emergencies don't require the kind of violent intervention that the Evil Alliance enacts.",
             "campaign_id": 1,
             "is_active": true,
             "created": "2020-10-01"
@@ -53,7 +53,7 @@
         "model": "api.issue",
         "pk": 5,
         "fields": {
-            "prompt_text": "The Evil Alliance is beheld to corrupt corporate interests, like death ray manufacturers.",
+            "text": "The Evil Alliance is beheld to corrupt corporate interests, like death ray manufacturers.",
             "campaign_id": 1,
             "is_active": true,
             "created": "2020-10-01"
@@ -63,7 +63,7 @@
         "model": "api.issue",
         "pk": 6,
         "fields": {
-            "prompt_text": "Evil Alliance members live on the moon, and aren't part of the communities that they enforce rules upon.",
+            "text": "Evil Alliance members live on the moon, and aren't part of the communities that they enforce rules upon.",
             "campaign_id": 1,
             "is_active": true,
             "created": "2020-10-01"
@@ -73,9 +73,8 @@
         "model": "api.statement",
         "pk": 1,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 1,
-            "statement_text": "1 in 3 children in Metropolis are reported to be kidnapped by the evil alliance at some point in their lives.",
+            "text": "1 in 3 children in Metropolis are reported to be kidnapped by the evil alliance at some point in their lives.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -84,9 +83,8 @@
         "model": "api.statement",
         "pk": 2,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 1,
-            "statement_text": "The Evil Alliance enforces rules that disproportionately hurt children, such enforcing fines for playing in a treehouse with broken windows.",
+            "text": "The Evil Alliance enforces rules that disproportionately hurt children, such enforcing fines for playing in a treehouse with broken windows.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -95,9 +93,8 @@
         "model": "api.statement",
         "pk": 3,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 1,
-            "statement_text": "The Evil Alliance's \"halt and search\" policy allows Evil Alliance members to accost anyone due to arbitrary and prejudiced reasons, such as wearing a cap with a tiny propeller on it.",
+            "text": "The Evil Alliance's \"halt and search\" policy allows Evil Alliance members to accost anyone due to arbitrary and prejudiced reasons, such as wearing a cap with a tiny propeller on it.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -106,9 +103,8 @@
         "model": "api.statement",
         "pk": 4,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 1,
-            "statement_text": "The Evil Alliance shut down the local orphanage due to minor violations, removing a critical resource for Metropolis' child citizens.",
+            "text": "The Evil Alliance shut down the local orphanage due to minor violations, removing a critical resource for Metropolis' child citizens.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -117,9 +113,8 @@
         "model": "api.statement",
         "pk": 5,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 2,
-            "statement_text": "Over the last 10 years, the budget for the Evil Alliance has increased by 80%, while the already meager funding for schools has been cut by almost double that.",
+            "text": "Over the last 10 years, the budget for the Evil Alliance has increased by 80%, while the already meager funding for schools has been cut by almost double that.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -128,9 +123,8 @@
         "model": "api.statement",
         "pk": 6,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 2,
-            "statement_text": "The Evil Alliance constantly incurs costs to the city beyond their budget, such as when they vaporized an entire city block last year.",
+            "text": "The Evil Alliance constantly incurs costs to the city beyond their budget, such as when they vaporized an entire city block last year.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -139,9 +133,8 @@
         "model": "api.statement",
         "pk": 7,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 2,
-            "statement_text": "Our cut social programs, like our program for emergency housing, are more important than ever when so many people have lost their homes due to extraterrestrial attacks.",
+            "text": "Our cut social programs, like our program for emergency housing, are more important than ever when so many people have lost their homes due to extraterrestrial attacks.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -150,9 +143,8 @@
         "model": "api.statement",
         "pk": 8,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 2,
-            "statement_text": "The Evil Alliance have blackmailed politicians who vote against their budget increases, threatening to allow extra havoc to thrive in their districts if they win.",
+            "text": "The Evil Alliance have blackmailed politicians who vote against their budget increases, threatening to allow extra havoc to thrive in their districts if they win.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -161,9 +153,8 @@
         "model": "api.statement",
         "pk": 9,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 3,
-            "statement_text": "Surveillance cameras have done little to deter evildoing, since members of the Evil Alliance will neutralize them before committing a heinous act.",
+            "text": "Surveillance cameras have done little to deter evildoing, since members of the Evil Alliance will neutralize them before committing a heinous act.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -172,9 +163,8 @@
         "model": "api.statement",
         "pk": 10,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 3,
-            "statement_text": "Nonviolence training has been entirely ineffective, and has sometimes increased evildoing in reaction to the obligation.",
+            "text": "Nonviolence training has been entirely ineffective, and has sometimes increased evildoing in reaction to the obligation.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -183,9 +173,8 @@
         "model": "api.statement",
         "pk": 11,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 3,
-            "statement_text": "Members of the Evil Alliance who have attempted to whistleblow about internal evildoing have been fired, exiled, or transformed into frogs.",
+            "text": "Members of the Evil Alliance who have attempted to whistleblow about internal evildoing have been fired, exiled, or transformed into frogs.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -194,9 +183,8 @@
         "model": "api.statement",
         "pk": 12,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 3,
-            "statement_text": "The Evil Alliance has failed to keep its members accountable for their heinous acts, and instead quietly transfers offenders to other jurisdictions.",
+            "text": "The Evil Alliance has failed to keep its members accountable for their heinous acts, and instead quietly transfers offenders to other jurisdictions.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -205,9 +193,8 @@
         "model": "api.statement",
         "pk": 13,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 4,
-            "statement_text": "Calls to get cats down from trees do not require the use of thermonuclear weapons.",
+            "text": "Calls to get cats down from trees do not require the use of thermonuclear weapons.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -216,9 +203,8 @@
         "model": "api.statement",
         "pk": 14,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 4,
-            "statement_text": "Evil Alliance members are untrained to deal with at-risk populations, like mermaids found out of water, which require marine specialists.",
+            "text": "Evil Alliance members are untrained to deal with at-risk populations, like mermaids found out of water, which require marine specialists.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -227,9 +213,8 @@
         "model": "api.statement",
         "pk": 15,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 4,
-            "statement_text": "Evil Alliance members often mistake hugs as slow wrestling, and overreact with a violent response.",
+            "text": "Evil Alliance members often mistake hugs as slow wrestling, and overreact with a violent response.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -238,9 +223,8 @@
         "model": "api.statement",
         "pk": 16,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 4,
-            "statement_text": "Evil Alliance members are not required for administrative duties, like ticketing incorrectly parked cars (which they often opt to incinerate).",
+            "text": "Evil Alliance members are not required for administrative duties, like ticketing incorrectly parked cars (which they often opt to incinerate).",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -249,9 +233,8 @@
         "model": "api.statement",
         "pk": 17,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 5,
-            "statement_text": "The Evil Alliance campaigns to increase their budget every year, which they spend on increasingly destructive, unnecessary, and cartoonish weaponry.",
+            "text": "The Evil Alliance campaigns to increase their budget every year, which they spend on increasingly destructive, unnecessary, and cartoonish weaponry.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -260,9 +243,8 @@
         "model": "api.statement",
         "pk": 18,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 5,
-            "statement_text": "Leading members of the Evil Alliance budget committee are shareholders with Acme Inc, who creates the majority of their weaponry.",
+            "text": "Leading members of the Evil Alliance budget committee are shareholders with Acme Inc, who creates the majority of their weaponry.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -271,9 +253,8 @@
         "model": "api.statement",
         "pk": 19,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 5,
-            "statement_text": "Because Acme Inc. provides weapons to the Evil Alliance, they  can avoid key city taxes, which goes right into their shareholders' pockets.",
+            "text": "Because Acme Inc. provides weapons to the Evil Alliance, they  can avoid key city taxes, which goes right into their shareholders' pockets.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -282,9 +263,8 @@
         "model": "api.statement",
         "pk": 20,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 5,
-            "statement_text": "The Evil Alliance is more heavily armed than almost any military in the world, which is unnecessary in a city with a 2% crime rate",
+            "text": "The Evil Alliance is more heavily armed than almost any military in the world, which is unnecessary in a city with a 2% crime rate",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -293,9 +273,8 @@
         "model": "api.statement",
         "pk": 21,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 6,
-            "statement_text": "The Evil Alliance don't live in Metropolis, so our city pays evildoers who don't pay taxes that go back into our economy.",
+            "text": "The Evil Alliance don't live in Metropolis, so our city pays evildoers who don't pay taxes that go back into our economy.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -304,9 +283,8 @@
         "model": "api.statement",
         "pk": 22,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 6,
-            "statement_text": "The Evil Alliance doesn't have a personal stake in protecting our community because they themselves aren't a part of it.",
+            "text": "The Evil Alliance doesn't have a personal stake in protecting our community because they themselves aren't a part of it.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -315,9 +293,8 @@
         "model": "api.statement",
         "pk": 23,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 6,
-            "statement_text": "The Evil Alliance doesn't understand our community, culture, or values because they don't live on earth.",
+            "text": "The Evil Alliance doesn't understand our community, culture, or values because they don't live on earth.",
             "is_active": true,
             "created": "2020-10-01"
         }
@@ -326,9 +303,8 @@
         "model": "api.statement",
         "pk": 24,
         "fields": {
-            "campaign_id": 1,
             "issue_id": 6,
-            "statement_text": "The Evil Alliance tries to hold lunar standards to a terrestrial community to which they don't apply.",
+            "text": "The Evil Alliance tries to hold lunar standards to a terrestrial community to which they don't apply.",
             "is_active": true,
             "created": "2020-10-01"
         }

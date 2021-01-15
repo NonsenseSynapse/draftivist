@@ -15,15 +15,21 @@ type Attrs = {
 
 export default function() : BaseComponent<Attrs> {
 
-    let campaign: Campaign
+    let campaign: Campaign = new Campaign(0, "", "")
 
     return {
         ...elementAttrs,
         oninit: (vnode) => {
-            campaign = Campaign.parse(localData)
+            // campaign = Campaign.parse(localData)
+            Campaign.load(1).then(c => {
+                console.log(c)
+                campaign = c
+                m.redraw()
+            })
         },
         view: (vnode) =>{
             const { page, id } = vnode.attrs
+            console.log(campaign)
             return (
                 <div>
                     { page != "landing" && <Link href="/draft/landing">Back to start</Link>}

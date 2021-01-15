@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  draftivist_api:
+  api:
     build: ./draftivist_api
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -10,7 +10,7 @@ services:
     depends_on:
       - db
     env_file: .env
-  draftivist_ui:
+  ui:
     build: ./draftivist_ui
     command: "yarn start"
     volumes:
