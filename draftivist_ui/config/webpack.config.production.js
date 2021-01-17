@@ -9,5 +9,8 @@ module.exports = merge(common, {
         new webpack.DefinePlugin({
           '__API_HOSTNAME__': JSON.stringify("https://draftivist.com/api")
         })
-      ]
+      ],
+    output: {
+        publicPath: "https://draftivist-space.sfo2.digitaloceanspaces.com/static"
+      },
 })

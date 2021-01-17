@@ -1,10 +1,6 @@
 # Frontend App
 FROM node:14 as frontend_build
 
-ENV API_BASE="https://draftivist.com/api"
-# TODO: change once we move to Mithril and are on the CDN
-ENV PUBLIC_URL="https://draftivist-space.sfo2.digitaloceanspaces.com/static/static"
-
 RUN mkdir -p /code/draftivist_ui
 WORKDIR /code/draftivist_ui
 COPY draftivist_ui/package.json /code/draftivist_ui/
@@ -27,7 +23,7 @@ RUN pip install -r requirements.txt
 COPY draftivist_api /code/draftivist_api
 
 RUN mkdir -p /code/draftivist_api/frontend
-COPY --from=frontend_build /code/draftivist_ui/build /code/draftivist_api/frontend/static/
+COPY --from=frontend_build /code/draftivist_ui/dist /code/draftivist_api/frontend/static/
 
 COPY ca-certificate.crt /root/.postgres/root.crt
 
