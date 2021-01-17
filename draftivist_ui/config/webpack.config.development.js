@@ -14,7 +14,7 @@ module.exports = merge(common, {
       },
     plugins: [
       new webpack.DefinePlugin({
-        '__API_HOSTNAME__': JSON.stringify("http://localhost:8000")
+        '__API_HOSTNAME__': JSON.stringify("http://localhost:8000/api")
       })
     ]
 })

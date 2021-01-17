@@ -1,5 +1,5 @@
 from django.contrib import admin
-from api.models.campaign import Campaign, StatementSelection, Draft, Statement, Issue
+from api.models.models import Campaign, Statement, Issue
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 
