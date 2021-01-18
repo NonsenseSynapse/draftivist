@@ -11,6 +11,6 @@ module.exports = merge(common, {
         })
       ],
     output: {
-        publicPath: "https://draftivist-space.sfo2.digitaloceanspaces.com/static"
+        publicPath: "https://draftivist-space.sfo2.digitaloceanspaces.com/static/static"
       },
 })
