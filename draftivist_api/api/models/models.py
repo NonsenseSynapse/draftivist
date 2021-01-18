@@ -12,6 +12,7 @@ class Campaign(models.Model):
     is_active = models.BooleanField(default=True)
     allow_custom_statements = models.BooleanField(default=True)
     organization = models.ForeignKey('Organization', on_delete=models.SET_NULL, null=True, related_name='campaigns')
+    cover_photo = models.ImageField(upload_to='images/', null=True)
 
     class Meta:
         db_table = "campaign"

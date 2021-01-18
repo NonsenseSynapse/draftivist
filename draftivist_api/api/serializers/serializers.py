@@ -33,7 +33,7 @@ class CampaignSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Campaign
-        fields = ['id', 'name', 'description', 'organization', 'start_date', 'end_date', 'created', 'recipients', 'issues', 'is_active', 'allow_custom_statements']
+        fields = ['id', 'name', 'description', 'organization', 'start_date', 'end_date', 'created', 'recipients', 'issues', 'is_active', 'allow_custom_statements', 'cover_photo']
 
 
 class DraftSerializer(serializers.ModelSerializer):

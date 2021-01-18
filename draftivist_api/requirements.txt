@@ -4,3 +4,4 @@ django-cors-headers==3.4.0
 djangorestframework==3.11.0
 django-phonenumber-field[phonenumberslite]==5.0.0
 psycopg2==2.8.6
+Pillow==8.1.0
