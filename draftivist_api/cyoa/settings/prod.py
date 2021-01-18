@@ -3,7 +3,7 @@ import os
 from .base import PROJECT_ROOT
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['draftivist.com']
 
