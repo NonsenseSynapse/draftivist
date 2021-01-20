@@ -25,7 +25,6 @@ export default function (): BaseComponent<Attrs> {
     let customStatementValue = '';
 
     function onChangeHandler(e: Event) {
-        console.log(e.target);
         customStatementValue = (e.target as HTMLInputElement).value;
     }
 
