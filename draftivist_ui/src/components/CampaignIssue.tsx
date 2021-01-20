@@ -8,10 +8,6 @@ type Attrs = {
     issue: Issue
 }
 
-interface MyEventTarget extends Event {
-    value: string
-}
-
 export default function (): BaseComponent<Attrs> {
 
     function selectStatement(issue: Issue, id: number) {
@@ -43,7 +39,7 @@ export default function (): BaseComponent<Attrs> {
                 <div>
                     <h2>{issue.description}</h2>
                     <h3>Select a statement for this issue:</h3>
-                    {issue.statements.map(statement =>
+                    {issue.statements && issue.statements.map(statement =>
                         <li onclick={selectStatement.bind(this, issue, statement.id)}>
                             {issue.isSelected(statement.id) ?
                                 <b>{statement.description}</b> :

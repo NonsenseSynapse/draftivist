@@ -23,12 +23,12 @@ export default function() : BaseComponent<Attrs> {
         oninit: (vnode) => {
             campaign = vnode.attrs.campaign
         },
-        view: () => 
+        view: () =>
             <div>
                 <h3>Select two issues to focus on:</h3>
                 <ul>
-                {campaign.issues.map(issue => 
-                    campaign.isSelected(issue.id) ? 
+                {campaign.issues && campaign.issues.map(issue =>
+                    campaign.isSelected(issue.id) ?
                     <li onclick={deselectIssue.bind(this, issue.id)}>
                         <b>{issue.description}</b>
                     </li> :
@@ -40,5 +40,5 @@ export default function() : BaseComponent<Attrs> {
                 <p><Link disabled={campaign.selectedIssues.length != 2} href={`/draft/issue?id=${campaign.selectedIssues[0]}`}>Next page</Link></p>
             </div>
     }
-    
+
 }
