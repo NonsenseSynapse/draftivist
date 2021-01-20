@@ -4,16 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.prod
-    command: gunicorn cyoa.wsgi -b 0.0.0.0:80 --workers 3
+    command: gunicorn cyoa.wsgi -b 0.0.0.0:8000 --workers 3
     restart: always
     ports:
-      - "80:80"
+      - "8000:8000"
     env_file: draftivist_api/.env
-#  draftivist_ui:
-#    build:
-#      context: ./draftivist_ui
-#      dockerfile: Dockerfile.prod
-#    command: nginx -g  "daemon off;"
-#    ports:
-#      - '80:80'
-#    restart: always
