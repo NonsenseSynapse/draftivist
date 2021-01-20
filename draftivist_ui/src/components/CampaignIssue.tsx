@@ -29,9 +29,8 @@ export default function (): BaseComponent<Attrs> {
     let customStatementValue = '';
 
     function onChangeHandler(e: Event) {
-        console.log(e.target)
-        // @ts-ignore
-        customStatementValue = e.target.value as string;
+        console.log(e.target);
+        customStatementValue = (e.target as HTMLInputElement).value;
     }
 
     return {
