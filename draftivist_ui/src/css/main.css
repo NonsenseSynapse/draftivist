@@ -1,97 +1,126 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #fffef4;
-    margin: 0px;
+  font-family: "Open Sans", sans-serif;
+  background-color: #fffef4;
+  margin: 0px;
 }
 
 h2 {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .banner {
-    background-color: #ffed60;
+  background-color: #ffed60;
 }
 
 .banner > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+}
 
+.bannerHeading {
+  font-family: PT Serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 31px;
+  line-height: 41px;
 }
 
 .body {
-    max-width: 375px;
-    margin: 0px 28px
+  max-width: 319px;
+  margin: 0px 42px;
+}
+
+.body h2 {
+  font-family: PT Serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+.body p {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 25px;
 }
 
 .body-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header {
-    border-top: 5px solid #ffed60;
-    display: flex;
-    justify-content: center;
+  border-top: 5px solid #ffed60;
+  display: flex;
+  justify-content: center;
 }
 
 .footer {
-    background-color: #2E2E30;
-    fill: white;
+  background-color: #2e2e30;
+  fill: white;
 }
+
 .logoHeading {
-    width: 100px;
-    height: 18px;
-    margin-top: 24px;
+  width: 100px;
+  height: 18px;
+  margin-top: 24px;
 }
 
 .image {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
-
-
-@media only screen and (min-width: 599px) {
-    .banner {
-        display: flex;
-        flex-direction: column
-    }
-    .body {
-        max-width: 458px;
-    }
-    .image {
-        max-width: 500%
-    }
+.underlinedText {
+  border-bottom: 4px solid #fffef4;
 }
 
 /* ipad */
-@media only screen and (min-width: 900px) {
-    .body {
-        max-width: 458px;
-    }
-    .image {
-        max-width: 50%
-    }
+@media only screen and (min-width: 599px) {
+  .banner {
+    display: flex;
+    /* flex-direction: column */
+  }
+  .body {
+    max-width: 458px;
+  }
+  .image {
+    max-width: 500%;
+  }
 }
 
+/* intermediate */
+@media only screen and (min-width: 900px) {
+  .body {
+    max-width: 458px;
+  }
+  .image {
+    max-width: 50%;
+  }
+}
+
+/* desktop */
 @media only screen and (min-width: 1440px) {
-    .body {
-        max-width: 661px;
-    }
-    .image {
-        max-width: 50%
-    }
+  .body {
+    max-width: 661px;
+  }
+  .image {
+    max-width: 50%;
+  }
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(12, [col-start] 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(12, [col-start] 1fr);
+  gap: 20px;
 }
 
 .grid > * {
-    grid-column: col-start / span 12;
+  grid-column: col-start / span 12;
 }

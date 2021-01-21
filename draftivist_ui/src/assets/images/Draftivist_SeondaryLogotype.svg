@@ -1,76 +1,9 @@
-<!doctype html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>Draftivist</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <% for (var css in htmlWebpackPlugin.files.css) { %>
-    <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
-    <% } %>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-
-<body>
-    <div class="grid">
-        <!-- header -->
-        <div class="header">
-            <img src="Draftivist_Logotype.svg" alt="Draftivist logo" class="logoHeading">
-
-        </div>
-        <div class="banner">
-            <img src="koshu-kunii-BZOUKpla5tE-unsplash_1920px.jpg" alt="black and white image of crowd kneeling, holding phone lights" class="image">
-            <div>
-                <span class="bannerHeading">Local Activism.</span>
-                <span class="bannerHeading">Led by experts.</span>
-                <span class="bannerHeading">Powered by you.</span>
-                <p class="underlinedText">Coming soon.</p>
-            </div>
-        </div>
-        <div class="body-wrapper">
-            <div class="body">
-                <h2>About Draftivist</h2>
-                <p>
-                    Advocacy isn’t always easy.
-                </p>
-                <p>
-                    It can be hard to know what policymakers to reach out to, when to reach out to them, and what exactly to say
-                    when you do. And, how can you make sure your voice is being heard?
-
-                </p>
-                <p>
-                    Meet Draftivist — a free tool to help progressive activist groups engage with their communities at scale,
-                    educate them on localized issues, and empower them to message local officials in minutes.
-
-                </p>
-                <p>
-                    Draftivist is designed to help citizens’ emails get past politicians’ inbox filters and keep them on-message
-                    with larger movements, while representing each individual’s values and voice. After hitting send, Draftivist
-                    can also show people how they can get further involved with the movement at hand.
-
-                </p>
-                <p>
-                    Draftivist is 100% developed by volunteers, and is 100% free to use.
-                </p>
-                <p>
-                    Draftivist will not log any personal user data, and will be radically transparent in its data policy.
-                </p>
-                <p>
-                    If you’re an activist group interested in using Draftivist — or if you’re an individual looking to lend your
-                    hand to help build it — please reach out to us at draftivist@gmail.com.
-                </p>
-
-            </div>
-
-        </div>
-    </div>
-    <!-- footer -->
-    <div class="footer">
-        <img src="Draftivist_SecondaryLogotype.svg" alt="Draftivist logo" class="logoHeading">
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 236.82 41.52" style="enable-background:new 0 0 236.82 41.52;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#FFFEF4;}
+	.st0{fill:#fffef4;}
 </style>
 <g>
 	<path class="st0" d="M26.54,6.55c-2.8-1.46-6.17-2.18-10.12-2.18H0v2.99L4.15,7.8c0.07,2.25,0.11,4.53,0.11,6.83s0,4.6,0,6.88v1.88
@@ -129,9 +62,3 @@
 		c1.31-0.77,2.33-1.86,3.07-3.26L235.44,35.77z"/>
 </g>
 </svg>
-
-    </div>
-</body>
-</head>
-
-</html>
