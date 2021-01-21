@@ -1,12 +1,23 @@
 body {
     font-family: 'Open Sans', sans-serif;
     background-color: #fffef4;
+    margin: 0px;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
 }
 
 .banner {
-    display: flex;
-    flex-direction: row;
     background-color: #ffed60;
+}
+
+.banner > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .body {
@@ -20,13 +31,30 @@ body {
     align-items: center;
 }
 
-h2 {
+.header {
+    border-top: 5px solid #ffed60;
     display: flex;
     justify-content: center;
 }
 
+.footer {
+    background-color: #2E2E30;
+    fill: white;
+}
+.logoHeading {
+    width: 100px;
+    height: 18px;
+    margin-top: 24px;
+}
 
-@media (max-width: 599px) {
+.image {
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+@media only screen and (min-width: 599px) {
     .banner {
         display: flex;
         flex-direction: column
@@ -34,11 +62,27 @@ h2 {
     .body {
         max-width: 458px;
     }
+    .image {
+        max-width: 500%
+    }
 }
 
-@media (min-width: 1440px) {
+/* ipad */
+@media only screen and (min-width: 900px) {
+    .body {
+        max-width: 458px;
+    }
+    .image {
+        max-width: 50%
+    }
+}
+
+@media only screen and (min-width: 1440px) {
     .body {
         max-width: 661px;
+    }
+    .image {
+        max-width: 50%
     }
 }
 
