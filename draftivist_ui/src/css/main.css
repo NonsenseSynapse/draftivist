@@ -13,10 +13,11 @@ h2 {
   background-color: #ffed60;
 }
 
-.banner > div {
+.bannerCopy {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 32px;
 }
 
@@ -30,7 +31,7 @@ h2 {
 
 .body {
   max-width: 319px;
-  margin: 0px 42px;
+  margin: 42px 42px 0px;
 }
 
 .body h2 {
@@ -90,10 +91,10 @@ h2 {
 @media only screen and (min-width: 599px) {
   .banner {
     display: flex;
-    /* flex-direction: column */
   }
-  .banner > div {
+  .bannerCopy{
     align-items: flex-start;
+    width: 50%;
   }
   .body {
     max-width: 458px;
