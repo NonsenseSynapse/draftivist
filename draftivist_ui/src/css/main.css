@@ -59,14 +59,17 @@ h2 {
   border-top: 5px solid #ffed60;
   display: flex;
   justify-content: center;
-  padding-top: 24px;
+  padding: 24px;
 }
 
 .footer {
   background-color: #2e2e30;
   display: flex;
   justify-content: center;
-  padding: 32px;
+  padding: 32px 0px;
+  position: inherit;
+  bottom: 0;
+  width: 100%;
 }
 
 .logoHeading {
@@ -90,13 +93,18 @@ h2 {
     /* flex-direction: column */
   }
   .banner > div {
-      align-items: flex-start;
+    align-items: flex-start;
   }
   .body {
     max-width: 458px;
   }
   .image {
     max-width: 50%;
+  }
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
 }
 
@@ -108,6 +116,11 @@ h2 {
   .image {
     max-width: 50%;
   }
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
 }
 
 /* desktop */
@@ -118,14 +131,9 @@ h2 {
   .image {
     max-width: 50%;
   }
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, [col-start] 1fr);
-  gap: 20px;
-}
-
-.grid > * {
-  grid-column: col-start / span 12;
+  .footer {
+    position: inherit;
+    bottom: 0;
+    width: 100%;
+  }
 }
