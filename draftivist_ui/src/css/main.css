@@ -9,6 +9,10 @@ h2 {
   justify-content: center;
 }
 
+p > a:hover {
+    background-color: #ffed60;
+}
+
 .banner {
   background-color: #ffed60;
 }
@@ -31,7 +35,7 @@ h2 {
 
 .body {
   max-width: 319px;
-  margin: 42px 42px 0px;
+  margin: 42px;
 }
 
 .body h2 {
@@ -48,6 +52,7 @@ h2 {
   font-weight: normal;
   font-size: 16px;
   line-height: 25px;
+  margin-bottom: 24px;
 }
 
 .body-wrapper {
@@ -66,8 +71,10 @@ h2 {
 .footer {
   background-color: #2e2e30;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 32px 0px;
+  padding: 56px 0px;
   position: inherit;
   bottom: 0;
   width: 100%;
@@ -81,6 +88,22 @@ h2 {
 .image {
   max-width: 100%;
   height: auto;
+  object-fit: cover;
+}
+
+.iconWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 56px;
+}
+
+.iconWrapper > a ~ a {
+  margin-left: 34px;
+}
+
+.iconWrapper > img:hover {
+     
 }
 
 .underlinedText {
@@ -92,8 +115,8 @@ h2 {
   .banner {
     display: flex;
   }
-  .bannerCopy{
-    align-items: flex-start;
+  .bannerCopy {
+    align-items: center;
     width: 50%;
   }
   .body {
@@ -103,7 +126,7 @@ h2 {
     max-width: 50%;
   }
   .footer {
-    position: fixed;
+    position: inherit;
     bottom: 0;
     width: 100%;
   }
@@ -118,7 +141,7 @@ h2 {
     max-width: 50%;
   }
   .footer {
-    position: fixed;
+    position: inherit;
     bottom: 0;
     width: 100%;
   }
