@@ -7,7 +7,7 @@ body {
 h2 {
   display: flex;
   justify-content: center;
-  margin-bottom: 42px;
+  margin-bottom: 56px 0px;
 }
 
 p > a {
@@ -122,6 +122,25 @@ p > a:hover {
   object-fit: cover;
 }
 
+.imageWrapper {
+    position: relative;
+
+}
+
+.imageCredit {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    color: grey;
+    background-color: #2e2e30;
+    font-size: 10px;
+    padding: 5px 8px;
+}
+
+.imageCredit span > span {
+    text-decoration: underline;
+}
+
 .iconWrapper {
   display: flex;
   flex-direction: row;
@@ -131,9 +150,6 @@ p > a:hover {
 
 .iconWrapper > a ~ a {
   margin-left: 34px;
-}
-
-.iconWrapper > img:hover {
 }
 
 .underlinedText {
