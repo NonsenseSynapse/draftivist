@@ -7,10 +7,39 @@ body {
 h2 {
   display: flex;
   justify-content: center;
+  margin-bottom: 42px;
+}
+
+p > a {
+  color: #000000;
 }
 
 p > a:hover {
-    background-color: #ffed60;
+  background-color: #ffed60;
+}
+
+.emailIcon:hover path:first-of-type {
+  stroke: #ffed60;
+}
+
+.emailIcon:hover path:last-of-type {
+  fill: #ffed60;
+}
+
+.instagramIcon:hover path:first-of-type {
+  fill: #ffed60;
+}
+
+.instagramIcon:hover path:last-of-type {
+  stroke: #ffed60;
+}
+
+.twitterIcon:hover path:first-of-type {
+  fill: #ffed60;
+}
+
+.twitterIcon:hover path:last-of-type {
+  stroke: #ffed60;
 }
 
 .banner {
@@ -44,6 +73,7 @@ p > a:hover {
   font-weight: bold;
   font-size: 20px;
   line-height: 26px;
+  color: #2e2e30;
 }
 
 .body p {
@@ -53,6 +83,7 @@ p > a:hover {
   font-size: 16px;
   line-height: 25px;
   margin-bottom: 24px;
+  color: #000000;
 }
 
 .body-wrapper {
@@ -103,7 +134,6 @@ p > a:hover {
 }
 
 .iconWrapper > img:hover {
-     
 }
 
 .underlinedText {
