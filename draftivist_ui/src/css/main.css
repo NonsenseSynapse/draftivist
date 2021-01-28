@@ -163,7 +163,7 @@ p > a:hover {
 }
 
 /* ipad */
-@media only screen and (min-width: 599px) {
+@media only screen and (min-width: 599px) and (max-width: 899px) {
     .banner {
         display: flex;
     }
@@ -187,7 +187,7 @@ p > a:hover {
 }
 
 /* intermediate */
-@media only screen and (max-width: 900px) {
+@media only screen and (min-width: 900px) and (max-width: 1280px) {
   .body {
     max-width: 458px;
   }
@@ -208,7 +208,7 @@ p > a:hover {
 }
 
 /* desktop */
-@media only screen and (max-width: 1440px) {
+@media only screen and (min-width: 1281px) {
   .body {
     max-width: 661px;
   }
