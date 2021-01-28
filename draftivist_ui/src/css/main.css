@@ -7,7 +7,7 @@ body {
 h2 {
   display: flex;
   justify-content: center;
-  margin-bottom: 56px 0px;
+  margin-bottom: 42px;
 }
 
 p > a {
@@ -44,6 +44,11 @@ p > a:hover {
 
 .banner {
   background-color: #ffed60;
+  max-width: 1440px;
+}
+
+.bannerCopyWrapper {
+    display: flex;
 }
 
 .bannerCopy {
@@ -64,7 +69,7 @@ p > a:hover {
 
 .body {
   max-width: 319px;
-  margin: 42px;
+  margin: 56px 0px;
 }
 
 .body h2 {
@@ -119,10 +124,13 @@ p > a:hover {
 .image {
   max-width: 100%;
   object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .imageWrapper {
   position: relative;
+  max-width: 50%;
 }
 
 .imageCredit {
@@ -156,32 +164,40 @@ p > a:hover {
 
 /* ipad */
 @media only screen and (min-width: 599px) {
-  .banner {
-    display: flex;
-  }
-  .bannerCopy {
-    align-items: center;
-    width: 50%;
-  }
-  .body {
-    max-width: 458px;
-  }
-  .image {
-    max-width: 50%;
-  }
-  .footer {
-    position: inherit;
-    bottom: 0;
-    width: 100%;
-  }
+    .banner {
+        display: flex;
+    }
+    .bannerCopyWrapper {
+        min-width: 50%;
+    }
+    .bannerCopy {
+        align-items: flex-start;
+    }
+    .body {
+        max-width: 458px;
+    }
+    .imageWrapper {
+        max-width: 50%;
+    }
+    .footer {
+        position: inherit;
+        bottom: 0;
+        width: 100%;
+    }
 }
 
 /* intermediate */
-@media only screen and (min-width: 900px) {
+@media only screen and (max-width: 900px) {
   .body {
     max-width: 458px;
   }
-  .image {
+  .bannerCopyWrapper {
+    min-width: 50%;
+}
+  .bannerCopy {
+    align-items: flex-start;
+  }
+  .imageWrapper {
     max-width: 50%;
   }
   .footer {
@@ -192,9 +208,18 @@ p > a:hover {
 }
 
 /* desktop */
-@media only screen and (min-width: 1440px) {
+@media only screen and (max-width: 1440px) {
   .body {
     max-width: 661px;
+  }
+  .banner {
+      min-height: 720px;
+  }
+  .bannerCopyWrapper {
+    min-width: 50%;
+}
+  .bannerCopy {
+    align-items: flex-start;
   }
   .image {
     max-width: 50%;
