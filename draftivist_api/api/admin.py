@@ -1,48 +1,25 @@
 from django.contrib import admin
-from api.models.models import Campaign, Statement, Issue
-from django.urls import reverse
-from django.utils.safestring import mark_safe
+from api.models.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta, Organization, Member
 
-
-class IssueInline(admin.StackedInline):
-    model = Issue
-    fields = ['prompt_text', 'get_edit_link']
-    readonly_fields = ['get_edit_link']
-
-    def get_edit_link(self, obj):
-        if obj.pk:
-            url = reverse(f'admin:{obj._meta.app_label}_{obj._meta.model_name}_change',
-                          args=str(obj.pk))
-            return mark_safe(f'<a href={url}>Edit</a>')
-        return '-'
-    get_edit_link.short_description = 'Add/Edit Statements'
-
-
+@admin.register(Campaign)
 class CampaignAdmin(admin.ModelAdmin):
-    inlines = (IssueInline,)
+    list_display = ['id', 'name', 'organization', 'description', 'created', 'start_date', 'end_date', 'is_active', 'allow_custom_statements']
+    ordering = ['id']
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        grp = request.user.groups.first()
+        return qs.filter(organization=grp.organization)
 
 
-class StatementInline(admin.StackedInline):
-    model = Statement
-    readonly_fields = ['issue']
-
-
-class IssueAdmin(admin.ModelAdmin):
-    readonly_fields = ['campaign']
-    inlines = (StatementInline,)
-    fields = ['prompt_text', 'link_to_campaign']
-    readonly_fields = ['link_to_campaign']
-
-    def link_to_campaign(self, obj):
-        parent_campaign = obj.campaign
-        link = reverse(f'admin:{obj._meta.app_label}_{parent_campaign._meta.model_name}_change',
-                       args=str(parent_campaign.id))
-        return mark_safe(f'<a href={link}>{parent_campaign.name}</a>')
-    link_to_campaign.short_description = 'Parent Campaign'
-
-
-admin.site.register(Campaign, CampaignAdmin)
-# admin.site.register(StatementSelection)
-# admin.site.register(CampaignResponse)
-admin.site.register(Issue, IssueAdmin)
-# admin.site.register(Statement)
+admin.site.register(Recipient)
+admin.site.register(Issue)
+admin.site.register(Statement)
+admin.site.register(Draft)
+admin.site.register(StatementSubmission)
+admin.site.register(SessionMeta)
+admin.site.register(Organization)
+admin.site.register(Member)
