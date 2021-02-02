@@ -48,7 +48,7 @@ p > a:hover {
 }
 
 .bannerCopyWrapper {
-    display: flex;
+  display: block;
 }
 
 .bannerCopy {
@@ -130,12 +130,12 @@ p > a:hover {
 
 .imageWrapper {
   position: relative;
-  max-width: 50%;
 }
 
 .imageCredit {
   position: absolute;
   bottom: 0px;
+  /* bottom: 5px; */
   left: 0px;
   color: grey;
   background-color: #2e2e30;
@@ -162,38 +162,47 @@ p > a:hover {
   border-bottom: 4px solid #fffef4;
 }
 
-/* ipad */
-@media only screen and (min-width: 599px) and (max-width: 899px) {
-    .banner {
-        display: flex;
-    }
-    .bannerCopyWrapper {
-        min-width: 50%;
-    }
-    .bannerCopy {
-        align-items: flex-start;
-    }
-    .body {
-        max-width: 458px;
-    }
-    .imageWrapper {
-        max-width: 50%;
-    }
-    .footer {
-        position: inherit;
-        bottom: 0;
-        width: 100%;
-    }
-}
-
-/* intermediate */
-@media only screen and (min-width: 900px) and (max-width: 1280px) {
+/* small(ipad) */
+@media only screen and (min-width: 600px) and (max-width: 959px) {
+  .banner {
+    display: flex;
+    height: 50vw;
+  }
+  .bannerCopyWrapper {
+    display: flex;
+    justify-content: center;
+    min-width: 50%;
+  }
+  .bannerCopy {
+    align-items: flex-start;
+  }
   .body {
     max-width: 458px;
   }
-  .bannerCopyWrapper {
-    min-width: 50%;
+  .imageWrapper {
+    max-width: 50%;
+  }
+  .footer {
+    position: inherit;
+    bottom: 0;
+    width: 100%;
+  }
 }
+
+/* intermediate (ipad pro) */
+@media only screen and (min-width: 960px) and (max-width: 1279px) {
+  .body {
+    max-width: 458px;
+  }
+  .banner {
+    display: flex;
+    height: 50vw;
+  }
+  .bannerCopyWrapper {
+    display: flex;
+    justify-content: center;
+    min-width: 50%;
+  }
   .bannerCopy {
     align-items: flex-start;
   }
@@ -207,21 +216,27 @@ p > a:hover {
   }
 }
 
-/* desktop */
-@media only screen and (min-width: 1281px) {
+/* large (desktop) */
+@media only screen and (min-width: 1280px) {
   .body {
     max-width: 661px;
   }
   .banner {
-      min-height: 720px;
+    height: 50vw;
+    display: flex;
   }
   .bannerCopyWrapper {
+    display: flex;
+    justify-content: center;
     min-width: 50%;
-}
+  }
   .bannerCopy {
     align-items: flex-start;
   }
   .image {
+    max-width: 50%;
+  }
+  .imageWrapper {
     max-width: 50%;
   }
   .footer {
