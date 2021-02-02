@@ -12,6 +12,4 @@ env/
 
 .DS_Store
 
-draftivist-secret*
-
 *.crt

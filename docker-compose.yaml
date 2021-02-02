@@ -9,7 +9,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    env_file: draftivist_api/.env
+    env_file: .env
   ui:
     build: ./draftivist_ui
     command: "yarn start"
@@ -25,6 +25,6 @@ services:
       - ./startup:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
-    env_file: draftivist_api/.env
+    env_file: .env
 volumes:
   db_data: {}

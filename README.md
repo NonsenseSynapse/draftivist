@@ -96,6 +96,26 @@ Once we know that we are inside the virtualenv, you can just install the require
 ```
 pip install -r requirements.txt
 ```
+
+### Production
+The basic structure for our production app is to build the frontend app in a Docker container using webpack, and then
+copy those static assets into the `draftivist_api/frontend/static`. We then leverage Django's built-in `collectstatic`
+to upload all of the static assets to DigitalOcean Spaces (similar to Amazon S3), which we then use to serve the frontend
+app's CSS and JS files, as well as the static assets for the Django admin and Rest Framework assets.
+
+####Running a production-like app locally
+1. Copy the contents of `.env-example` into a file called `.env`
+1. Start up your local database `docker-compose up -d db`
+1. Build the app! From the root directory, just run `./scripts/run_production.sh`
+
+####A few notes
+1. As you may have noticed, in the `.env-example` file, we have `PROJECT_ENVIRONMENT="DEV"`. On our actual production
+environment, we use the environment "PROD", but building with that configuration will cause an error locally since you
+do not have the production database or DigitalOcean Spaces credentials. As an alternative, the static assets are served
+locally from the system, which also leverages Django's built-in static asset collection.
+1. The app runs on port 8000. On production, we have `nginx` running as a reverse-proxy which allows port 80 on our
+production server to deliver the application.
+
 ## Help and FAQs
 ### Aliases
 Sometimes it can be helpful to add an alias for a terminal command that you know you will use frequently. Since
