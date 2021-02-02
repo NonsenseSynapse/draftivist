@@ -104,7 +104,14 @@ to upload all of the static assets to DigitalOcean Spaces (similar to Amazon S3)
 app's CSS and JS files, as well as the static assets for the Django admin and Rest Framework assets.
 
 ####Running a production-like app locally
+Note that these steps are a bit finnicky, as we are faking several of the steps in an actual production setup. If you
+are still seeing this message, then I probably have not gotten around to making it more robust, so proceed at your own
+risk. :)
+
 1. Copy the contents of `.env-example` into a file called `.env`
+1. Tweak `draftivist_ui/config/webpack.config.production.js` with the following values:
+    1. `'__API_HOSTNAME__': JSON.stringify("http://localhost:8000/api")`
+    1. `publicPath: "http://localhost:8000/static"`
 1. Start up your local database `docker-compose up -d db`
 1. Build the app! From the root directory, just run `./scripts/run_production.sh`
 
