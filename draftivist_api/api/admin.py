@@ -1,11 +1,25 @@
 from django.contrib import admin
-from api.models.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta, Organization, Member
+from api.models.models import Campaign, Recipient, Issue, Image, Statement, Draft, StatementSubmission, SessionMeta, Organization, Member
+from django.utils.html import format_html
+
+
+class ImageInline(admin.StackedInline):
+    model = Image
+    fields = ['image', 'category', 'preview']
+    extra = 0
+    verbose_name = "Image"
+    verbose_name_plural = "Images"
+    readonly_fields = ['preview']
+
+    def preview(self, obj):
+        return format_html(f'<img src="{obj.image.url}" style="width: 65px; height:65px;" />')
 
 
 @admin.register(Campaign)
 class CampaignAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'organization', 'description', 'created', 'start_date', 'end_date', 'is_active', 'allow_custom_statements']
     ordering = ['id']
+    inlines = [ImageInline]
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)

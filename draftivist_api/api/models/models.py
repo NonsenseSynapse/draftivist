@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
 from phonenumber_field.modelfields import PhoneNumberField
+from django.utils.translation import gettext_lazy as _
 
 
 class Campaign(models.Model):
@@ -19,6 +20,25 @@ class Campaign(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Image(models.Model):
+    class Category(models.TextChoices):
+        COVER = 'COVER', _('Cover')
+        ISSUE = 'ISSUE', _('Cover')
+        THUMBNAIL = 'THUMBNAIL', _('Thumbnail')
+        CUSTOM = 'CUSTOM', _('Custom')
+
+    campaign = models.ForeignKey(Campaign, null=True, on_delete=models.SET_NULL, related_name='images')
+    image = models.ImageField(upload_to='images/', null=True)
+    category = models.CharField(max_length=20, null=True, choices=Category.choices, default=Category.CUSTOM)
+
+    class Meta:
+        db_table = "image"
+        ordering = ['id']
+
+    def __str__(self):
+        return self.image.url
 
 
 class Recipient(models.Model):
