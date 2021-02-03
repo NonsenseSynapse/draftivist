@@ -97,6 +97,18 @@ p > a:hover {
   align-items: center;
 }
 
+.ctaButton {
+  background-color: #fffef4;
+  border-radius: 24px;
+  font-size: 16px;
+  padding: 12px 34px;
+  display: none;
+}
+
+.ctaButton > span {
+  margin-right: 10px;
+}
+
 .header {
   border-top: 5px solid #ffed60;
   display: flex;
@@ -134,8 +146,7 @@ p > a:hover {
 
 .imageCredit {
   position: absolute;
-  bottom: 0px;
-  /* bottom: 5px; */
+  bottom: 5px;
   left: 0px;
   color: grey;
   background-color: #2e2e30;
@@ -179,6 +190,9 @@ p > a:hover {
   .body {
     max-width: 458px;
   }
+  .imageCredit {
+    bottom: 0px;
+  }
   .imageWrapper {
     max-width: 50%;
   }
@@ -205,6 +219,9 @@ p > a:hover {
   }
   .bannerCopy {
     align-items: flex-start;
+  }
+  .imageCredit {
+    bottom: 0px;
   }
   .imageWrapper {
     max-width: 50%;
@@ -233,8 +250,18 @@ p > a:hover {
   .bannerCopy {
     align-items: flex-start;
   }
+  .bannerHeading {
+    font-size: 49px;
+    line-height: 65px;
+  }
+  .ctaButton {
+    display: block;
+  }
   .image {
     max-width: 50%;
+  }
+  .imageCredit {
+    bottom: 0px;
   }
   .imageWrapper {
     max-width: 50%;
@@ -243,5 +270,8 @@ p > a:hover {
     position: inherit;
     bottom: 0;
     width: 100%;
+  }
+  .underlinedText {
+    font-size: 31px;
   }
 }
