@@ -104,26 +104,26 @@ docker-compose stop
 You can run pretty much any `docker-compose` command by passing in a specific container's name as the last argument.
 For example:
 ```
-# Only starts draftivist_api in detached mode
-docker-compose up -d draftivist_api
+# Only starts api in detached mode
+docker-compose up -d api
 
 # Restart UI
-docker-compose restart draftivist_ui
+docker-compose restart ui
 ```
 
 #### Enter a terminal shell within the container
 ```
-docker-compose run draftivist_api bash
+docker-compose run api bash
 ```
 
 #### Run an arbitrary command from a container
 This allows you to pass any command-line input to the container.
 ```
-docker-compose run draftivist_api <custom command>
+docker-compose run api <custom command>
 
 # Examples
-docker-compose run draftivist_ui yarn install
-docker-compose run draftivist_api python manage.py migrate
+docker-compose run ui yarn install
+docker-compose run api python manage.py migrate
 ```
 
 #### View terminal output for a container
@@ -134,7 +134,7 @@ for a given container.
 docker-compose logs -ft <container name>
 
 # Example
-docker-compose logs -ft draftivist_api
+docker-compose logs -ft api
 ```
 
 #### Clean up any lingering containers
@@ -142,7 +142,7 @@ Each time you kick off a different command, you are creating a new docker contai
 following commands:
 ```
 docker-compose up -d
-docker-compose run draftivist_api bash
+docker-compose run api bash
 
 # Ctrl+D to exit the bash shell you just opened
 
