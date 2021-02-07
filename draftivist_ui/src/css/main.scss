@@ -1,6 +1,8 @@
+@import "./variables.scss";
+
 body {
   font-family: "Open Sans", sans-serif;
-  background-color: #fffef4;
+  background-color: $background-color;
   margin: 0px;
 }
 
@@ -15,35 +17,35 @@ p > a {
 }
 
 p > a:hover {
-  background-color: #ffed60;
+  background-color: $primary-color;
 }
 
 .emailIcon:hover path:first-of-type {
-  stroke: #ffed60;
+  stroke: $primary-color;
 }
 
 .emailIcon:hover path:last-of-type {
-  fill: #ffed60;
+  fill: $primary-color;
 }
 
 .instagramIcon:hover path:first-of-type {
-  fill: #ffed60;
+  fill: $primary-color;
 }
 
 .instagramIcon:hover path:last-of-type {
-  stroke: #ffed60;
+  stroke: $primary-color;
 }
 
 .twitterIcon:hover path:first-of-type {
-  fill: #ffed60;
+  fill: $primary-color;
 }
 
 .twitterIcon:hover path:last-of-type {
-  stroke: #ffed60;
+  stroke: $primary-color;
 }
 
 .banner {
-  background-color: #ffed60;
+  background-color: $primary-color;
   max-width: 1440px;
 }
 

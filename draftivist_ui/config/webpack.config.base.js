@@ -4,7 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: ['./src/index.ts', './src/css/main.css'],
+  entry: ['./src/index.ts', './src/css/main.scss'],
   module: {
     rules: [
       {
@@ -13,10 +13,11 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
+          'sass-loader'
         ],
       },
     ],
