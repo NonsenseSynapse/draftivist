@@ -1,6 +1,6 @@
+import os
 from django.db import models
 from django.contrib.auth.models import User, Group
-from phonenumber_field.modelfields import PhoneNumberField
 from django.utils.translation import gettext_lazy as _
 
 
@@ -12,7 +12,7 @@ class Campaign(models.Model):
     end_date = models.DateField(null=True)
     is_active = models.BooleanField(default=True)
     allow_custom_statements = models.BooleanField(default=True)
-    organization = models.ForeignKey('Organization', on_delete=models.SET_NULL, null=True, related_name='campaigns')
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, related_name='campaigns')
 
     class Meta:
         db_table = "campaign"
@@ -25,12 +25,11 @@ class Campaign(models.Model):
 class Image(models.Model):
     class Category(models.TextChoices):
         COVER = 'COVER', _('Cover')
-        ISSUE = 'ISSUE', _('Cover')
-        THUMBNAIL = 'THUMBNAIL', _('Thumbnail')
         CUSTOM = 'CUSTOM', _('Custom')
 
     campaign = models.ForeignKey(Campaign, null=True, on_delete=models.SET_NULL, related_name='images')
     image = models.ImageField(upload_to='images/', null=True)
+    image_small = models.ImageField(upload_to='images/', null=True)
     category = models.CharField(max_length=20, null=True, choices=Category.choices, default=Category.CUSTOM)
 
     class Meta:
@@ -44,7 +43,7 @@ class Image(models.Model):
 class Recipient(models.Model):
     email_address = models.EmailField()
     full_name = models.CharField(max_length=255)
-    phone = PhoneNumberField()
+    phone = models.CharField(max_length=20)
     created = models.DateTimeField(auto_now=True)
     campaigns = models.ManyToManyField(Campaign, related_name='recipients', blank=True)
 
@@ -127,26 +126,3 @@ class SessionMeta(models.Model):
 
     def __str__(self):
         return f'{str(self.pk)}: {self.session_key}'
-
-
-class Organization(models.Model):
-    group = models.OneToOneField(Group, on_delete=models.SET_NULL, null=True, related_name='organization')
-
-    class Meta:
-        db_table = "organization"
-        ordering = ['id']
-
-    def __str__(self):
-        return self.group.name
-
-
-class Member(models.Model):
-    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, related_name='member')
-    contact = PhoneNumberField()
-
-    class Meta:
-        db_table = "member"
-        ordering = ['id']
-
-    def __str__(self):
-        return self.user.username
