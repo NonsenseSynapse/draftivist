@@ -1,17 +1,20 @@
 html {
   font-size: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 
 body {
+  overscroll-behavior: none;
   font-family: "Open Sans", sans-serif;
   background-color: #fffef4;
-  margin: 0px;
+  margin: 0rem;
 }
 
 h2 {
   display: flex;
   justify-content: center;
-  margin-bottom: 42px;
+  margin-bottom: 2.625em;
 }
 
 p > a {
@@ -60,33 +63,33 @@ p > a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 32px;
+  padding: 2em;
 }
 
 .bannerHeading {
   font-family: PT Serif;
   font-weight: bold;
-  font-size: 31px;
-  line-height: 41px;
+  font-size: 2em;
+  line-height: 1.5;
 }
 
 .content {
   max-width: 319px;
-  margin: 56px 0px;
+  margin: 3.5em 0em;
 }
 
 .content h2 {
   font-family: PT Serif;
   font-weight: bold;
-  font-size: 20px;
-  line-height: 26px;
+  font-size: 1.25em;
+  line-height: 1.5;
   color: #2e2e30;
 }
 
 .content p {
-  font-size: 16px;
-  line-height: 25px;
-  margin-bottom: 24px;
+  font-size: 1em;
+  line-height: 1.5;
+  margin-bottom: 1.5em;
   color: #000000;
 }
 
@@ -99,20 +102,20 @@ p > a:hover {
 .ctaButton {
   background-color: #fffef4;
   border-radius: 24px;
-  font-size: 16px;
-  padding: 12px 34px;
+  font-size: 1em;
+  padding: .75rem 2.125rem;
   display: none;
 }
 
 .ctaButton > span {
-  margin-right: 10px;
+  margin-right: 0.625em;
 }
 
 .header {
   border-top: 5px solid #ffed60;
   display: flex;
   justify-content: center;
-  padding: 24px;
+  padding: 1.5em;
 }
 
 .footer {
@@ -128,8 +131,8 @@ p > a:hover {
 }
 
 .logoHeading {
-  width: 100px;
-  height: 18px;
+  width: 6.25rem;
+  height: 1.125rem;
 }
 
 .image {
@@ -149,7 +152,7 @@ p > a:hover {
   left: 0px;
   color: grey;
   background-color: #2e2e30;
-  font-size: 10px;
+  font-size: 0.625em;
   padding: 5px 8px;
 }
 
@@ -204,7 +207,7 @@ p > a:hover {
 
 /* intermediate (ipad pro) */
 @media only screen and (min-width: 960px) and (max-width: 1279px) {
-  .body {
+  .content {
     max-width: 458px;
   }
   .banner {
@@ -234,11 +237,8 @@ p > a:hover {
 
 /* large (desktop) */
 @media only screen and (min-width: 1280px) {
-  html {
-    font-size: 20px;
-  }
 
-  .body {
+  .content {
     max-width: 661px;
   }
   .banner {
@@ -254,8 +254,7 @@ p > a:hover {
     align-items: flex-start;
   }
   .bannerHeading {
-    font-size: 49px;
-    line-height: 65px;
+    font-size: 3em;
   }
   .ctaButton {
     display: block;
@@ -275,6 +274,6 @@ p > a:hover {
     width: 100%;
   }
   .underlinedText {
-    font-size: 31px;
+    font-size: 2em;
   }
 }
