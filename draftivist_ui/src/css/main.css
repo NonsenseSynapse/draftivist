@@ -177,7 +177,8 @@ p > a:hover {
 }
 
 /* small(ipad) */
-@media only screen and (min-width: 600px) and (max-width: 959px) {
+/* @media only screen and (min-width: 600px) and (max-width: 959px) { */
+@media only screen and (min-width: 600px) {
   .banner {
     display: flex;
     height: 50vw;
@@ -190,7 +191,7 @@ p > a:hover {
   .bannerCopy {
     align-items: flex-start;
   }
-  .body {
+  .content {
     max-width: 458px;
   }
   .imageCredit {
@@ -207,52 +208,17 @@ p > a:hover {
 }
 
 /* intermediate (ipad pro) */
-@media only screen and (min-width: 960px) and (max-width: 1279px) {
+/* @media only screen and (min-width: 960px) and (max-width: 1279px) { */
+@media only screen and (min-width: 960px) {
   .content {
     max-width: 458px;
-  }
-  .banner {
-    display: flex;
-    height: 50vw;
-  }
-  .bannerCopyWrapper {
-    display: flex;
-    justify-content: center;
-    min-width: 50%;
-  }
-  .bannerCopy {
-    align-items: flex-start;
-  }
-  .imageCredit {
-    bottom: 0px;
-  }
-  .imageWrapper {
-    max-width: 50%;
-  }
-  .footer {
-    position: inherit;
-    bottom: 0;
-    width: 100%;
   }
 }
 
 /* large (desktop) */
 @media only screen and (min-width: 1280px) {
-
   .content {
     max-width: 661px;
-  }
-  .banner {
-    height: 50vw;
-    display: flex;
-  }
-  .bannerCopyWrapper {
-    display: flex;
-    justify-content: center;
-    min-width: 50%;
-  }
-  .bannerCopy {
-    align-items: flex-start;
   }
   .bannerHeading {
     font-size: 3em;
@@ -263,18 +229,7 @@ p > a:hover {
   .image {
     max-width: 50%;
   }
-  .imageCredit {
-    bottom: 0px;
-  }
-  .imageWrapper {
-    max-width: 50%;
-  }
-  .footer {
-    position: inherit;
-    bottom: 0;
-    width: 100%;
-  }
   .underlinedText {
-    font-size: 0.3em;
+    font-size: 2em;
   }
 }
