@@ -41,13 +41,14 @@ p > a:hover {
   stroke: #ffed60;
 }
 
-.twitterIcon:hover path:first-of-type {
+/* bring back when Twitter icon is present */
+/* .twitterIcon:hover path:first-of-type {
   fill: #ffed60;
 }
 
 .twitterIcon:hover path:last-of-type {
   stroke: #ffed60;
-}
+} */
 
 .banner {
   background-color: #ffed60;
@@ -124,7 +125,7 @@ p > a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 56px 0px;
+  padding: 3.5rem 0rem;
   position: inherit;
   bottom: 0;
   width: 100%;
@@ -153,7 +154,7 @@ p > a:hover {
   color: grey;
   background-color: #2e2e30;
   font-size: 0.625em;
-  padding: 5px 8px;
+  padding: 0.3125em 0.5em;
 }
 
 .imageCredit span > span {
@@ -164,15 +165,15 @@ p > a:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 56px;
+  margin-bottom: 3.5rem;
 }
 
 .iconWrapper > a ~ a {
-  margin-left: 34px;
+  margin-left: 2.125em;
 }
 
 .underlinedText {
-  border-bottom: 4px solid #fffef4;
+  border-bottom: .25em solid #fffef4;
 }
 
 /* small(ipad) */
@@ -274,6 +275,6 @@ p > a:hover {
     width: 100%;
   }
   .underlinedText {
-    font-size: 2em;
+    font-size: 0.3em;
   }
 }
