@@ -2,22 +2,22 @@
 
 html {
   scroll-behavior: smooth;
-}
-
-a {
-  text-decoration: none;
+  font-size: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 
 body {
+  overscroll-behavior: none;
   font-family: "Open Sans", sans-serif;
   background-color: #ffffff;
-  margin: 0px;
+  margin: 0rem;
 }
 
 h2 {
   display: flex;
   justify-content: center;
-  margin-bottom: 42px;
+  margin-bottom: 2.625em;
 }
 
 p > a {
@@ -44,6 +44,7 @@ p > a:hover {
   stroke: $primary-color;
 }
 
+/* bring back when Twitter icon is present
 .twitterIcon:hover path:first-of-type {
   fill: $primary-color;
 }
@@ -51,6 +52,7 @@ p > a:hover {
 .twitterIcon:hover path:last-of-type {
   stroke: $primary-color;
 }
+*/
 
 .banner {
   background-color: $primary-color;
@@ -66,42 +68,41 @@ p > a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 32px;
+  padding: 2em;
+}
+
+.bannerCopy a {
+  text-decoration: none;
 }
 
 .bannerHeading {
   font-family: PT Serif;
-  font-style: normal;
   font-weight: bold;
-  font-size: 31px;
-  line-height: 41px;
+  font-size: 2em;
+  line-height: 1.5;
 }
 
-.body {
+.content {
   max-width: 319px;
-  margin: 56px 0px;
+  margin: 3.5em 0em;
 }
 
-.body h2 {
+.content h2 {
   font-family: PT Serif;
-  font-style: normal;
   font-weight: bold;
-  font-size: 20px;
-  line-height: 26px;
+  font-size: 1.25em;
+  line-height: 1.5;
   color: #2e2e30;
 }
 
-.body p {
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 25px;
-  margin-bottom: 24px;
+.content p {
+  font-size: 1em;
+  line-height: 1.5;
+  margin-bottom: 1.5em;
   color: #000000;
 }
 
-.body-wrapper {
+.content-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,20 +112,20 @@ p > a:hover {
 .ctaButton {
   background-color: #fffef4;
   border-radius: 24px;
-  font-size: 16px;
-  padding: 12px 34px;
+  font-size: 1em;
+  padding: .75rem 2.125rem;
   display: none;
 }
 
 .ctaButton > span {
-  margin-right: 10px;
+  margin-right: 0.625em;
 }
 
 .header {
   border-top: 5px solid #ffed60;
   display: flex;
   justify-content: center;
-  padding: 24px;
+  padding: 1.5em;
   background-color: $background-color;
 }
 
@@ -134,15 +135,15 @@ p > a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 56px 0px;
+  padding: 3.5rem 0rem;
   position: inherit;
   bottom: 0;
   width: 100%;
 }
 
 .logoHeading {
-  width: 100px;
-  height: 18px;
+  width: 6.25rem;
+  height: 1.125rem;
 }
 
 .image {
@@ -162,8 +163,8 @@ p > a:hover {
   left: 0px;
   color: grey;
   background-color: #2e2e30;
-  font-size: 10px;
-  padding: 5px 8px;
+  font-size: 0.625em;
+  padding: 0.3125em 0.5em;
 }
 
 .imageCredit span > span {
@@ -174,19 +175,20 @@ p > a:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 56px;
+  margin-bottom: 3.5rem;
 }
 
 .iconWrapper > a ~ a {
-  margin-left: 34px;
+  margin-left: 2.125em;
 }
 
 .underlinedText {
-  border-bottom: 4px solid #fffef4;
+  border-bottom: .25em solid #fffef4;
 }
 
 /* small(ipad) */
-@media only screen and (min-width: 600px) and (max-width: 959px) {
+/* @media only screen and (min-width: 600px) and (max-width: 959px) { */
+@media only screen and (min-width: 600px) {
   .banner {
     display: flex;
     height: 50vw;
@@ -199,7 +201,7 @@ p > a:hover {
   .bannerCopy {
     align-items: flex-start;
   }
-  .body {
+  .content {
     max-width: 458px;
   }
   .imageCredit {
@@ -216,55 +218,20 @@ p > a:hover {
 }
 
 /* intermediate (ipad pro) */
-@media only screen and (min-width: 960px) and (max-width: 1279px) {
-  .body {
+/* @media only screen and (min-width: 960px) and (max-width: 1279px) { */
+@media only screen and (min-width: 960px) {
+  .content {
     max-width: 458px;
-  }
-  .banner {
-    display: flex;
-    height: 50vw;
-  }
-  .bannerCopyWrapper {
-    display: flex;
-    justify-content: center;
-    min-width: 50%;
-  }
-  .bannerCopy {
-    align-items: flex-start;
-  }
-  .imageCredit {
-    bottom: 0px;
-  }
-  .imageWrapper {
-    max-width: 50%;
-  }
-  .footer {
-    position: inherit;
-    bottom: 0;
-    width: 100%;
   }
 }
 
 /* large (desktop) */
 @media only screen and (min-width: 1280px) {
-  .body {
+  .content {
     max-width: 661px;
   }
-  .banner {
-    height: 50vw;
-    display: flex;
-  }
-  .bannerCopyWrapper {
-    display: flex;
-    justify-content: center;
-    min-width: 50%;
-  }
-  .bannerCopy {
-    align-items: flex-start;
-  }
   .bannerHeading {
-    font-size: 49px;
-    line-height: 65px;
+    font-size: 3em;
   }
   .ctaButton {
     display: block;
@@ -272,18 +239,7 @@ p > a:hover {
   .image {
     max-width: 50%;
   }
-  .imageCredit {
-    bottom: 0px;
-  }
-  .imageWrapper {
-    max-width: 50%;
-  }
-  .footer {
-    position: inherit;
-    bottom: 0;
-    width: 100%;
-  }
   .underlinedText {
-    font-size: 31px;
+    font-size: 2em;
   }
 }
