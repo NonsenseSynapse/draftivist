@@ -1,3 +1,235 @@
+html {
+  font-size: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
+  overscroll-behavior: none;
+  font-family: "Open Sans", sans-serif;
+  background-color: #fffef4;
+  margin: 0rem;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.625em;
+}
+
+p > a {
+  color: #000000;
+}
+
+p > a:hover {
+  background-color: #ffed60;
+}
+
+.emailIcon:hover path:first-of-type {
+  stroke: #ffed60;
+}
+
+.emailIcon:hover path:last-of-type {
+  fill: #ffed60;
+}
+
+.instagramIcon:hover path:first-of-type {
+  fill: #ffed60;
+}
+
+.instagramIcon:hover path:last-of-type {
+  stroke: #ffed60;
+}
+
+/* bring back when Twitter icon is present */
+/* .twitterIcon:hover path:first-of-type {
+  fill: #ffed60;
+}
+
+.twitterIcon:hover path:last-of-type {
+  stroke: #ffed60;
+} */
+
+.banner {
+  background-color: #ffed60;
+  max-width: 1440px;
+}
+
+.bannerCopyWrapper {
+  display: block;
+}
+
+.bannerCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+}
+
+.bannerHeading {
+  font-family: PT Serif;
+  font-weight: bold;
+  font-size: 2em;
+  line-height: 1.5;
+}
+
+.content {
+  max-width: 319px;
+  margin: 3.5em 0em;
+}
+
+.content h2 {
+  font-family: PT Serif;
+  font-weight: bold;
+  font-size: 1.25em;
+  line-height: 1.5;
+  color: #2e2e30;
+}
+
+.content p {
+  font-size: 1em;
+  line-height: 1.5;
+  margin-bottom: 1.5em;
+  color: #000000;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ctaButton {
+  background-color: #fffef4;
+  border-radius: 24px;
+  font-size: 1em;
+  padding: .75rem 2.125rem;
+  display: none;
+}
+
+.ctaButton > span {
+  margin-right: 0.625em;
+}
+
+.header {
+  border-top: 5px solid #ffed60;
+  display: flex;
+  justify-content: center;
+  padding: 1.5em;
+}
+
+.footer {
+  background-color: #2e2e30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 0rem;
+  position: inherit;
+  bottom: 0;
+  width: 100%;
+}
+
+.logoHeading {
+  width: 6.25rem;
+  height: 1.125rem;
+}
+
+.image {
+  max-width: 100%;
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.imageCredit {
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  color: grey;
+  background-color: #2e2e30;
+  font-size: 0.625em;
+  padding: 0.3125em 0.5em;
+}
+
+.imageCredit span > span {
+  text-decoration: underline;
+}
+
+.iconWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 3.5rem;
+}
+
+.iconWrapper > a ~ a {
+  margin-left: 2.125em;
+}
+
+.underlinedText {
+  border-bottom: .25em solid #fffef4;
+}
+
+/* small(ipad) */
+/* @media only screen and (min-width: 600px) and (max-width: 959px) { */
+@media only screen and (min-width: 600px) {
+  .banner {
+    display: flex;
+    height: 50vw;
+  }
+  .bannerCopyWrapper {
+    display: flex;
+    justify-content: center;
+    min-width: 50%;
+  }
+  .bannerCopy {
+    align-items: flex-start;
+  }
+  .content {
+    max-width: 458px;
+  }
+  .imageCredit {
+    bottom: 0px;
+  }
+  .imageWrapper {
+    max-width: 50%;
+  }
+  .footer {
+    position: inherit;
+    bottom: 0;
+    width: 100%;
+  }
+}
+
+/* intermediate (ipad pro) */
+/* @media only screen and (min-width: 960px) and (max-width: 1279px) { */
+@media only screen and (min-width: 960px) {
+  .content {
+    max-width: 458px;
+  }
+}
+
+/* large (desktop) */
+@media only screen and (min-width: 1280px) {
+  .content {
+    max-width: 661px;
+  }
+  .bannerHeading {
+    font-size: 3em;
+  }
+  .ctaButton {
+    display: block;
+  }
+  .image {
+    max-width: 50%;
+  }
+  .underlinedText {
+    font-size: 2em;
+  }
 }
