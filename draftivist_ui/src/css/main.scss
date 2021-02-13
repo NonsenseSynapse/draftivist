@@ -1,4 +1,7 @@
+@import "./variables.scss";
+
 html {
+  scroll-behavior: smooth;
   font-size: 100%;
   margin: 0px;
   padding: 0px;
@@ -7,7 +10,7 @@ html {
 body {
   overscroll-behavior: none;
   font-family: "Open Sans", sans-serif;
-  background-color: #fffef4;
+  background-color: #ffffff;
   margin: 0rem;
 }
 
@@ -22,36 +25,37 @@ p > a {
 }
 
 p > a:hover {
-  background-color: #ffed60;
+  background-color: $primary-color;
 }
 
 .emailIcon:hover path:first-of-type {
-  stroke: #ffed60;
+  stroke: $primary-color;
 }
 
 .emailIcon:hover path:last-of-type {
-  fill: #ffed60;
+  fill: $primary-color;
 }
 
 .instagramIcon:hover path:first-of-type {
-  fill: #ffed60;
+  fill: $primary-color;
 }
 
 .instagramIcon:hover path:last-of-type {
-  stroke: #ffed60;
+  stroke: $primary-color;
 }
 
-/* bring back when Twitter icon is present */
-/* .twitterIcon:hover path:first-of-type {
-  fill: #ffed60;
+/* bring back when Twitter icon is present
+.twitterIcon:hover path:first-of-type {
+  fill: $primary-color;
 }
 
 .twitterIcon:hover path:last-of-type {
-  stroke: #ffed60;
-} */
+  stroke: $primary-color;
+}
+*/
 
 .banner {
-  background-color: #ffed60;
+  background-color: $primary-color;
   max-width: 1440px;
 }
 
@@ -65,6 +69,11 @@ p > a:hover {
   align-items: center;
   justify-content: center;
   padding: 2em;
+}
+
+.bannerCopy a {
+  text-decoration: none;
+  color: #000000;
 }
 
 .bannerHeading {
@@ -98,6 +107,7 @@ p > a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: $background-color;
 }
 
 .ctaButton {
@@ -117,6 +127,7 @@ p > a:hover {
   display: flex;
   justify-content: center;
   padding: 1.5em;
+  background-color: $background-color;
 }
 
 .footer {
