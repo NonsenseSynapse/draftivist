@@ -1,13 +1,131 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Draftivist</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <% for (var css in htmlWebpackPlugin.files.css) { %>
-            <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
-        <% } %> 
-    <body>
-        <h1>Draftivist</h1>
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <title>Draftivist</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <% for (var css in htmlWebpackPlugin.files.css) { %>
+        <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+        <% } %>
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+<body>
+    <div>
+        <!-- header -->
+        <div class="header">
+            <img src="Draftivist_Logotype.svg" alt="Draftivist logo" class="logoHeading">
+        </div>
+        <!-- banner -->
+        <div class="banner">
+            <div class="imageWrapper">
+                <img src="koshu-kunii-BZOUKpla5tE-unsplash_1920px.png"
+                srcset="koshu-kunii-BZOUKpla5tE-unsplash_1920px.png 1x,koshu-kunii-BZOUKpla5tE-unsplash_1920px@2x.png 2x, koshu-kunii-BZOUKpla5tE-unsplash_1920px@3x.png 3x"
+                alt="black and white image of crowd kneeling, raising phone lights overhead" class="image">
+                <div class="imageCredit">
+                    <span>
+                        Photo:
+                        <span>
+                            Koshu Kuni
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="bannerCopyWrapper">
+                <div class='bannerCopy'>
+                    <span class="bannerHeading">Local activism.</span>
+                    <span class="bannerHeading">Led by experts.</span>
+                    <span class="bannerHeading">Powered by you.</span>
+                    <p class="underlinedText">Coming soon.</p>
+                    <a class="ctaButton" href="#content">
+                        <span>
+                            Learn more
+                        </span>
+                        <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.99931 0.499653C5.99931 0.223702 5.7756 0 5.49965 0C5.2237 0 5 0.223702 5 0.499653L5 10.0097L0.853553 5.86608C0.658291 5.67096 0.341709 5.67096 0.146447 5.86608C-0.0488158 6.06121 -0.0488153 6.37757 0.146447 6.5727L5.5 11.9225L10.8536 6.5727C11.0488 6.37757 11.0488 6.06121 10.8536 5.86608C10.6583 5.67096 10.3417 5.67096 10.1464 5.86608L5.99931 10.0103L5.99931 0.499653Z" fill="#2E2E30"/>
+                        </svg>
+                     </a>
+                </div>
+
+            </div>
+        </div>
+        <!-- body -->
+        <div class="content-wrapper">
+            <div class="content" id="content">
+                <h2>About Draftivist</h2>
+                <p>
+                    Advocacy isn’t always easy.
+                </p>
+                <p>
+                    It can be hard to know what policymakers to reach out to, when to reach out to them, and what 
+                    exactly to say when you do—and how do you know if your voice is even being heard?
+                </p>
+                <p>
+                    Meet Draftivist: a free tool to help activist groups engage with their communities at scale, 
+                    educate them on localized issues, and empower them to message their local officials in minutes.
+                </p>
+                <p>
+                    Draftivist is designed to help citizens’ emails get past politicians’ inbox filters and keep 
+                    them on-message with larger movements—while still representing each individual’s values 
+                    and voice. After hitting send, citizens can also learn how to get involved and further 
+                    support the issue at hand.
+                </p>
+                <p>
+                    Draftivist is 100% developed by volunteers, and will be 100% free to use. Draftivist will not 
+                    log personal user data, and will have a radically transparent data policy.
+                </p>
+                <p>
+                    If you’re an activist group interested in using Draftivist, or if you’re someone who’d like 
+                    to lend a hand to help build it, please reach out to us at 
+                    <a href="mailto: draftivist@gmail.com">draftivist@gmail.com</a>.
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <!-- footer -->
+    <div class="footer">
+        <div class="iconWrapper">
+            <a href="mailto: draftivist@gmail.com" target="_blank">
+                <svg class="emailIcon" width="38" height="39" viewBox="0 0 38 39" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="emailTitle emailDesc">
+                    <title id="emailTitle">
+                        Email icon
+                    </title>
+                    <desc id="emailDesc">
+                        A white email icon bordered by a white circle.
+                    </desc>
+                    <path
+                        d="M37.5 19.0795C37.5 29.3426 29.2153 37.659 19 37.659C8.7847 37.659 0.5 29.3426 0.5 19.0795C0.5 8.81635 8.7847 0.5 19 0.5C29.2153 0.5 37.5 8.81635 37.5 19.0795Z"
+                        stroke="#FFFEF4" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M27.9963 13.0502H28V13.0544L27.9963 13.0502ZM27.2522 13.0502L10.7479 13.0502L18.6678 20.1197C18.8573 20.2887 19.1428 20.2887 19.3322 20.1197L27.2522 13.0502ZM10.0038 13.0502H10V13.0545L10.0038 13.0502ZM10 13.7262V24.4434L16.1125 19.1822L10 13.7262ZM10 25.1046V25.1088H10.0036L10 25.1046ZM10.7635 25.1088L27.2365 25.1088L21.1333 19.8556L19.9966 20.8702C19.4282 21.3775 18.5718 21.3775 18.0035 20.8702L16.8668 19.8556L10.7635 25.1088ZM27.9965 25.1088H28V25.1047L27.9965 25.1088ZM28 24.4434V13.7263L21.8876 19.1822L28 24.4434ZM9 13.0502C9 12.4979 9.44772 12.0502 10 12.0502H28C28.5523 12.0502 29 12.4979 29 13.0502V25.1088C29 25.6611 28.5523 26.1088 28 26.1088H10C9.44772 26.1088 9 25.6611 9 25.1088V13.0502Z"
+                        fill="#FFFEF4" />
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/draftivist/" target="_blank">
+                <svg class="instagramIcon" width="38" height="39" viewBox="0 0 38 39" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="instagramTitle instagramDesc">
+                    <title id="instagramTitle instagramDesc">
+                        Instagram icon
+                    </title>
+                    <desc id="instagramDesc">
+                        A white version of Instagram's logo border by a white circle.
+                    </desc>
+                    <path
+                        d="M19 12.5188C21.1333 12.5188 21.4 12.5188 22.2667 12.5858C24.4667 12.6527 25.4667 13.7238 25.5333 15.8661C25.6 16.7364 25.6 16.9372 25.6 19.0795C25.6 21.2218 25.6 21.4895 25.5333 22.2929C25.4667 24.4351 24.4 25.5063 22.2667 25.5732C21.4 25.6402 21.2 25.6402 19 25.6402C16.8667 25.6402 16.6 25.6402 15.8 25.5732C13.6 25.5063 12.6 24.4351 12.5333 22.2929C12.4667 21.4226 12.4667 21.2218 12.4667 19.0795C12.4667 16.9372 12.4667 16.6695 12.5333 15.8661C12.6 13.7238 13.6667 12.6527 15.8 12.5858C16.6 12.5188 16.8667 12.5188 19 12.5188ZM19 11.046C16.8 11.046 16.5333 11.046 15.7333 11.113C12.8 11.2469 11.2 12.8536 11.0667 15.7992C11 16.6025 11 16.8703 11 19.0795C11 21.2887 11 21.5565 11.0667 22.3598C11.2 25.3054 12.8 26.9121 15.7333 27.046C16.5333 27.113 16.8 27.113 19 27.113C21.2 27.113 21.4667 27.113 22.2667 27.046C25.2 26.9121 26.8 25.3054 26.9333 22.3598C27 21.5565 27 21.2887 27 19.0795C27 16.8703 27 16.6025 26.9333 15.7992C26.8 12.8536 25.2 11.2469 22.2667 11.113C21.4667 11.046 21.2 11.046 19 11.046ZM19 14.9289C16.7333 14.9289 14.8667 16.8033 14.8667 19.0795C14.8667 21.3556 16.7333 23.2301 19 23.2301C21.2667 23.2301 23.1333 21.3556 23.1333 19.0795C23.1333 16.8033 21.2667 14.9289 19 14.9289ZM19 21.7573C17.5333 21.7573 16.3333 20.5523 16.3333 19.0795C16.3333 17.6067 17.5333 16.4017 19 16.4017C20.4667 16.4017 21.6667 17.6067 21.6667 19.0795C21.6667 20.5523 20.4667 21.7573 19 21.7573ZM23.2667 13.8577C22.7333 13.8577 22.3333 14.2594 22.3333 14.795C22.3333 15.3305 22.7333 15.7322 23.2667 15.7322C23.8 15.7322 24.2 15.3305 24.2 14.795C24.2 14.2594 23.8 13.8577 23.2667 13.8577Z"
+                        fill="#FFFEF4" />
+                    <path
+                        d="M37.5 19.0795C37.5 29.3426 29.2153 37.659 19 37.659C8.7847 37.659 0.5 29.3426 0.5 19.0795C0.5 8.81635 8.7847 0.5 19 0.5C29.2153 0.5 37.5 8.81635 37.5 19.0795Z"
+                        stroke="#FFFEF4" />
+                </svg>
+
+            </a>
+        </div>
+        <img src="Draftivist_SecondaryLogotype.svg" alt="Draftivist logo" class="logoHeading">
+    </div>
+</body>
+</head>
+
 </html>
