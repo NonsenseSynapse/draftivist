@@ -12,25 +12,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..'))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'b)7$nz1dt8f)3!la#w8cvkr)vb0v04p1r=+s8@a%&7+wswr0i)'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
+IS_PROD = os.environ.get('PROJECT_ENVIRONMENT', '') == 'PROD'
 
 # Application definition
 
@@ -44,7 +29,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'phonenumber_field',
-    'api'
+    'api',
+    'frontend'
 ]
 
 MIDDLEWARE = [
@@ -63,7 +49,9 @@ ROOT_URLCONF = 'cyoa.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(PROJECT_ROOT, 'frontend', 'static')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,17 +66,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cyoa.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'draftivist',
-        'USER': 'docker',
-        'PASSWORD': 'docker',
-        'HOST': 'db',
-        'PORT': 5432,
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_PORT'),
     }
 }
 
@@ -125,19 +110,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-STATIC_ROOT = 'static'
-STATIC_URL = '/static/'
-
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
-
-CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-]

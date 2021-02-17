@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    command: gunicorn cyoa.wsgi -b 0.0.0.0:8000 --workers 3
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file: .env
+#
+# Not used for actual production, but helpful for debugging nginx issues locally
+#
+#  nginx:
+#    image: nginx
+#    volumes:
+#      - ./draftivist_ui/nginx.conf:/etc/nginx/nginx.conf
+#    ports:
+#      - "80:80"

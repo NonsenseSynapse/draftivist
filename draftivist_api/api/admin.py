@@ -1,7 +1,6 @@
 from django.contrib import admin
 from api.models.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta, Organization, Member
 
-
 @admin.register(Campaign)
 class CampaignAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'organization', 'description', 'created', 'start_date', 'end_date', 'is_active', 'allow_custom_statements']

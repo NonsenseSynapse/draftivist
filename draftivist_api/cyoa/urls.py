@@ -13,9 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework import routers
+
+from frontend.views import index
 from api.views.views import (
 	CampaignViewSet,
 	RecipientViewSet,
@@ -40,6 +44,11 @@ router.register(r'organization', OrganizationViewSet)
 router.register(r'member', MemberViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('', index, name='index'),
+    path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
+    re_path(r'^.*/$', index, name='ui_catchall')
 ]
+
+if not settings.IS_PROD:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
