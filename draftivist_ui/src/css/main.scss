@@ -159,10 +159,11 @@ p > a:hover {
 }
 
 .imageCredit {
+  display: flex;
   position: absolute;
   bottom: 5px;
   left: 0px;
-  color: grey;
+  color: $secondary-text;
   background-color: #2e2e30;
   font-size: 0.625em;
   padding: 0.3125em 0.5em;
@@ -189,6 +190,7 @@ p > a:hover {
 
 #photoCreditLink {
   display: none;
+  margin-left: .375em
 }
 
 /* small(ipad) */
