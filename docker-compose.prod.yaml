@@ -4,6 +4,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.prod
+      # env variables are not available when building an image, so we read them
+      # from the .env file and pass them into the Dockerfile as ARGs
+      args:
+        API_HOST: "${API_HOST}"
+        STATIC_PATH: "${STATIC_PATH}"
     command: gunicorn cyoa.wsgi -b 0.0.0.0:8000 --workers 3
     restart: always
     ports:

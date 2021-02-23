@@ -7,10 +7,10 @@ module.exports = merge(common, {
     devtool: 'source-map',
     plugins: [
         new webpack.DefinePlugin({
-          '__API_HOSTNAME__': JSON.stringify("https://draftivist.com/api")
+          '__API_HOSTNAME__': JSON.stringify(process.env.API_HOST)
         })
       ],
     output: {
-        publicPath: "https://draftivist-space.sfo2.digitaloceanspaces.com/static/static"
+        publicPath: process.env.STATIC_PATH
       },
 })
