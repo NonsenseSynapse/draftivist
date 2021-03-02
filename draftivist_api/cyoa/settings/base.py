@@ -112,5 +112,10 @@ USE_TZ = True
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    # We override the default here, which normally includes BasicAuth and SessionAuth, so that
+    # Django Rest Framework doesn't hijack the BasicAuth that we use on or staging server.
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
 }
