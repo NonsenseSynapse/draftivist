@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.contrib.auth.models import Group
 from api.models.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta
 
 
@@ -27,13 +28,20 @@ class IssueSerializer(serializers.ModelSerializer):
         fields = ['id', 'text', 'is_active', 'created', 'campaign', 'statements']
 
 
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ['id', 'name']
+
+
 class CampaignSerializer(serializers.ModelSerializer):
     recipients = RecipientSerializer(many=True, read_only=True)
     issues = IssueSerializer(many=True, read_only=True)
+    group = GroupSerializer(read_only=True)
 
     class Meta:
         model = Campaign
-        fields = ['id', 'name', 'description', 'organization', 'start_date', 'end_date', 'created', 'recipients', 'issues', 'is_active', 'allow_custom_statements']
+        fields = ['id', 'name', 'description', 'group', 'start_date', 'end_date', 'created', 'recipients', 'issues', 'is_active', 'allow_custom_statements']
 
 
 class DraftSerializer(serializers.ModelSerializer):

@@ -79,7 +79,7 @@ admin.site.register(SessionMeta)
 
 
 @receiver(post_save, sender=Image)
-def my_handler(sender, **kwargs):
+def resize_image_hook(sender, **kwargs):
     i = kwargs.get('instance')
     if not i or not i.image:
         return
