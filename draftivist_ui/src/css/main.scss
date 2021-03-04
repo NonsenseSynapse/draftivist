@@ -155,6 +155,8 @@ p > a:hover {
 
 .imageWrapper {
   position: relative;
+  display: flex;
+  overflow: hidden;
 }
 
 .imageCredit {
