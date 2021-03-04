@@ -28,8 +28,6 @@ from api.views.views import (
 	DraftViewSet,
 	StatementSubmissionViewSet,
 	SessionMetaViewSet,
-	OrganizationViewSet,
-	MemberViewSet,
 )
 
 router = routers.DefaultRouter()
@@ -40,8 +38,6 @@ router.register(r'statement', StatementViewSet)
 router.register(r'draft', DraftViewSet)
 router.register(r'statementsubmission', StatementSubmissionViewSet)
 router.register(r'sessionmeta', SessionMetaViewSet)
-router.register(r'organization', OrganizationViewSet)
-router.register(r'member', MemberViewSet)
 
 urlpatterns = [
     path('', index, name='index'),
@@ -52,3 +48,4 @@ urlpatterns = [
 
 if not settings.IS_PROD:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

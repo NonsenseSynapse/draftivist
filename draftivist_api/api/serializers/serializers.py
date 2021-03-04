@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta, Organization, Member
+from api.models.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta
 
 
 class RecipientSerializer(serializers.ModelSerializer):
@@ -63,18 +63,3 @@ class SessionMetaSerializer(serializers.ModelSerializer):
         model = SessionMeta
         fields = ['id', 'session_key', 'remote_addr', 'user_agent']
 
-
-class OrganizationSerializer(serializers.ModelSerializer):
-    # FKs to group?
-
-    class Meta:
-        model = Organization
-        fields = ['id', 'group']
-
-
-class MemberSerializer(serializers.ModelSerializer):
-    # FKs to user?
-
-    class Meta:
-        model = Member
-        fields = ['id', 'user', 'contact']
