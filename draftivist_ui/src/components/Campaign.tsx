@@ -20,7 +20,8 @@ export default function() : BaseComponent<Attrs> {
     return {
         ...elementAttrs,
         oninit: (vnode) => {
-            // campaign = Campaign.parse(localData)
+            // on redraw - no issues
+            campaign = Campaign.parse(localData)
             Campaign.load(1).then(c => {
                 console.log(c)
                 campaign = c
@@ -33,7 +34,7 @@ export default function() : BaseComponent<Attrs> {
             return (
                 <div>
                     { page != "landing" && <Link href="/draft/landing">Back to start</Link>}
-                    
+
                     { page == "landing" && <CampaignLanding campaign={campaign} /> }
                     { page == "issues" && <CampaignIssueSelection campaign={campaign} /> }
                     { page == "issue" && id && <CampaignIssue campaign={campaign} issue={campaign.getIssue(+id)} /> }
