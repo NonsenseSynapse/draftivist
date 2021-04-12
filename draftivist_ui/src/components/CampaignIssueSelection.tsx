@@ -20,10 +20,9 @@ export default function() : BaseComponent<Attrs> {
 
     return {
         ...elementAttrs,
-        oninit: (vnode) => {
-            campaign = vnode.attrs.campaign
-        },
-        view: () =>
+        view: (vnode) => {
+            const {campaign} = vnode.attrs;
+            return (
             <div>
                 <h3>Select two issues to focus on:</h3>
                 <ul>
@@ -39,6 +38,9 @@ export default function() : BaseComponent<Attrs> {
                 </ul>
                 <p><Link disabled={campaign.selectedIssues.length != 2} href={`/draft/issue?id=${campaign.selectedIssues[0]}`}>Next page</Link></p>
             </div>
+
+            );
+        }
     }
 
 }

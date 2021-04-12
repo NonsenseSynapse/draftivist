@@ -20,10 +20,7 @@ export default function() : BaseComponent<Attrs> {
     return {
         ...elementAttrs,
         oninit: (vnode) => {
-            // on redraw - no issues
-            campaign = Campaign.parse(localData)
             Campaign.load(1).then(c => {
-                console.log(c)
                 campaign = c
                 m.redraw()
             })
