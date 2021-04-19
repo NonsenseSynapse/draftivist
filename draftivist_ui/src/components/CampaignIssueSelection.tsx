@@ -8,13 +8,11 @@ type Attrs = {
 
 export default function() : BaseComponent<Attrs> {
 
-    let campaign: Campaign
-
-    function selectIssue(id: number) {
-        campaign.selectIssue(id)
+    function selectIssue(campaign: Campaign, id: number) {
+        campaign.selectIssue(id);
     }
 
-    function deselectIssue(id: number) {
+    function deselectIssue(campaign: Campaign, id: number) {
         campaign.deselectIssue(id)
     }
 
@@ -28,10 +26,10 @@ export default function() : BaseComponent<Attrs> {
                 <ul>
                 {campaign.issues && campaign.issues.map(issue =>
                     campaign.isSelected(issue.id) ?
-                    <li onclick={deselectIssue.bind(this, issue.id)}>
+                    <li onclick={deselectIssue.bind(this, campaign, issue.id)}>
                         <b>{issue.description}</b>
                     </li> :
-                    <li onclick={selectIssue.bind(this, issue.id)}>
+                    <li onclick={selectIssue.bind(this, campaign, issue.id)}>
                         {issue.description}
                     </li>
                 )}

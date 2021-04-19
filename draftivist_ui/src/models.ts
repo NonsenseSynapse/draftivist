@@ -29,9 +29,7 @@ export class Issue {
     }
 
     saveCustomStatement(statement: string) {
-        console.log(statement)
         this.customStatement = statement;
-        console.log(this.customStatement);
     }
 
     isSelected(id: number) : boolean {

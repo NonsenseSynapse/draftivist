@@ -27,7 +27,11 @@ export default function() : BaseComponent<Attrs> {
         },
         view: (vnode) =>{
             const { page, id } = vnode.attrs
-            console.log(campaign)
+            // if the campaign hasn't loaded, render loading state
+            if (!campaign.issues) {
+                // add loading state
+                return null;
+            }
             return (
                 <div>
                     { page != "landing" && <Link href="/draft/landing">Back to start</Link>}
