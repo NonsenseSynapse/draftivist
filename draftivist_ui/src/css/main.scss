@@ -164,13 +164,25 @@ p > a:hover {
   bottom: 5px;
   left: 0px;
   color: $secondary-text;
-  background-color: #2e2e30;
   font-size: 0.625em;
   padding: 0.3125em 0.5em;
 }
 
+.imageCreditExpanded {
+  background-color: #2e2e30;
+}
+
 .imageCredit span > span {
   text-decoration: underline;
+}
+
+#photoCreditLink > a:visited, #photoCreditLink > a:active {
+  color: inherit;
+  text-decoration: underline;
+}
+
+#photoCreditLink > a:hover {
+  text-decoration: none;
 }
 
 .iconWrapper {
