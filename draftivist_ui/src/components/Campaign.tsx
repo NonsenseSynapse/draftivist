@@ -31,7 +31,7 @@ export default function() : BaseComponent<Attrs> {
             const { page, id } = vnode.attrs
             console.log(campaign)
             return (
-                <div>
+                <div className="content-wrapper">
                     { page != "landing" && <Link href="/draft/landing">Back to start</Link>}
                     
                     { page == "landing" && <CampaignLanding campaign={campaign} /> }

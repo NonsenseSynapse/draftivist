@@ -13,10 +13,12 @@ export default function() : BaseComponent<Attrs> {
         view: (vnode) => {
             const { campaign } = vnode.attrs
             return (
-            <div>
-                <h1>{campaign.title}</h1>
-                <div>{campaign.description}</div>
-                <p><Link href="/draft/issues">Get started</Link></p>
+            <div className="content">
+                <div className="heroImage">
+                    <h1>{campaign.title}</h1>
+                </div>
+                <div className="description">{campaign.description}</div>
+                <Link className="button" href="/draft/issues">Get started</Link>
             </div>
             )
         }

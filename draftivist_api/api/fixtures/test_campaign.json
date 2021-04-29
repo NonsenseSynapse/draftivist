@@ -4,6 +4,7 @@
         "pk": 1,
         "fields": {
             "name": "Defund the Evil Alliance",
+            "description": "The Evil Alliance, a group city-funded super villains, has done irreparable harm to Metropolis and its citizens. Their recent actions are part of a long legacy of violence, and they have proven time and time again that they are beyond reform. It’s time to defund the Evil Alliance, and invest in a better solution.",
             "is_active": true,
             "created": "2020-10-01",
             "start_date": "2020-10-01"
