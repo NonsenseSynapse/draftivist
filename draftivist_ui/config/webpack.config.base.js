@@ -28,7 +28,9 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin(),
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Draftivist'
+    }),
     new HtmlWebpackPlugin({
       filename: 'splash.html',
       template: path.resolve(__dirname, '../public/splash.html'),
