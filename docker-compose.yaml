@@ -26,15 +26,5 @@ services:
     ports:
       - "5433:5432"
     env_file: .env
-  jenkins:
-    image: jenkins/jenkins:lts
-    user: root
-    ports:
-      - "8080:8080"
-      - "50000:50000"
-    volumes:
-      - jenkins_data:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
 volumes:
   db_data: {}
-  jenkins_data: {}
