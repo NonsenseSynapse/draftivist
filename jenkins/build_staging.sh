@@ -5,12 +5,14 @@ if [ $# -lt 1 ]; then
   exit 2
 fi
 
-version_tag=$1
+VERSION_TAG=$1
+API_HOST="http://localhost:8000/api"
+STATIC_PATH="http://localhost:8000/static"
 
 echo "Starting to build docker image..."
-docker-compose -f docker-compose.staging.yaml build staging
+docker build -f Dockerfile.prod --build-arg API_HOST="${API_HOST}" STATIC_PATH="${STATIC_PATH}"
 echo "Build finished!"
 
-echo "Tagging build with version ${version_tag}"
-docker image tag draftivist_staging:latest draftivist_staging:"${version_tag}"
+echo "Tagging build with version ${VERSION_TAG}"
+docker image tag draftivist_staging:latest draftivist_staging:"${VERSION_TAG}"
 echo "Done!"
