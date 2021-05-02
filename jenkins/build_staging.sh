@@ -12,7 +12,3 @@ STATIC_PATH="http://localhost:8000/static"
 echo "Starting to build docker image..."
 docker build -f Dockerfile.prod --build-arg API_HOST="${API_HOST}" --build-arg STATIC_PATH="${STATIC_PATH}" -t draftivist_staging:"${VERSION_TAG}" .
 echo "Build finished!"
-
-#echo "Tagging build with version ${VERSION_TAG}"
-#docker image tag draftivist_staging:latest draftivist_staging:"${VERSION_TAG}"
-#echo "Done!"
