@@ -10,7 +10,7 @@ API_HOST="http://localhost:8000/api"
 STATIC_PATH="http://localhost:8000/static"
 
 echo "Starting to build docker image..."
-docker build -f Dockerfile.prod --build-arg API_HOST="${API_HOST}" STATIC_PATH="${STATIC_PATH}"
+docker build -f Dockerfile.prod --build-arg API_HOST="${API_HOST}" STATIC_PATH="${STATIC_PATH}" .
 echo "Build finished!"
 
 echo "Tagging build with version ${VERSION_TAG}"
