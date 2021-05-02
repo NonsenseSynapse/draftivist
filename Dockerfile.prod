@@ -31,6 +31,6 @@ COPY draftivist_api /code/draftivist_api
 RUN mkdir -p /code/draftivist_api/frontend
 COPY --from=frontend_build /code/draftivist_ui/dist /code/draftivist_api/frontend/static/
 
-COPY ca-certificate.crt /root/.postgres/root.crt
+# COPY ca-certificate.crt /root/.postgres/root.crt
 
 RUN python manage.py collectstatic --noinput
