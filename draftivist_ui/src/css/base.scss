@@ -12,3 +12,16 @@ body {
   margin: 0rem;
 }
 
+a {
+  color: #000;
+  text-decoration: none;
+
+  &:hover {
+    color: #000;
+  }
+
+  &:visited {
+    color: #000;
+  }
+}
+
