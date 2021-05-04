@@ -4,41 +4,47 @@ import { elementAttrs, BaseComponent, Link } from "./base"
 
 type Attrs = {
     campaign: Campaign
+    issuePage: number
 }
+
+const page_to_ordinal = ["", "first", "second", "third"]
 
 export default function() : BaseComponent<Attrs> {
 
-    let campaign: Campaign
-
-    function selectIssue(id: number) {
+    function selectIssue(campaign: Campaign, id: number) {
         campaign.selectIssue(id)
     }
 
-    function deselectIssue(id: number) {
+    function deselectIssue(campaign: Campaign, id: number) {
         campaign.deselectIssue(id)
     }
 
     return {
         ...elementAttrs,
-        oninit: (vnode) => {
-            campaign = vnode.attrs.campaign
-        },
-        view: () => 
-            <div>
-                <h3>Select two issues to focus on:</h3>
-                <ul>
-                {campaign.issues.map(issue => 
-                    campaign.isSelected(issue.id) ? 
-                    <li onclick={deselectIssue.bind(this, issue.id)}>
-                        <b>{issue.description}</b>
-                    </li> :
-                    <li onclick={selectIssue.bind(this, issue.id)}>
-                        {issue.description}
-                    </li>
-                )}
+        view: (vnode) => {
+            const { campaign, issuePage } = vnode.attrs
+            return (
+            <div className="campaign_content">
+                <h3 className="campaign_description">Select your {page_to_ordinal[issuePage]} issue to focus on:</h3>
+                <ul className="campaign_issues">
+                {campaign.issues.map(issue => {
+                    const isSelected = campaign.isSelected(issue.id)
+                    const selectedClass = isSelected ? " selected" : ""
+                    const clickFn = isSelected ? 
+                        deselectIssue.bind(this, campaign, issue.id) :
+                        selectIssue.bind(this, campaign, issue.id)
+                        
+                    return (
+                        <li className={`campaign_issue${selectedClass}`} onclick={clickFn}>
+                            {issue.description}
+                        </li>
+                    )
+                })}
                 </ul>
-                <p><Link disabled={campaign.selectedIssues.length != 2} href={`/draft/issue?id=${campaign.selectedIssues[0]}`}>Next page</Link></p>
+                <Link className="campaign_button" disabled={campaign.selectedIssues.length != 2} href={`/draft/issue?id=${campaign.selectedIssues[0]}`}>Next page</Link>
             </div>
+            )
+        }
     }
     
 }

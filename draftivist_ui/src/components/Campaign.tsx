@@ -11,6 +11,7 @@ import { BaseComponent, Link, elementAttrs } from "./base"
 type Attrs = {
     page: string
     id?: string // issue id specified in query string, optional
+    issue_page?: string
 }
 
 export default function() : BaseComponent<Attrs> {
@@ -20,22 +21,23 @@ export default function() : BaseComponent<Attrs> {
     return {
         ...elementAttrs,
         oninit: (vnode) => {
-            // campaign = Campaign.parse(localData)
             Campaign.load(1).then(c => {
-                console.log(c)
                 campaign = c
                 m.redraw()
             })
         },
         view: (vnode) =>{
-            const { page, id } = vnode.attrs
-            console.log(campaign)
+            // if the campaign hasn't loaded, render loading state
+            if (!campaign.issues) {
+                // add loading state
+                return null;
+            }
+
+            const { page, id, issue_page } = vnode.attrs
             return (
-                <div className="campaign_content-wrapper">
-                    { page != "landing" && <Link href="/draft/landing">Back to start</Link>}
-                    
+                <div className="campaign_content-wrapper">                    
                     { page == "landing" && <CampaignLanding campaign={campaign} /> }
-                    { page == "issues" && <CampaignIssueSelection campaign={campaign} /> }
+                    { page == "issues" && <CampaignIssueSelection campaign={campaign} issuePage={+issue_page} /> }
                     { page == "issue" && id && <CampaignIssue campaign={campaign} issue={campaign.getIssue(+id)} /> }
                 </div>
             )

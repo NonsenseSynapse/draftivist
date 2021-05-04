@@ -29,6 +29,7 @@
 
 .campaign_description {
     margin-top: 20px;
+    font-family: "PT Serif", serif;
     grid-column: 1 / span 4;
 }
 
@@ -41,4 +42,19 @@
     margin-top: 20px;
     grid-column: 2 / span 2;
     height: 45px;
+}
+
+.campaign_issues {
+    grid-column: 1 / span 4;
+}
+
+.campaign_issue {
+    display: flex;
+    background-color: #eee;
+    padding: 10px 20px;
+    margin-bottom: 12px;
+
+    &.selected {
+        font-weight: bold;
+    }
 }

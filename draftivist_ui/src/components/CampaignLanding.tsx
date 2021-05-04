@@ -18,7 +18,7 @@ export default function() : BaseComponent<Attrs> {
             </div>,
             <div className="campaign_content">
                 <div className="campaign_description">{campaign.description}</div>
-                <Link className="campaign_button" href="/draft/issues">Get started</Link>
+                <Link className="campaign_button" href="/draft/issues?issue_page=1">Get started</Link>
             </div>
             ]
         }
