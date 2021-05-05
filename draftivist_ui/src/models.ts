@@ -23,17 +23,23 @@ export class Issue {
     statements: Statement[]
     selectedStatement: number = -1
     customStatement: string
+    customStatementDraft: string
 
-    selectStatement(id: number) {
-        this.selectedStatement = id
+    selectStatement(id: number): void {
+        this.selectedStatement = id;
     }
 
-    saveCustomStatement(statement: string) {
-        this.customStatement = statement;
+    saveCustomStatement(): void {
+        this.clearSelectedStatements();
+        this.customStatement = this.customStatementDraft;
     }
 
     isSelected(id: number) : boolean {
         return this.selectedStatement === id
+    }
+
+    clearSelectedStatements(): void {
+        this.selectedStatement = -1;
     }
 }
 

@@ -15,17 +15,17 @@ export default function (): BaseComponent<Attrs> {
     }
 
     function saveCustomStatement(issue: Issue, customStatement: string) {
-        issue.saveCustomStatement(customStatement);
+        issue.saveCustomStatement();
     }
 
     function isLinkDisabled(issue: Issue) {
         return Boolean(issue.selectedStatement < 0 && !issue.customStatement)
     }
 
-    let customStatementValue = '';
 
-    function onChangeHandler(e: Event) {
-        customStatementValue = (e.target as HTMLInputElement).value;
+
+    function onChangeHandler(e: Event, issue: Issue) {
+        issue.customStatementDraft = (e.target as HTMLInputElement).value;
     }
 
     return {
@@ -45,6 +45,7 @@ export default function (): BaseComponent<Attrs> {
                                 <span>{statement.description}</span>
                             }
                         </li>
+
                     )}
                     <p>
                         <h3>Or draft your own statement:</h3>
@@ -52,11 +53,11 @@ export default function (): BaseComponent<Attrs> {
                             issue.customStatement ? (
                                 <div>{issue.customStatement}</div>
                             ) : (
-                                    <form onsubmit={saveCustomStatement.bind(this, issue, customStatementValue)}>
-                                        <input type='text' value={this.customStatementValue} oninput={onChangeHandler.bind(this)} />
-                                        <button type='submit'>Save Statement</button>
-                                    </form>
-                                )
+                                <form onsubmit={saveCustomStatement.bind(this, issue)}>
+                                    <input type='text' value={issue.customStatementDraft} oninput={(e: Event) => onChangeHandler(e, issue)} />
+                                    <button type='submit'>Save Statement</button>
+                                </form>
+                            )
                         }
                         {selectedIssueIndex < campaign.selectedIssues.length - 1 ?
                             <Link disabled={isLinkDisabled(issue)} href={`/draft/issue?id=${campaign.selectedIssues[selectedIssueIndex + 1]}`}>Next issue</Link> :
