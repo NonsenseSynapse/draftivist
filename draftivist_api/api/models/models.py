@@ -30,11 +30,12 @@ class Image(models.Model):
     campaign = models.ForeignKey(Campaign, null=True, on_delete=models.SET_NULL, related_name='images')
     image = models.ImageField(upload_to='images/', null=True)
     image_small = models.ImageField(upload_to='images/', null=True)
-    category = models.CharField(max_length=20, null=True, choices=Category.choices, default=Category.CUSTOM)
+    category = models.CharField(max_length=100, null=True, choices=Category.choices, default=Category.CUSTOM)
 
     class Meta:
         db_table = "image"
         ordering = ['id']
+        unique_together = [['campaign', 'category']]
 
     def __str__(self):
         return self.image.url

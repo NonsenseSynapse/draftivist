@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'phonenumber_field',
     'api',
+    'storages',
     'frontend'
 ]
 
