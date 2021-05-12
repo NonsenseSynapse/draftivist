@@ -13,3 +13,6 @@ env/
 .DS_Store
 
 *.crt
+
+# Exported containers or images
+*.tar
