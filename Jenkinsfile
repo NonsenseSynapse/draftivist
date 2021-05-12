@@ -17,11 +17,7 @@ pipeline {
         stage('Deploy') {
             echo "Exporting and deploying Docker image to remote server"
             sh 'jenkins/export_staging.sh ${VERSION_TAG}'
-            sshPublisher(publishers: [{
-                'configName': 'STAGING_DROPLET',
-                'sourceFiles': 'draftivist_staging_${VERSION_TAG}.tar',
-                'remoteDirectory': '~/pipetest'
-            }])
+            sshPublisher(publishers: [{'configName': 'STAGING_DROPLET', 'sourceFiles': 'draftivist_staging_${VERSION_TAG}.tar', 'remoteDirectory': '~/pipetest'}])
         }
     }
 }
