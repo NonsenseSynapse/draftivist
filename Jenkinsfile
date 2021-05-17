@@ -11,7 +11,7 @@ pipeline {
         stage('Publish image to Docker Hub') {
             steps {
                 script {
-                    docker.withDockerRegistry([ credentialsId: "DOCKER_HUB", url: "" ]) {
+                    withDockerRegistry([ credentialsId: "DOCKER_HUB", url: "" ]) {
                         sh  'docker push nonsensesynapse/draftivist:latest'
                         sh  'docker push nonsensesynapse/draftivist:${VERSION_TAG}'
                     }
