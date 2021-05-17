@@ -30,7 +30,7 @@ pipeline {
                 script {
                     sshagent(credentials : ['STAGING_DROPLET']) {
                         sh "pwd"
-                        sh "ssh -o StrictHostKeyChecking=no root@${STAGING_IP_ADDRESS} && pwd"
+//                         sh "ssh -o StrictHostKeyChecking=no root@${STAGING_IP_ADDRESS} && pwd"
                         sh "pwd"
 
 //                       sh 'ssh -t -t ubuntu@xx.xxx.xx.xx -o StrictHostKeyChecking=no "echo pwd && sudo -i -u root && cd /opt/docker/web && echo pwd"'
