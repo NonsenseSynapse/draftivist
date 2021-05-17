@@ -30,7 +30,7 @@ pipeline {
                 script {
                     sshagent(credentials : ['STAGING_DROPLET']) {
                         sh "pwd"
-                        sh 'ssh -t root@staging.draftivist.com -o StrictHostKeyChecking=no && pwd'
+                        sh 'ssh -t root@staging.draftivist.com -o StrictHostKeyChecking=no "pwd && pwd"'
                         sh "pwd"
                     }
                 }
