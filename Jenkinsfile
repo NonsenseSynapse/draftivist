@@ -18,5 +18,16 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy to Droplet') {
+            steps {
+                script {
+                    sshagent(credentials : ['STAGING_DROPLET']) {
+                        sh "echo pwd"
+//                       sh 'ssh -t -t ubuntu@xx.xxx.xx.xx -o StrictHostKeyChecking=no "echo pwd && sudo -i -u root && cd /opt/docker/web && echo pwd"'
+                    }
+                }
+            }
+        }
     }
 }
