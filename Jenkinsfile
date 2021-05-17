@@ -31,13 +31,11 @@ node {
     }
 
     stage('Publish image to Docker Hub') {
-        steps {
-            withDockerRegistry([ credentialsId: "DOCKER_HUB", url: "" ]) {
-              sh  'docker push nonsensesynapse/draftivist:latest'
-              sh  'docker push nonsensesynapse/draftivist:${VERSION_TAG}'
-            }
-
+        withDockerRegistry([ credentialsId: "DOCKER_HUB", url: "" ]) {
+          sh  'docker push nonsensesynapse/draftivist:latest'
+          sh  'docker push nonsensesynapse/draftivist:${VERSION_TAG}'
         }
+
     }
 
 //     stage('Deploy') {
