@@ -21,10 +21,10 @@ pipeline {
         }
 
         stage('Deploy to Droplet') {
-            environment {
+//             environment {
 //                 STAGING_USER = credentials('STAGING_USER')
 //                 STAGING_IP_ADDRESS = credentials('STAGING_IP_ADDRESS')
-            }
+//             }
 
             steps {
                 script {
