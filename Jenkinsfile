@@ -1,5 +1,11 @@
 pipeline {
     agent any
+
+    environment {
+        STAGING_USER = credentials('STAGING_USER')
+        STAGING_IP_ADDRESS = credentials('STAGING_IP_ADDRESS')
+    }
+
     stages {
         stage('Build image') {
             steps {
@@ -24,6 +30,9 @@ pipeline {
                 script {
                     sshagent(credentials : ['STAGING_DROPLET']) {
                         sh "pwd"
+                        sh "ssh -o StrictHostKeyChecking=no -l root ${STAGING_IP_ADDRESS} && pwd"
+                        sh "pwd"
+
 //                       sh 'ssh -t -t ubuntu@xx.xxx.xx.xx -o StrictHostKeyChecking=no "echo pwd && sudo -i -u root && cd /opt/docker/web && echo pwd"'
                     }
                 }
