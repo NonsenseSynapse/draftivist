@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        STAGING_USER = credentials('STAGING_USER')
-        STAGING_IP_ADDRESS = credentials('STAGING_IP_ADDRESS')
-    }
-
     stages {
         stage('Build image') {
             steps {
@@ -26,6 +21,11 @@ pipeline {
         }
 
         stage('Deploy to Droplet') {
+            environment {
+                STAGING_USER = credentials('STAGING_USER')
+                STAGING_IP_ADDRESS = credentials('STAGING_IP_ADDRESS')
+            }
+
             steps {
                 script {
                     sshagent(credentials : ['STAGING_DROPLET']) {
