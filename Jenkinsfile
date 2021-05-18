@@ -4,8 +4,10 @@ pipeline {
     stages {
         stage('Build image') {
             steps {
-                echo "Jenkinsfile building staging with version tag ${VERSION_TAG}"
-                sh "jenkins/build_staging.sh ${VERSION_TAG}"
+                withDockerRegistry([ credentialsId: "DOCKER_HUB", url: "" ]) {
+                    echo "Jenkinsfile building staging with version tag ${VERSION_TAG}"
+                    sh "jenkins/build_staging.sh ${VERSION_TAG}"
+                }
             }
         }
 
