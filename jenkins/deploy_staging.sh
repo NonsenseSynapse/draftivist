@@ -9,8 +9,8 @@ fi
 VERSION_TAG=$1
 
 ssh -t root@staging.draftivist.com -o StrictHostKeyChecking=no \
- pwd \
- echo "hello" \
+ pwd && \
+ echo "hello" && \
  ls
 
 #echo "Exporting docker image..."
