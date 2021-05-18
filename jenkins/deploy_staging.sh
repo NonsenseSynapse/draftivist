@@ -9,9 +9,16 @@ fi
 VERSION_TAG=$1
 
 ssh -t root@staging.draftivist.com -o StrictHostKeyChecking=no \
- pwd && \
- echo "hello" && \
- ls
+  echo "Hello I am here" && \
+  echo ${VERSION_TAG}
+
+# echo "Pulling latest image from DockerHub..." && \
+# docker pull nonsensesynapse/draftivist:${VERSION_TAG} \
+# echo "Stopping existing container..." && \
+# echo "TODO: STOP EXISTING CONTAINER"\
+# docker-compose -f /root/draftivist/docker-compose.staging.yaml
+
+# docker run -d --env-file /root/draftivist/.env --expose 8000:8000
 
 #echo "Exporting docker image..."
 #docker save draftivist_staging:"${VERSION_TAG}" > ~/draftivist_staging_${VERSION_TAG}.tar
