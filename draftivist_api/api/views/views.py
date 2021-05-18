@@ -9,8 +9,6 @@ from api.models.models import (
     Draft,
     StatementSubmission,
     SessionMeta,
-    Organization,
-    Member,
 )
 
 from api.serializers.serializers import (
@@ -21,8 +19,6 @@ from api.serializers.serializers import (
     DraftSerializer,
     StatementSubmissionSerializer,
     SessionMetaSerializer,
-    OrganizationSerializer,
-    MemberSerializer,
 )
 
 class CampaignViewSet(viewsets.ModelViewSet):
@@ -58,13 +54,3 @@ class StatementSubmissionViewSet(viewsets.ModelViewSet):
 class SessionMetaViewSet(viewsets.ModelViewSet):
     queryset = SessionMeta.objects.all()
     serializer_class = SessionMetaSerializer
-
-
-class OrganizationViewSet(viewsets.ModelViewSet):
-    queryset = Organization.objects.all()
-    serializer_class = OrganizationSerializer
-
-
-class MemberViewSet(viewsets.ModelViewSet):
-    queryset = Member.objects.all()
-    serializer_class = MemberSerializer
