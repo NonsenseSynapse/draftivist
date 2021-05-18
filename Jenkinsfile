@@ -29,8 +29,10 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials : ['STAGING_DROPLET']) {
+                        withDockerRegistry([ credentialsId: "DOCKER_HUB", url: "" ]) {
 //                         sh "jenkins/export_staging.sh ${VERSION_TAG}"
-                        sh "jenkins/deploy_staging.sh ${VERSION_TAG}"
+                            sh "jenkins/deploy_staging.sh ${VERSION_TAG}"
+                        }
 //                         sh "pwd"
 //                         sh 'ssh -t root@staging.draftivist.com -o StrictHostKeyChecking=no "pwd && pwd"'
 //                         sh "pwd"
