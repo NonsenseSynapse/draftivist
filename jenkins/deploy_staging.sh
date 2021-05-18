@@ -9,6 +9,8 @@ fi
 VERSION_TAG=$1
 
 ssh -t root@staging.draftivist.com -o StrictHostKeyChecking=no \
+ echo "Testing docker config..." && \
+ cat ~/.docker/config.json && \
  echo "Pulling latest image from DockerHub..." && \
  docker pull nonsensesynapse/draftivist:${VERSION_TAG} && \
  echo "Stopping existing container..." && \
