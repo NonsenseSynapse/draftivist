@@ -8,8 +8,11 @@ fi
 
 VERSION_TAG=$1
 
-echo "Exporting docker image..."
-docker save draftivist_staging:"${VERSION_TAG}" > ~/draftivist_staging_${VERSION_TAG}.tar
-scp ~/draftivist_staging_${VERSION_TAG}.tar ${remote_user}:${remote_password}@${remote_address}:~/
+ssh -t root@staging.draftivist.com -o StrictHostKeyChecking=no pwd
+pwd
+
+#echo "Exporting docker image..."
+#docker save draftivist_staging:"${VERSION_TAG}" > ~/draftivist_staging_${VERSION_TAG}.tar
+#scp ~/draftivist_staging_${VERSION_TAG}.tar ${remote_user}:${remote_password}@${remote_address}:~/
 #docker build -f Dockerfile.prod --build-arg API_HOST="${API_HOST}" --build-arg STATIC_PATH="${STATIC_PATH}" -t draftivist_staging:"${VERSION_TAG}" .
-echo "Build finished!"
+#echo "Build finished!"
