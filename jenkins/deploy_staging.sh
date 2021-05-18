@@ -8,8 +8,10 @@ fi
 
 VERSION_TAG=$1
 
-ssh -t root@staging.draftivist.com -o StrictHostKeyChecking=no pwd
-pwd
+ssh -t root@staging.draftivist.com -o StrictHostKeyChecking=no \
+ pwd \
+ echo "hello" \
+ ls
 
 #echo "Exporting docker image..."
 #docker save draftivist_staging:"${VERSION_TAG}" > ~/draftivist_staging_${VERSION_TAG}.tar
