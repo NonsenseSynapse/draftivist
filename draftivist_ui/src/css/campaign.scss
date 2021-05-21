@@ -12,6 +12,7 @@
 .campaign_hero {
     width: 100%;
     height: 100vw;
+    max-height: 50vh;
     border: 1px black;
     background: #eee;
     display: flex;
@@ -55,6 +56,6 @@
     margin-bottom: 12px;
 
     &.selected {
-        font-weight: bold;
+        background-color: $primary-color;
     }
 }

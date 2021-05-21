@@ -9,6 +9,8 @@ type Attrs = {
 
 const page_to_ordinal = ["", "first", "second", "third"]
 
+// todo: update logic to select one at a time
+
 export default function() : BaseComponent<Attrs> {
 
     function selectIssue(campaign: Campaign, id: number) {
@@ -33,7 +35,7 @@ export default function() : BaseComponent<Attrs> {
                     const clickFn = isSelected ? 
                         deselectIssue.bind(this, campaign, issue.id) :
                         selectIssue.bind(this, campaign, issue.id)
-                        
+
                     return (
                         <li className={`campaign_issue${selectedClass}`} onclick={clickFn}>
                             {issue.description}
