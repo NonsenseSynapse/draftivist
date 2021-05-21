@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from api.models.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta, Organization, Member
+from django.contrib.auth.models import Group
+from api.models.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta
 
 
 class RecipientSerializer(serializers.ModelSerializer):
@@ -27,13 +28,20 @@ class IssueSerializer(serializers.ModelSerializer):
         fields = ['id', 'text', 'is_active', 'created', 'campaign', 'statements']
 
 
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ['id', 'name']
+
+
 class CampaignSerializer(serializers.ModelSerializer):
     recipients = RecipientSerializer(many=True, read_only=True)
     issues = IssueSerializer(many=True, read_only=True)
+    group = GroupSerializer(read_only=True)
 
     class Meta:
         model = Campaign
-        fields = ['id', 'name', 'description', 'organization', 'start_date', 'end_date', 'created', 'recipients', 'issues', 'is_active', 'allow_custom_statements']
+        fields = ['id', 'name', 'description', 'group', 'start_date', 'end_date', 'created', 'recipients', 'issues', 'is_active', 'allow_custom_statements']
 
 
 class DraftSerializer(serializers.ModelSerializer):
@@ -63,18 +71,3 @@ class SessionMetaSerializer(serializers.ModelSerializer):
         model = SessionMeta
         fields = ['id', 'session_key', 'remote_addr', 'user_agent']
 
-
-class OrganizationSerializer(serializers.ModelSerializer):
-    # FKs to group?
-
-    class Meta:
-        model = Organization
-        fields = ['id', 'group']
-
-
-class MemberSerializer(serializers.ModelSerializer):
-    # FKs to user?
-
-    class Meta:
-        model = Member
-        fields = ['id', 'user', 'contact']
