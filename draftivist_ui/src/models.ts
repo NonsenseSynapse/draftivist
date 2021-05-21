@@ -22,13 +22,24 @@ export class Issue {
 
     statements: Statement[]
     selectedStatement: number = -1
+    customStatement: string
+    customStatementDraft: string
 
-    selectStatement(id: number) {
-        this.selectedStatement = id
+    selectStatement(id: number): void {
+        this.selectedStatement = id;
+    }
+
+    saveCustomStatement(): void {
+        this.clearSelectedStatements();
+        this.customStatement = this.customStatementDraft;
     }
 
     isSelected(id: number) : boolean {
         return this.selectedStatement === id
+    }
+
+    clearSelectedStatements(): void {
+        this.selectedStatement = -1;
     }
 }
 
@@ -72,7 +83,7 @@ export class Campaign {
         const campaign = new Campaign(campaignData.id, campaignData.name, campaignData.description)
         campaign.issues = campaignData.issues.map((issueData: any) => {
             const issue = new Issue(issueData.id, issueData.text)
-            issue.statements = issueData.statements.map((statementData: any) => 
+            issue.statements = issueData.statements.map((statementData: any) =>
                 new Statement(statementData.id, statementData.text))
             return issue
         })
