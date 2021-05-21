@@ -14,7 +14,7 @@ export default function() : BaseComponent<Attrs> {
             const { campaign } = vnode.attrs
             return (
             <div className="content">
-                <div className="heroImage">
+                <div className="hero-image">
                     <h1>{campaign.title}</h1>
                 </div>
                 <div className="description">{campaign.description}</div>

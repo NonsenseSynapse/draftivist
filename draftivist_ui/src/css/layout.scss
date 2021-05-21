@@ -1,3 +1,20 @@
+// header
+
+.header {
+  border-top: 5px solid #ffed60;
+  display: flex;
+  justify-content: center;
+  padding: 1.5em;
+  background-color: $background-color;
+}
+
+.header_logo {
+  width: 6.25rem;
+  height: 1.125rem;
+}
+
+// footer
+
 .footer {
   background-color: #2e2e30;
   display: flex;
