@@ -1,0 +1,78 @@
+// header
+
+.header {
+  border-top: 5px solid #ffed60;
+  display: flex;
+  justify-content: center;
+  padding: 1.5em;
+  background-color: $background-color;
+}
+
+.header_logo {
+  width: 6.25rem;
+  height: 1.125rem;
+}
+
+// footer
+
+.footer {
+  background-color: #2e2e30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 0rem;
+  position: inherit;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer_icon-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 3.5rem;
+}
+
+.footer_icon-wrapper > a ~ a {
+  margin-left: 2.125em;
+}
+
+.emailIcon:hover path:first-of-type {
+  stroke: $primary-color;
+}
+
+.emailIcon:hover path:last-of-type {
+  fill: $primary-color;
+}
+
+.instagramIcon:hover path:first-of-type {
+  fill: $primary-color;
+}
+
+.instagramIcon:hover path:last-of-type {
+  stroke: $primary-color;
+}
+
+/* bring back when Twitter icon is present
+.twitterIcon:hover path:first-of-type {
+  fill: $primary-color;
+}
+
+.twitterIcon:hover path:last-of-type {
+  stroke: $primary-color;
+}
+*/
+  
+.footer_logo {
+  width: 6.25rem;
+  height: 1.125rem;
+}
+
+@include media(">=ipad") {
+  .footer {
+    position: inherit;
+    bottom: 0;
+    width: 100%;
+  }
+}

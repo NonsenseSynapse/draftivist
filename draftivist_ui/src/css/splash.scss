@@ -1,0 +1,168 @@
+// Banner
+
+.splash_banner {
+  background-color: $primary-color;
+}
+
+.splash_banner-copy-wrapper {
+  display: block;
+}
+
+.splash_banner-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+}
+
+.splash_banner-copy a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.splash_banner-heading {
+  font-family: PT Serif;
+  font-weight: bold;
+  font-size: 2em;
+  line-height: 1.5;
+}
+
+.splash_cta-button {
+  background-color: #fffef4;
+  border-radius: 24px;
+  font-size: 1em;
+  padding: 0.75rem 2.125rem;
+  display: none;
+}
+
+.splash_cta-button > span {
+  margin-right: 0.625em;
+}
+
+.splash_banner_image {
+  max-width: 100%;
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.splash_banner_image-wrapper {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+
+.splash_banner_image-credit {
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  color: grey;
+  background-color: #2e2e30;
+  font-size: 0.625em;
+  padding: 0.3125em 0.5em;
+}
+
+.splash_banner_image-credit span > span {
+  text-decoration: underline;
+}
+
+.splash_underlined-text {
+  border-bottom: 0.25em solid #fffef4;
+}
+
+// Content
+
+.splash_content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $background-color;
+}
+
+.splash_content {
+  max-width: 319px;
+  margin: 3.5em 0em;
+}
+
+.splash_content h2 {
+  font-family: PT Serif;
+  font-weight: bold;
+  font-size: 1.25em;
+  line-height: 1.5;
+  color: #2e2e30;
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.625em; 
+}
+
+.splash_content p {
+  font-size: 1em;
+  line-height: 1.5;
+  margin-bottom: 1.5em;
+  color: #000000;
+}
+
+.splash_content a {
+  color: #000000;
+  text-decoration: underline;
+
+  &:hover {
+    background-color: $primary-color;
+  }
+}
+
+@include media(">=ipad") {
+  .splash_banner {
+    display: flex;
+    height: 50vw;
+  }
+  .splash_banner-copy-wrapper {
+    display: flex;
+    justify-content: center;
+    min-width: 50%;
+  }
+  .splash_banner-copy {
+    align-items: flex-start;
+  }
+  .splash_content {
+    max-width: 458px;
+  }
+  .splash_banner_image-credit {
+    bottom: 0px;
+  }
+  .splash_banner_image-wrapper {
+    width: 50%;
+  }
+}
+
+@include media(">=ipad-pro") {
+  .splash_content {
+    max-width: 458px;
+  }
+}
+
+@include media(">=desktop") {
+  .splash_content {
+    max-width: 661px;
+  }
+  .splash_banner-heading {
+    font-size: 3em;
+  }
+  .splash_cta-button {
+    display: block;
+  }
+  .splash_banner_image {
+    max-width: 50%;
+  }
+  .splash_underlined-text {
+    font-size: 2em;
+  }
+}
+
+@include media(">=desktop-xl") {
+  .splash_banner {
+    height: 720px;
+  }
+}

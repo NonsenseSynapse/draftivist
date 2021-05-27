@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "include-media": "^1.4.10",
     "mithril": "^2.0.4"
   },
   "scripts": {

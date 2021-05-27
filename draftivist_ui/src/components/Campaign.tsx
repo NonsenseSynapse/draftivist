@@ -33,7 +33,7 @@ export default function() : BaseComponent<Attrs> {
                 return null;
             }
             return (
-                <div>
+                <div className="content-wrapper">
                     { page != "landing" && <Link href="/draft/landing">Back to start</Link>}
 
                     { page == "landing" && <CampaignLanding campaign={campaign} /> }
