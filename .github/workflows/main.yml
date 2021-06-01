@@ -20,10 +20,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: Clone Github Repo
+        uses: actions/checkout@master
+      -
         name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
-        uses: actions/checkout@master
         with:
           context: .
           file: Dockerfile.prod
@@ -31,7 +33,6 @@ jobs:
           tags: nonsensesynapse/draftivist:ghub
           build-args:
             API_HOST="http://staging.draftivist.com/api"
-          build-args:
             STATIC_PATH="http://staging.draftivist.com/static"
       -
         name: Image digest
