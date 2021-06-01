@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          dockerfile: Dockerfile.prod
+          file: Dockerfile.prod
           push: true
           tags: nonsensesynapse/draftivist:ghub
           build-args: |
