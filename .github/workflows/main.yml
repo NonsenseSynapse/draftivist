@@ -22,17 +22,17 @@ jobs:
       -
         name: Build and push
         id: docker_build
-        env:
-          DAY_OF_WEEK: Mon
         uses: docker/build-push-action@v2
+        uses: actions/checkout@master
         with:
           context: .
           file: Dockerfile.prod
           push: true
           tags: nonsensesynapse/draftivist:ghub
           build-args:
-           API_HOST="http://staging.draftivist.com/api"
-           STATIC_PATH="http://staging.draftivist.com/static"
+            API_HOST="http://staging.draftivist.com/api"
+          build-args:
+            STATIC_PATH="http://staging.draftivist.com/static"
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
