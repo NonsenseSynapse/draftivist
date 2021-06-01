@@ -1,0 +1,38 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Dockerhub Publish Test
+
+# Controls when the action will run. 
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
+        id: docker_build
+        env:
+          DAY_OF_WEEK: Mon
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          dockerfile: Dockerfile.prod
+          push: true
+          tags: nonsensesynapse/draftivist:ghub
+          build-args: |
+           API_HOST="http://staging.draftivist.com/api"
+           STATIC_PATH="http://staging.draftivist.com/static"
+      -
+        name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
