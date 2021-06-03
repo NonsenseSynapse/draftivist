@@ -58,7 +58,7 @@
   bottom: 5px;
   left: 0px;
   color: grey;
-  background-color: #2e2e30;
+  // background-color: #2e2e30;
   font-size: 0.625em;
   padding: 0.3125em 0.5em;
 }
@@ -69,6 +69,19 @@
 
 .splash_underlined-text {
   border-bottom: 0.25em solid #fffef4;
+}
+
+.splash_banner_image-credit-expanded {
+  background-color: #2e2e30;
+}
+
+#photoCreditLink > a:visited, #photoCreditLink > a:active {
+  color: inherit;
+  text-decoration: underline;
+}
+
+#photoCreditLink > a:hover {
+  text-decoration: none;
 }
 
 // Content
@@ -94,7 +107,7 @@
 
   display: flex;
   justify-content: center;
-  margin-bottom: 2.625em; 
+  margin-bottom: 2.625em;
 }
 
 .splash_content p {
