@@ -1,3 +1,9 @@
 $primary-color: #ffed60;
 $background-color: #fffef4;
-$secondary-text: #bdbdbd;
+
+$breakpoints: (
+    ipad: 600px,
+    ipad-pro: 960px,
+    desktop: 1280px,
+    desktop-xl: 1440px
+);

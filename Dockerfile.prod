@@ -1,0 +1,36 @@
+# Frontend App
+FROM node:14 as frontend_build
+
+ARG API_HOST
+ENV API_HOST=${API_HOST}
+
+ARG STATIC_PATH
+ENV STATIC_PATH=${STATIC_PATH}
+
+RUN mkdir -p /code/draftivist_ui
+WORKDIR /code/draftivist_ui
+COPY draftivist_ui/package.json /code/draftivist_ui/
+RUN yarn install
+COPY draftivist_ui /code/draftivist_ui/
+RUN yarn build
+
+# API Environment
+FROM python:3.9-buster
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+RUN apt-get update && apt-get install -y vim
+
+RUN mkdir -p /code/draftivist_api
+WORKDIR /code/draftivist_api
+COPY draftivist_api/requirements.txt /code/draftivist_api/
+RUN pip install -r requirements.txt
+COPY draftivist_api /code/draftivist_api
+
+RUN mkdir -p /code/draftivist_api/frontend
+COPY --from=frontend_build /code/draftivist_ui/dist /code/draftivist_api/frontend/static/
+
+# COPY ca-certificate.crt /root/.postgres/root.crt
+
+RUN python manage.py collectstatic --noinput

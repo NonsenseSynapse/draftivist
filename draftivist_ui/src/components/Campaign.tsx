@@ -20,20 +20,22 @@ export default function() : BaseComponent<Attrs> {
     return {
         ...elementAttrs,
         oninit: (vnode) => {
-            // campaign = Campaign.parse(localData)
             Campaign.load(1).then(c => {
-                console.log(c)
                 campaign = c
                 m.redraw()
             })
         },
         view: (vnode) =>{
             const { page, id } = vnode.attrs
-            console.log(campaign)
+            // if the campaign hasn't loaded, render loading state
+            if (!campaign.issues) {
+                // add loading state
+                return null;
+            }
             return (
-                <div>
+                <div className="content-wrapper">
                     { page != "landing" && <Link href="/draft/landing">Back to start</Link>}
-                    
+
                     { page == "landing" && <CampaignLanding campaign={campaign} /> }
                     { page == "issues" && <CampaignIssueSelection campaign={campaign} /> }
                     { page == "issue" && id && <CampaignIssue campaign={campaign} issue={campaign.getIssue(+id)} /> }

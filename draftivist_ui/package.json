@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "include-media": "^1.4.10",
     "mithril": "^2.0.4"
   },
   "scripts": {
@@ -15,9 +16,10 @@
     "@types/mithril": "^2.0.6",
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.1",
+    "dotenv": "^8.2.0",
     "file-loader": "^6.2.0",
     "html-loader": "^1.3.2",
-    "html-webpack-plugin": "^4.5.0",
+    "html-webpack-plugin": "^5.1.0",
     "mini-css-extract-plugin": "^1.3.2",
     "sass": "^1.32.6",
     "sass-loader": "^11.0.0",

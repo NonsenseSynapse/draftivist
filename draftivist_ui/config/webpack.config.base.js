@@ -2,6 +2,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
+const dotenv = require('dotenv').config({
+  path: path.join(__dirname, '..', '..', '.env')
+});
+const webpack = require('webpack');
 
 module.exports = {
   entry: ['./src/index.ts', './src/css/main.scss'],
@@ -24,7 +28,9 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin(),
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Draftivist'
+    }),
     new HtmlWebpackPlugin({
       filename: 'splash.html',
       template: path.resolve(__dirname, '../public/splash.html'),
@@ -38,7 +44,10 @@ module.exports = {
           to: path.resolve(__dirname, '../dist'),
         }
       ]
-    })
+    }),
+    new webpack.DefinePlugin( {
+      "process.env": dotenv.parsed
+    }),
   ],
   resolve: {
     extensions: [ '.tsx', '.ts', '.js' ],

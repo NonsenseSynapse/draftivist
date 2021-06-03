@@ -7,7 +7,10 @@ module.exports = merge(common, {
     devtool: 'source-map',
     plugins: [
         new webpack.DefinePlugin({
-          '__API_HOSTNAME__': "**FILL THIS IN**"
+          '__API_HOSTNAME__': JSON.stringify(process.env.API_HOST)
         })
-      ]
+      ],
+    output: {
+        publicPath: process.env.STATIC_PATH
+      },
 })
