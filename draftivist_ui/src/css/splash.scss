@@ -54,11 +54,11 @@
 }
 
 .splash_banner_image-credit {
+  display: flex;
   position: absolute;
   bottom: 5px;
   left: 0px;
-  color: grey;
-  // background-color: #2e2e30;
+  color: $font-color-secondary;
   font-size: 0.625em;
   padding: 0.3125em 0.5em;
 }
@@ -75,12 +75,20 @@
   background-color: #2e2e30;
 }
 
-#photoCreditLink > a:visited, #photoCreditLink > a:active {
-  color: inherit;
+.splash_banner_photo-credit-link {
+  color: $font-color-secondary;
+  display: none;
+  margin-left: 0.5em;
+}
+.splash_banner_photo-credit-link > a {
+  color: $font-color-secondary;
+}
+.splash_banner_photo-credit-link > a:visited,
+.splash_banner_photo-credit-link > a:active {
   text-decoration: underline;
 }
 
-#photoCreditLink > a:hover {
+.splash_banner_photo-credit-link > a:hover {
   text-decoration: none;
 }
 
