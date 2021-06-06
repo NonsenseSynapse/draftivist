@@ -6,7 +6,7 @@ __pycache__/
 #virtualenv
 env/
 #local environment variables
-.env
+*.env
 
 .idea/
 
