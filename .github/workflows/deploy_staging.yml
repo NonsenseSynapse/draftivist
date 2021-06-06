@@ -31,6 +31,7 @@ jobs:
           ssh_public_key: ${{ secrets.STAGING_SSH_PUBLIC_KEY }}
 #           deployment_mode:: docker-compose
           stack_file_name: docker-compose.staging.yaml
+          input_args: up -d
         env:
           POSTGRES_DB: draftivist
           POSTGRES_USER: docker
