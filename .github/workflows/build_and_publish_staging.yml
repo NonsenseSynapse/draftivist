@@ -34,7 +34,7 @@ jobs:
 #           build-args:
 #             API_HOST="http://staging.draftivist.com/api"
 #             STATIC_PATH="http://staging.draftivist.com/static"
-          buildArgs: "API_HOST=http://staging.draftivist.com/api,STATIC_PATH=http://staging.draftivist.com/static"
+          build-args: "API_HOST=http://staging.draftivist.com/api,STATIC_PATH=http://staging.draftivist.com/static"
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
