@@ -32,7 +32,6 @@ jobs:
           deployment_mode: docker-compose
           stack_file_name: docker-compose.staging.yaml
           args: up -d
-          docker_prune: 'true'
           pull_images_first: 'true'
         env: 
           POSTGRES_DB: draftivist
