@@ -27,6 +27,6 @@ jobs:
           file: Dockerfile.ghub
           push: true
           tags: nonsensesynapse/draftivist:ghub_bug
-          build-args:
-            FIRST_ARG="First"
-            SECOND_ARG="Second"
+          build-args: |
+            "FIRST_ARG=First"
+            "SECOND_ARG=Second"
