@@ -29,13 +29,13 @@ jobs:
           remote_docker_host: ${{ secrets.STAGING_HOST }}
           ssh_private_key: ${{ secrets.STAGING_SSH_PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.STAGING_SSH_PUBLIC_KEY }}
-          deployment_mode: docker-compose
+#           deployment_mode: docker-compose
           stack_file_name: docker-compose.staging.yaml
           args: up -d
-        env: |
-          "POSTGRES_DB=draftivist"
-          "POSTGRES_USER=docker"
-          "POSTGRES_PASSWORD=docker"
-          "POSTGRES_HOST=db"
-          "POSTGRES_PORT=5432"
-          "PROJECT_ENVIRONMENT=STAGING"
+        env: 
+          POSTGRES_DB: draftivist
+          POSTGRES_USER: docker
+          POSTGRES_PASSWORD: docker
+          POSTGRES_HOST: db
+          POSTGRES_PORT: 5432
+          PROJECT_ENVIRONMENT: STAGING
