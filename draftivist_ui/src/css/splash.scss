@@ -89,7 +89,7 @@
 }
 
 .splash_content h2 {
-  font-family: PT Serif Regular;
+  font-family: PT Serif;
   font-weight: bold;
   font-size: 1.25em;
   line-height: 1.5;
@@ -149,6 +149,10 @@
 @include media(">=desktop") {
   .splash_content {
     max-width: 661px;
+    font-size: 1.25em;
+  }
+  .splash_content h2 {
+    font-size: 2em;
   }
   .splash_banner-heading {
     font-size: 3em;
