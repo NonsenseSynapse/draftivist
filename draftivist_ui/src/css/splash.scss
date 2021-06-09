@@ -34,6 +34,7 @@
   font-size: 1em;
   padding: 0.75rem 2.125rem;
   display: none;
+  margin-top: 1.5rem;
 }
 
 .splash_cta-button > span {
@@ -69,6 +70,8 @@
 
 .splash_underlined-text {
   border-bottom: 0.25em solid #fffef4;
+  font-size: 1.25em;
+  font-family: PT Serif;
 }
 
 // Content
@@ -86,7 +89,7 @@
 }
 
 .splash_content h2 {
-  font-family: PT Serif;
+  font-family: PT Serif Regular;
   font-weight: bold;
   font-size: 1.25em;
   line-height: 1.5;
@@ -94,7 +97,7 @@
 
   display: flex;
   justify-content: center;
-  margin-bottom: 2.625em; 
+  margin-bottom: 2.625em;
 }
 
 .splash_content p {
