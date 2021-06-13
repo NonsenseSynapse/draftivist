@@ -26,7 +26,7 @@ export default function() : BaseComponent<Attrs> {
                 m.redraw()
             })
         },
-        view: (vnode) =>{
+        view: (vnode) => {
             // if the campaign hasn't loaded, render loading state
             if (!campaign.issues) {
                 // add loading state
@@ -37,7 +37,7 @@ export default function() : BaseComponent<Attrs> {
             return (
                 <div className="campaign_content-wrapper">                    
                     { page == "landing" && <CampaignLanding campaign={campaign} /> }
-                    { page == "issues" && <CampaignIssueSelection campaign={campaign} issuePage={+issue_page} /> }
+                    { page == "issues" && <CampaignIssueSelection campaign={campaign} pageIndex={+issue_page-1} /> }
                     { page == "issue" && id && <CampaignIssue campaign={campaign} issue={campaign.getIssue(+id)} /> }
                 </div>
             )

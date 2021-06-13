@@ -32,6 +32,23 @@
     margin-top: 20px;
     font-family: "PT Serif", serif;
     grid-column: 1 / span 4;
+    min-height: 3em;
+    text-align: center;
+}
+
+.campaign_description_issue {
+    grid-column: 1 / span 4;
+    position: relative;
+    margin-top: 25px;
+}
+
+.campaign_description_issue_counter {
+    position: absolute;
+    top: 0;
+    margin-top: -25px;
+    background: #eee;
+    font-size: 0.8em;
+    padding: 1px 8px;
 }
 
 .campaign_button {
@@ -43,6 +60,27 @@
     margin-top: 20px;
     grid-column: 2 / span 2;
     height: 45px;
+
+    &[disabled] {
+        background-color: #999;
+    }
+}
+
+.campaign_button-emphasized {
+    background-color: #333;
+    color: #fff !important;
+
+    &[disabled] {
+        background-color: #999;
+    }
+}
+
+.campaign_button-one {
+    grid-column: 1 / span 2;
+}
+
+.campaign_button-two {
+    grid-column: 3 / span 2;
 }
 
 .campaign_issues {
@@ -57,5 +95,9 @@
 
     &.selected {
         background-color: $primary-color;
+    }
+
+    &.selected-disabled {
+        background-color: #999;
     }
 }

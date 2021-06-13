@@ -20,23 +20,24 @@ export default function() : BaseComponent<Attrs> {
             const selectedIssueIndex = campaign.selectedIssues.indexOf(issue.id)
 
             return (
-            <div>
-                <h2>{issue.description}</h2>
-                <h3>Select a statement for this issue:</h3>
-                {issue.statements.map(statement => 
+            <div className="campaign_content">
+                <div className="campaign_description">Select a statement to represent this issue:</div>
+                <div className="campaign_description_issue">
+                    { issue.description }
+                    <div className="campaign_description_issue_counter">
+                        Issue { selectedIssueIndex+1 }
+                    </div>
+                </div>
+                {/*issue.statements.map(statement => 
                     <li onclick={selectStatement.bind(this, issue, statement.id)}>
                         { issue.isSelected(statement.id) ? 
                             <b>{statement.description}</b> : 
                             <span>{statement.description}</span>
                         }
                     </li>    
-                )}
-                <p>
-                { selectedIssueIndex < campaign.selectedIssues.length-1 ?
-                    <Link disabled={issue.selectedStatement < 0} href={`/draft/issue?id=${campaign.selectedIssues[selectedIssueIndex+1]}`}>Next issue</Link> :
-                    <Link disabled={issue.selectedStatement < 0} href="/draft/intro">Next</Link>
-                }
-                </p>
+                    )*/}
+                {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
+                <Link className="campaign_button campaign_button-emphasized campaign_button-two" disabled={issue.selectedStatement < 0} href={''}>Next</Link>
             </div>
             )
         }
