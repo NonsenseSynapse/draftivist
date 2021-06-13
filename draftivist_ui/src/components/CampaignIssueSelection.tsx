@@ -18,8 +18,13 @@ const descriptions = [
 export default function() : BaseComponent<Attrs> {
 
     function selectIssue(campaign: Campaign, pageIndex: number, id: number) {
+        if (campaign.selectedIssues.indexOf(id) > -1) {
+            // issue already selected, do nothing
+            return
+        }
         if (campaign.selectedIssues[pageIndex]) {
-            return; // only select issue if you haven't selected one yet
+            // deselect last selected issue
+            campaign.deselectIssue(campaign.selectedIssues[pageIndex])
         }
         campaign.selectIssue(id)
     }
@@ -36,6 +41,7 @@ export default function() : BaseComponent<Attrs> {
         ...elementAttrs,
         view: (vnode) => {
             const { campaign, pageIndex } = vnode.attrs
+            console.log(campaign.selectedIssues)
             return (
             <div className="campaign_content">
                 <h3 className="campaign_description">{descriptions[pageIndex]}</h3>
@@ -63,7 +69,12 @@ export default function() : BaseComponent<Attrs> {
                 })}
                 </ul>
                 {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
-                <Link className="campaign_button campaign_button-emphasized campaign_button-two" disabled={campaign.selectedIssues.length <= pageIndex} href={`/draft/issue?id=${campaign.selectedIssues[0]}`}>Next</Link>
+                <Link 
+                    className="campaign_button campaign_button-emphasized campaign_button-two" 
+                    disabled={campaign.selectedIssues.length <= pageIndex} 
+                    href={`/draft/issue?id=${campaign.selectedIssues[pageIndex]}`}>
+                        Next
+                </Link>
             </div>
             )
         }

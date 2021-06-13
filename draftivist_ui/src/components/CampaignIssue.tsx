@@ -16,6 +16,7 @@ export default function (): BaseComponent<Attrs> {
 
     function saveCustomStatement(issue: Issue, customStatement: string) {
         issue.saveCustomStatement();
+        return false
     }
 
     function isLinkDisabled(issue: Issue) {
@@ -41,27 +42,36 @@ export default function (): BaseComponent<Attrs> {
                         Issue { selectedIssueIndex+1 }
                     </div>
                 </div>
-                {/*issue.statements.map(statement => 
-                    <li onclick={selectStatement.bind(this, issue, statement.id)}>
-                        { issue.isSelected(statement.id) ? 
-                            <b>{statement.description}</b> : 
-                            <span>{statement.description}</span>
-                        }
-                    </li>    
-                    )*/}
-                <h3>Or draft your own statement:</h3>
-                    {
-                        issue.customStatement ? (
-                            <div>{issue.customStatement}</div>
-                        ) : (
-                            <form onsubmit={saveCustomStatement.bind(this, issue)}>
-                                <input type='text' value={issue.customStatementDraft} oninput={(e: Event) => onChangeHandler(e, issue)} />
-                                <button type='submit'>Save Statement</button>
-                            </form>
-                        )
-                    }
+                <ul className="campaign_issues" /* temporary: will be replaced with carousel */>
+                {issue.statements.map(statement => {
+                    const selectedClass = issue.isSelected(statement.id) ? " selected" : ""
+                    return (          
+                    <li className={`campaign_issue${selectedClass}`}  onclick={selectStatement.bind(this, issue, statement.id)}>
+                        {statement.description}
+                    </li>
+                    )
+                }
+                       
+                )}
+                </ul>
+                <div className="campaign_description">Or draft your own statement:</div>
+                {
+                    issue.customStatement ? (
+                        <div>{issue.customStatement}</div>
+                    ) : (
+                        <form className="campaign_custom_draft" onsubmit={saveCustomStatement.bind(this, issue)}>
+                            <input type='text' value={issue.customStatementDraft} oninput={(e: Event) => onChangeHandler(e, issue)} />
+                            <button type='submit'>Save Statement</button>
+                        </form>
+                    )
+                }
                 {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
-                <Link className="campaign_button campaign_button-emphasized campaign_button-two" disabled={issue.selectedStatement < 0} href={''}>Next</Link>
+                <Link 
+                    className="campaign_button campaign_button-emphasized campaign_button-two" 
+                    disabled={isLinkDisabled(issue) || selectedIssueIndex >= 2} 
+                    href={`/draft/issues?issue_page=${selectedIssueIndex+2}`}>
+                        Next
+                </Link>
             </div>
             )
         }

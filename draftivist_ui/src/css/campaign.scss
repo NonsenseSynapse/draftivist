@@ -39,7 +39,7 @@
 .campaign_description_issue {
     grid-column: 1 / span 4;
     position: relative;
-    margin-top: 25px;
+    margin: 25px 0;
 }
 
 .campaign_description_issue_counter {
@@ -99,5 +99,21 @@
 
     &.selected-disabled {
         background-color: #999;
+    }
+}
+
+.campaign_custom_draft {
+    display: grid;
+    grid-column: 1 / span 4;
+
+    input[type=text] {
+        grid-column: 1 / span 4;
+    }
+
+    button[type=submit] {
+        grid-column: 2 / span 2;
+        margin-top: 5px;
+        padding: 5px 10px;
+        font-size: 1em;
     }
 }
