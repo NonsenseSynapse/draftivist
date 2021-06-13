@@ -1,16 +1,29 @@
 import * as m from "mithril";
 import { Campaign, Issue } from "../models"
 import { BaseComponent, Link, elementAttrs } from "./base"
+import CampaignIssueSelection from "./CampaignIssueSelection";
 
 type Attrs = {
     campaign: Campaign
     issue: Issue
 }
 
-export default function() : BaseComponent<Attrs> {
+export default function (): BaseComponent<Attrs> {
 
     function selectStatement(issue: Issue, id: number) {
         issue.selectStatement(id)
+    }
+
+    function saveCustomStatement(issue: Issue, customStatement: string) {
+        issue.saveCustomStatement();
+    }
+
+    function isLinkDisabled(issue: Issue) {
+        return Boolean(issue.selectedStatement < 0 && !issue.customStatement)
+    }
+
+    function onChangeHandler(e: Event, issue: Issue) {
+        issue.customStatementDraft = (e.target as HTMLInputElement).value;
     }
 
     return {
@@ -36,6 +49,17 @@ export default function() : BaseComponent<Attrs> {
                         }
                     </li>    
                     )*/}
+                <h3>Or draft your own statement:</h3>
+                    {
+                        issue.customStatement ? (
+                            <div>{issue.customStatement}</div>
+                        ) : (
+                            <form onsubmit={saveCustomStatement.bind(this, issue)}>
+                                <input type='text' value={issue.customStatementDraft} oninput={(e: Event) => onChangeHandler(e, issue)} />
+                                <button type='submit'>Save Statement</button>
+                            </form>
+                        )
+                    }
                 {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
                 <Link className="campaign_button campaign_button-emphasized campaign_button-two" disabled={issue.selectedStatement < 0} href={''}>Next</Link>
             </div>

@@ -3,9 +3,13 @@ FROM node:14 as frontend_build
 
 ARG API_HOST
 ENV API_HOST=${API_HOST}
+RUN echo LOOK HERE api host: ${API_HOST}
+
 
 ARG STATIC_PATH
 ENV STATIC_PATH=${STATIC_PATH}
+
+RUN echo LOOK HERE static path: ${STATIC_PATH}
 
 RUN mkdir -p /code/draftivist_ui
 WORKDIR /code/draftivist_ui
@@ -31,6 +35,6 @@ COPY draftivist_api /code/draftivist_api
 RUN mkdir -p /code/draftivist_api/frontend
 COPY --from=frontend_build /code/draftivist_ui/dist /code/draftivist_api/frontend/static/
 
-COPY ca-certificate.crt /root/.postgres/root.crt
+# COPY ca-certificate.crt /root/.postgres/root.crt
 
 RUN python manage.py collectstatic --noinput

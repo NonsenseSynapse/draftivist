@@ -36,7 +36,6 @@ export default function() : BaseComponent<Attrs> {
         ...elementAttrs,
         view: (vnode) => {
             const { campaign, pageIndex } = vnode.attrs
-            console.log(campaign, pageIndex)
             return (
             <div className="campaign_content">
                 <h3 className="campaign_description">{descriptions[pageIndex]}</h3>
@@ -69,5 +68,5 @@ export default function() : BaseComponent<Attrs> {
             )
         }
     }
-    
+
 }
