@@ -16,7 +16,7 @@ jobs:
 #         uses: actions/checkout@master
       -
         name: Deploy Container on Staging
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.4
         env: 
           POSTGRES_DB: draftivist
           POSTGRES_USER: docker
