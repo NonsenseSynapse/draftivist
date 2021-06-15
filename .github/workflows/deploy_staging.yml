@@ -30,38 +30,8 @@ jobs:
           KEY: ${{ secrets.STAGING_SSH_PRIVATE_KEY }}
           envs: POSTGRES_DB,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_HOST,POSTGRES_PORT,PROJECT_ENVIRONMENT
           script: |
-            # Stop running container
-            # docker stop 
+            # Pull latest
+            # docker image pull nonsensesynapse/draftivist:staging 
 
-            # Remove old container
-            # docker rm $(echo $IMAGE_NAME)
-
-            # Run a new container from a new image
-            docker-compose
-#       -
-#         name: Configure Docker context
-#         uses: arwynfr/actions-docker-context@v1
-#         with:
-#           docker_host: 'ssh://someone@example.domain.tld'
-#           context_name: 'draftivist_staging'
-#           ssh_cert: ${{ secrets.SSH_CERT }}
-#           ssh_key: ${{ secrets.SSH_KEY }}
-#       -
-#         name: Deploy to staging
-#         uses: wshihadeh/docker-deployment-action@v1
-#         with:
-#           remote_docker_host: ${{ secrets.STAGING_HOST }}
-#           ssh_private_key: ${{ secrets.STAGING_SSH_PRIVATE_KEY }}
-#           ssh_public_key: ${{ secrets.STAGING_SSH_PUBLIC_KEY }}
-#           deployment_mode: docker-compose
-#           stack_file_name: docker-compose.staging.yaml
-#           args: up -d
-#           docker_prune: 'false'
-#           pull_images_first: 'true'
-#         env: 
-#           POSTGRES_DB: draftivist
-#           POSTGRES_USER: docker
-#           POSTGRES_PASSWORD: docker
-#           POSTGRES_HOST: db
-#           POSTGRES_PORT: 5432
-#           PROJECT_ENVIRONMENT: STAGING
+            # Run the new container
+            # docker run -d --expose 8000:8000 nonsensesynapse/draftivist:staging gunicorn cyoa.wsgi -b 0.0.0.0:8000 --workers 3
