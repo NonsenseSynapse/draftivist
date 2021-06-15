@@ -33,5 +33,11 @@ jobs:
             # Pull latest
             docker image pull nonsensesynapse/draftivist:staging 
 
+            # Stop the old container
+            docker stop draftivist_staging
+
             # Run the new container
-            docker run -d -p 8000:8000 nonsensesynapse/draftivist:staging
+            docker run -d -p 8000:8000 --name draftivist_staging nonsensesynapse/draftivist:staging
+
+            # Give the container access to the other staging containers
+            docker network connect draftivist_default draftivist_staging
