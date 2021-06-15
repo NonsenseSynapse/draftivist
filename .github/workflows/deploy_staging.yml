@@ -37,8 +37,7 @@ jobs:
             # docker rm $(echo $IMAGE_NAME)
 
             # Run a new container from a new image
-            echo "test 123"
-            ls
+            docker-compose
 #       -
 #         name: Configure Docker context
 #         uses: arwynfr/actions-docker-context@v1
