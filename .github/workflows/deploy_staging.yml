@@ -11,31 +11,27 @@ jobs:
     runs-on: ubuntu-latest
     name: 'Deploy container to staging server'
     steps:
-      -
-        name: Clone Github Repo
-        uses: actions/checkout@master
 #       -
-#         name: Configure Docker context
-#         uses: arwynfr/actions-docker-context@v1
-#         with:
-#           docker_host: 'ssh://someone@example.domain.tld'
-#           context_name: 'draftivist_staging'
-#           ssh_cert: ${{ secrets.SSH_CERT }}
-#           ssh_key: ${{ secrets.SSH_KEY }}
+#         name: Clone Github Repo
+#         uses: actions/checkout@master
       -
-        name: Deploy to staging
-        uses: wshihadeh/docker-deployment-action@v1
-        with:
-          remote_docker_host: ${{ secrets.STAGING_HOST }}
-          ssh_private_key: ${{ secrets.STAGING_SSH_PRIVATE_KEY }}
-          ssh_public_key: ${{ secrets.STAGING_SSH_PUBLIC_KEY }}
-          deployment_mode: docker-compose
-          stack_file_name: docker-compose.staging.yaml
-          args: up -d
-        env:
+        name: Deploy Container on Staging
+        uses: appleboy/ssh-action@v0.1.4
+        env: 
           POSTGRES_DB: draftivist
           POSTGRES_USER: docker
           POSTGRES_PASSWORD: docker
           POSTGRES_HOST: db
           POSTGRES_PORT: 5432
           PROJECT_ENVIRONMENT: STAGING
+        with:
+          HOST: ${{ secrets.STAGING_HOST }}
+          USERNAME: ${{ secrets.STAGING_USER }}
+          KEY: ${{ secrets.STAGING_SSH_PRIVATE_KEY }}
+          envs: POSTGRES_DB,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_HOST,POSTGRES_PORT,PROJECT_ENVIRONMENT
+          script: |
+            # Pull latest
+            docker image pull nonsensesynapse/draftivist:staging 
+
+            # Run the new container
+            docker run -d -p 8000:8000 nonsensesynapse/draftivist:staging "gunicorn cyoa.wsgi -b 0.0.0.0:8000 --workers 3"
