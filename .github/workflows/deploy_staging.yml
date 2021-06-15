@@ -27,7 +27,7 @@ jobs:
         with:
           HOST: ${{ secrets.STAGING_HOST }}
           USERNAME: ${{ secrets.STAGING_USER }}
-          KEY: ${{ secrets.STAGING_SSH_PUBLIC_KEY }}
+          KEY: ${{ secrets.STAGING_SSH_PRIVATE_KEY }}
           envs: POSTGRES_DB,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_HOST,POSTGRES_PORT,PROJECT_ENVIRONMENT
           script: |
             # Stop running container
