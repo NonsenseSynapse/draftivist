@@ -61,6 +61,7 @@
   color: $font-color-secondary;
   font-size: 0.625em;
   padding: 0.3125em 0.5em;
+  transition: background-color 0.5s;
 }
 
 .splash_banner_image-credit span > span {
@@ -73,25 +74,29 @@
 
 .splash_banner_image-credit-expanded {
   background-color: #2e2e30;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 .splash_banner_photo-credit-link {
   color: $font-color-secondary;
-  display: none;
   margin-left: 0.5em;
-}
-.splash_banner_photo-credit-link > a {
-  color: $font-color-secondary;
-}
-.splash_banner_photo-credit-link > a:visited,
-.splash_banner_photo-credit-link > a:active {
-  text-decoration: underline;
-}
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s;
 
-.splash_banner_photo-credit-link > a:hover {
-  text-decoration: none;
-}
+  & > a {
+    color: $font-color-secondary;
+  }
 
+  & > a:visited,
+  & > a:active {
+    text-decoration: underline;
+  }
+
+  & > a:hover {
+    text-decoration: none;
+  }
+}
 // Content
 
 .splash_content-wrapper {
