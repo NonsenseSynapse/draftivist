@@ -25,7 +25,7 @@
                     alt="black and white image of crowd kneeling, raising phone lights overhead"
                     class="splash_banner_image">
                 <div class="splash_banner_image-credit" id="image_credit">
-                    <div id="image_credit_CTA">
+                    <div class="splash_banner_image-credit-cta" id="image_credit_CTA">
                         <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.23251 6.83716H6.83716V11.0232H8.23251V6.83716Z" fill="#BDBDBD" />
                             <path d="M6.83716 4.04651H8.23251V5.44186H6.83716V4.04651Z" fill="#BDBDBD" />
@@ -35,12 +35,12 @@
                         </svg>
 
                     </div>
-                    <span class="splash_banner_photo-credit-link" id="image_credit_link">
-                        Photo:
+                    <div class="splash_banner_photo-credit-link" id="image_credit_link">
+                        Photo:&nbsp;
                         <a href="https://unsplash.com/photos/BZOUKpla5tE" target="_blank">
                             Koshu Kuni
                         </a>
-                    </span>
+                    </div>
                 </div>
             </div>
             <div class="splash_banner-copy-wrapper">
@@ -147,7 +147,8 @@
             (photoLink.style.visibility === "hidden" || !photoLink.style.visibility) ? photoLink.style.visibility = "visible" : photoLink.style.visibility = "hidden";
             (photoLink.style.opacity === "0" || !photoLink.style.opacity) ? photoLink.style.opacity = 1 : photoLink.style.opacity = 0
             photoCredit.classList.toggle("splash_banner_image-credit-expanded");
-        </script>
+        }
+    </script>
 </body>
 </head>
 

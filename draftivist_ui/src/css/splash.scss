@@ -55,6 +55,7 @@
 
 .splash_banner_image-credit {
   display: flex;
+  align-items: center;
   position: absolute;
   bottom: 5px;
   left: 0px;
@@ -62,6 +63,11 @@
   font-size: 0.625em;
   padding: 0.3125em 0.5em;
   transition: background-color 0.5s;
+}
+
+.splash_banner_image-credit-cta {
+  display: flex;
+  align-items: center;
 }
 
 .splash_banner_image-credit span > span {
@@ -78,6 +84,8 @@
 }
 
 .splash_banner_photo-credit-link {
+  display: flex;
+  align-items: center;
   color: $font-color-secondary;
   margin-left: 0.5em;
   visibility: hidden;
