@@ -34,6 +34,7 @@
   font-size: 1em;
   padding: 0.75rem 2.125rem;
   display: none;
+  margin-top: 1.5rem;
 }
 
 .splash_cta-button > span {
@@ -76,6 +77,8 @@
 
 .splash_underlined-text {
   border-bottom: 0.25em solid #fffef4;
+  font-size: 1.25em;
+  font-family: PT Serif;
 }
 
 .splash_banner_image-credit-expanded {
@@ -128,7 +131,7 @@
 
   display: flex;
   justify-content: center;
-  margin-bottom: 2.625em;
+  margin-bottom: 2.2em;
 }
 
 .splash_content p {
@@ -180,6 +183,10 @@
 @include media(">=desktop") {
   .splash_content {
     max-width: 661px;
+    font-size: 1.25em;
+  }
+  .splash_content h2 {
+    font-size: 1.5em;
   }
   .splash_banner-heading {
     font-size: 3em;

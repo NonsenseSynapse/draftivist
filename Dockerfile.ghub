@@ -1,0 +1,7 @@
+FROM alpine:3.7
+
+ARG FIRST_ARG
+RUN echo first arg: ${FIRST_ARG}
+
+ARG SECOND_ARG
+RUN echo second arg: ${SECOND_ARG}
