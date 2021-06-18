@@ -63,7 +63,7 @@
   color: $font-color-secondary;
   font-size: 0.625em;
   padding: 0.3125em 0.5em;
-  transition: background-color 0.5s;
+  transition: background-color 0.25s;
 }
 
 .splash_banner_image-credit-cta {
@@ -83,7 +83,7 @@
 
 .splash_banner_image-credit-expanded {
   background-color: #2e2e30;
-  transition: background-color 0.5s, color 0.5s;
+  transition: background-color 0.2s;
 }
 
 .splash_banner_photo-credit-link {
@@ -93,7 +93,7 @@
   margin-left: 0.5em;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0.5s, opacity 0.5s;
+  transition: visibility 0.2s, opacity 0.2s;
 
   & > a {
     color: $font-color-secondary;
