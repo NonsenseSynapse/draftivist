@@ -10,7 +10,7 @@ on:
 jobs:
   publish_to_dockerhub:
     runs-on: ubuntu-latest
-    name: 'Build and publish image to Dockerhub'
+    name: 'Build and publish to staging server.'
     steps:
       -
         name: Set up Docker Buildx
@@ -36,13 +36,11 @@ jobs:
           build-args: |
             "STATIC_PATH=http://staging.draftivist.com/static"
             "API_HOST=http://staging.draftivist.com/api"
-      - name: Image digest
+      -
+        name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
-  deploy_to_staging:
-    runs-on: ubuntu-latest
-    name: 'Deploy latest Dockerhub image to staging server'
-    steps:
-      - name: Deploy Container to Staging
+      -
+        name: Deploy Container to Staging
         uses: appleboy/ssh-action@v0.1.4
         env:
           POSTGRES_DB: draftivist
