@@ -10,7 +10,7 @@ on:
 jobs:
   publish_to_dockerhub:
     runs-on: ubuntu-latest
-    name: 'Build and publish image to Dockerhub'
+    name: 'Build and publish to staging server.'
     steps:
       -
         name: Set up Docker Buildx
