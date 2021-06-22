@@ -30,6 +30,8 @@ jobs:
           KEY: ${{ secrets.STAGING_SSH_PRIVATE_KEY }}
           envs: POSTGRES_DB,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_HOST,POSTGRES_PORT,PROJECT_ENVIRONMENT
           script: |
+            echo "test 123 test 123 test 123"
+            echo $POSTGRES_DB
             # Pull latest
             docker image pull nonsensesynapse/draftivist:staging 
 
