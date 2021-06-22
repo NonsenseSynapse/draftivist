@@ -23,6 +23,7 @@ FROM python:3.9-buster
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV PATH="/code/draftivist_api:${PATH}"
 
 RUN apt-get update && apt-get install -y vim
 
@@ -38,3 +39,7 @@ COPY --from=frontend_build /code/draftivist_ui/dist /code/draftivist_api/fronten
 # COPY ca-certificate.crt /root/.postgres/root.crt
 
 RUN python manage.py collectstatic --noinput
+
+EXPOSE 8000
+
+CMD ["gunicorn", "cyoa.wsgi", "-b", "0.0.0.0:8000", "--workers", "3"]
