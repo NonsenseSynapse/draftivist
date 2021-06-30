@@ -19,8 +19,8 @@ export default function (): BaseComponent<Attrs> {
         return false
     }
 
-    function isLinkDisabled(issue: Issue) {
-        return Boolean(issue.selectedStatement < 0 && !issue.customStatement)
+    function isLinkDisabled(issue: Issue, selectedIssueIndex: number) {
+        return (issue.selectedStatement < 0 && !issue.customStatement) || selectedIssueIndex >= 2;
     }
 
     function onChangeHandler(e: Event, issue: Issue) {
@@ -68,7 +68,7 @@ export default function (): BaseComponent<Attrs> {
                 {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
                 <Link 
                     className="campaign_button campaign_button-emphasized campaign_button-two" 
-                    disabled={isLinkDisabled(issue) || selectedIssueIndex >= 2} 
+                    disabled={isLinkDisabled(issue, selectedIssueIndex)} 
                     href={`/draft/issues?issue_page=${selectedIssueIndex+2}`}>
                         Next
                 </Link>

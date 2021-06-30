@@ -23,7 +23,7 @@ export default function() : BaseComponent<Attrs> {
             return
         }
         if (campaign.selectedIssues[pageIndex]) {
-            // deselect last selected issue
+            // deselect last selected issue before selecting new one
             campaign.deselectIssue(campaign.selectedIssues[pageIndex])
         }
         campaign.selectIssue(id)

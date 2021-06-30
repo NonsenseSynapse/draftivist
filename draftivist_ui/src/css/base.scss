@@ -17,15 +17,15 @@ strong {
 }
 
 a {
-  color: #000;
+  color: $text-color;
   text-decoration: none;
 
   &:hover {
-    color: #000;
+    color: $text-color;
   }
 
   &:visited {
-    color: #000;
+    color: $text-color;
   }
 }
 
