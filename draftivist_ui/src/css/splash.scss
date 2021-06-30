@@ -55,13 +55,20 @@
 }
 
 .splash_banner_image-credit {
+  display: flex;
+  align-items: center;
   position: absolute;
   bottom: 5px;
   left: 0px;
-  color: grey;
-  background-color: #2e2e30;
+  color: $font-color-secondary;
   font-size: 0.625em;
   padding: 0.3125em 0.5em;
+  transition: background-color 0.25s;
+}
+
+.splash_banner_image-credit-cta {
+  display: flex;
+  align-items: center;
 }
 
 .splash_banner_image-credit span > span {
@@ -74,6 +81,33 @@
   font-family: PT Serif;
 }
 
+.splash_banner_image-credit-expanded {
+  background-color: #2e2e30;
+  transition: background-color 0.2s;
+}
+
+.splash_banner_photo-credit-link {
+  display: flex;
+  align-items: center;
+  color: $font-color-secondary;
+  margin-left: 0.5em;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s, opacity 0.2s;
+
+  & > a {
+    color: $font-color-secondary;
+  }
+
+  & > a:visited,
+  & > a:active {
+    text-decoration: underline;
+  }
+
+  & > a:hover {
+    text-decoration: none;
+  }
+}
 // Content
 
 .splash_content-wrapper {
