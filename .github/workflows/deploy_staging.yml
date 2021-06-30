@@ -1,43 +1,76 @@
-# This is a basic workflow to help you get started with Actions
+name: Staging CI/CD
 
-name: Staging Deploy Test
-
-# Controls when the action will run. 
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  # Closest approximation I could find to run when a branch is merged
+  push:
+    branches:
+      - master
 jobs:
-  deploy_to_staging:
+  publish_to_dockerhub:
     runs-on: ubuntu-latest
-    name: 'Deploy container to staging server'
+    name: 'Build and publish to staging server.'
     steps:
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Clone Github Repo
         uses: actions/checkout@master
-#       -
-#         name: Configure Docker context
-#         uses: arwynfr/actions-docker-context@v1
-#         with:
-#           docker_host: 'ssh://someone@example.domain.tld'
-#           context_name: 'draftivist_staging'
-#           ssh_cert: ${{ secrets.SSH_CERT }}
-#           ssh_key: ${{ secrets.SSH_KEY }}
       -
-        name: Deploy to staging
-        uses: wshihadeh/docker-deployment-action@v1
+        name: Build and push to Dockerhub
+        id: docker_build
+        uses: docker/build-push-action@v2
         with:
-          remote_docker_host: ${{ secrets.STAGING_HOST }}
-          ssh_private_key: ${{ secrets.STAGING_SSH_PRIVATE_KEY }}
-          ssh_public_key: ${{ secrets.STAGING_SSH_PUBLIC_KEY }}
-          deployment_mode: docker-compose
-          stack_file_name: docker-compose.staging.yaml
-          args: up -d
-          docker_prune: 'false'
-          pull_images_first: 'true'
-        env: 
+          context: .
+          file: Dockerfile.prod
+          push: true
+          tags: nonsensesynapse/draftivist:latest
+          build-args: |
+            "STATIC_PATH=http://staging.draftivist.com/static"
+            "API_HOST=http://staging.draftivist.com/api"
+      -
+        name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+      -
+        name: Deploy Container to Staging
+        uses: appleboy/ssh-action@v0.1.4
+        env:
           POSTGRES_DB: draftivist
           POSTGRES_USER: docker
           POSTGRES_PASSWORD: docker
           POSTGRES_HOST: db
           POSTGRES_PORT: 5432
           PROJECT_ENVIRONMENT: STAGING
+        with:
+          HOST: ${{ secrets.STAGING_HOST }}
+          USERNAME: ${{ secrets.STAGING_USER }}
+          KEY: ${{ secrets.STAGING_SSH_PRIVATE_KEY }}
+          envs: POSTGRES_DB,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_HOST,POSTGRES_PORT,PROJECT_ENVIRONMENT
+          script: |
+            # Pull latest
+            docker image pull nonsensesynapse/draftivist:latest
+
+            # Stop the old container
+            docker stop draftivist_staging
+            docker rm draftivist_staging
+
+            # Run the new container
+            docker run -d -p 8000:8000 --name draftivist_staging \
+            -e POSTGRES_DB=$POSTGRES_DB \
+            -e POSTGRES_USER=$POSTGRES_USER \
+            -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
+            -e POSTGRES_HOST=$POSTGRES_HOST \
+            -e POSTGRES_PORT=$POSTGRES_PORT \
+            -e PROJECT_ENVIRONMENT=$PROJECT_ENVIRONMENT \
+            nonsensesynapse/draftivist:staging
+
+            # Give the container access to the other staging containers
+            docker network connect draftivist_default draftivist_staging
