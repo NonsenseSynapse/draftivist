@@ -11,6 +11,7 @@ import { BaseComponent, Link, elementAttrs } from "./base"
 type Attrs = {
     page: string
     id?: string // issue id specified in query string, optional
+    issue_page?: string
 }
 
 export default function() : BaseComponent<Attrs> {
@@ -25,19 +26,18 @@ export default function() : BaseComponent<Attrs> {
                 m.redraw()
             })
         },
-        view: (vnode) =>{
-            const { page, id } = vnode.attrs
+        view: (vnode) => {
             // if the campaign hasn't loaded, render loading state
             if (!campaign.issues) {
                 // add loading state
                 return null;
             }
-            return (
-                <div className="content-wrapper">
-                    { page != "landing" && <Link href="/draft/landing">Back to start</Link>}
 
+            const { page, id, issue_page } = vnode.attrs
+            return (
+                <div className="campaign_content-wrapper">                    
                     { page == "landing" && <CampaignLanding campaign={campaign} /> }
-                    { page == "issues" && <CampaignIssueSelection campaign={campaign} /> }
+                    { page == "issues" && <CampaignIssueSelection campaign={campaign} pageIndex={+issue_page-1} /> }
                     { page == "issue" && id && <CampaignIssue campaign={campaign} issue={campaign.getIssue(+id)} /> }
                 </div>
             )

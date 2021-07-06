@@ -12,3 +12,31 @@ body {
   margin: 0rem;
 }
 
+strong {
+  font-weight: 700;
+}
+
+a {
+  color: $font-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $font-color;
+  }
+
+  &:visited {
+    color: $font-color;
+  }
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  font-size: 1em;
+  font-family: "Open Sans", sans-serif;
+  padding: 5px 8px;
+}
