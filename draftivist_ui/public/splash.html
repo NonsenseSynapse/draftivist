@@ -5,6 +5,12 @@
     <meta charset="utf-8">
     <title>Draftivist</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png"  sizes="192x192" href="android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
     <% for (var css in htmlWebpackPlugin.files.css) { %>
         <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
         <% } %>
@@ -22,14 +28,25 @@
             <div class="splash_banner_image-wrapper">
                 <img src="koshu-kunii-BZOUKpla5tE-unsplash_1920px.png"
                     srcset="koshu-kunii-BZOUKpla5tE-unsplash_1920px.png 1x,koshu-kunii-BZOUKpla5tE-unsplash_1920px@2x.png 2x, koshu-kunii-BZOUKpla5tE-unsplash_1920px@3x.png 3x"
-                    alt="black and white image of crowd kneeling, raising phone lights overhead" class="splash_banner_image">
-                <div class="splash_banner_image-credit">
-                    <span>
-                        Photo:
-                        <span>
+                    alt="black and white image of crowd kneeling, raising phone lights overhead"
+                    class="splash_banner_image">
+                <div class="splash_banner_image-credit" id="image_credit">
+                    <div class="splash_banner_image-credit-cta" id="image_credit_CTA">
+                        <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.23251 6.83716H6.83716V11.0232H8.23251V6.83716Z" fill="#BDBDBD" />
+                            <path d="M6.83716 4.04651H8.23251V5.44186H6.83716V4.04651Z" fill="#BDBDBD" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M7.53488 15C3.34884 15 0 11.6512 0 7.53488C0 3.4186 3.34884 0 7.53488 0C11.7209 0 15.0698 3.34884 15.0698 7.53488C15.0698 11.7209 11.6512 15 7.53488 15ZM7.53488 1.04651C3.97674 1.04651 1.11628 3.90698 1.11628 7.46512C1.11628 11.0233 3.90698 13.9535 7.53488 13.9535C11.1628 13.9535 13.9535 11.093 13.9535 7.53488C13.9535 3.97674 11.093 1.04651 7.53488 1.04651Z"
+                                fill="#BDBDBD" />
+                        </svg>
+
+                    </div>
+                    <div class="splash_banner_photo-credit-link" id="image_credit_link">
+                        Photo:&nbsp;
+                        <a href="https://unsplash.com/photos/BZOUKpla5tE" target="_blank">
                             Koshu Kuni
-                        </span>
-                    </span>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="splash_banner-copy-wrapper">
@@ -127,6 +144,17 @@
         </div>
         <img src="Draftivist_SecondaryLogotype.svg" alt="Draftivist logo" class="footer_logo">
     </div>
+    <script>
+        const photoCredit = document.getElementById("image_credit");
+        const photoCreditCTA = document.getElementById("image_credit_CTA");
+        const photoLink = document.getElementById("image_credit_link")
+        photoCreditCTA.addEventListener ? photoCreditCTA.addEventListener("click", togglePhotoCredit) : photoCreditCTA.attachEvent("onClick", togglePhotoCredit);
+        function togglePhotoCredit() {
+            (photoLink.style.visibility === "hidden" || !photoLink.style.visibility) ? photoLink.style.visibility = "visible" : photoLink.style.visibility = "hidden";
+            (photoLink.style.opacity === "0" || !photoLink.style.opacity) ? photoLink.style.opacity = 1 : photoLink.style.opacity = 0
+            photoCredit.classList.toggle("splash_banner_image-credit-expanded");
+        }
+    </script>
 </body>
 </head>
 
