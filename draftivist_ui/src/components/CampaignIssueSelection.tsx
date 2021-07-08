@@ -41,7 +41,6 @@ export default function() : BaseComponent<Attrs> {
         ...elementAttrs,
         view: (vnode) => {
             const { campaign, pageIndex } = vnode.attrs
-            console.log(campaign.selectedIssues)
             return (
             <div className="campaign_content">
                 <h3 className="campaign_description">{descriptions[pageIndex]}</h3>
@@ -57,7 +56,7 @@ export default function() : BaseComponent<Attrs> {
                         }
                     }
 
-                    const clickFn = isSelected ? 
+                    const clickFn = isSelected ?
                         deselectIssue.bind(this, campaign, pageIndex, issue.id) :
                         selectIssue.bind(this, campaign, pageIndex, issue.id)
 
@@ -69,9 +68,9 @@ export default function() : BaseComponent<Attrs> {
                 })}
                 </ul>
                 {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
-                <Link 
-                    className="campaign_button campaign_button-emphasized campaign_button-two" 
-                    disabled={campaign.selectedIssues.length <= pageIndex} 
+                <Link
+                    className="campaign_button campaign_button-emphasized campaign_button-two"
+                    disabled={campaign.selectedIssues.length <= pageIndex}
                     href={`/draft/issue?id=${campaign.selectedIssues[pageIndex]}`}>
                         Next
                 </Link>

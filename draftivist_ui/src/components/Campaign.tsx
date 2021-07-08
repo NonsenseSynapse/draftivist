@@ -1,10 +1,11 @@
 import * as m from "mithril";
 import { Campaign } from "../models"
-import localData from "../data"
 
 import CampaignIssueSelection from "./CampaignIssueSelection";
 import CampaignLanding from "./CampaignLanding";
 import CampaignIssue from "./CampaignIssue";
+import FinishCampaignDraft from "./FinishCampaignDraft";
+import DraftSubjectLine from "./draft-subject-line";
 
 import { BaseComponent, Link, elementAttrs } from "./base"
 
@@ -35,10 +36,24 @@ export default function() : BaseComponent<Attrs> {
 
             const { page, id, issue_page } = vnode.attrs
             return (
-                <div className="campaign_content-wrapper">                    
+                <div className="campaign_content-wrapper">
                     { page == "landing" && <CampaignLanding campaign={campaign} /> }
                     { page == "issues" && <CampaignIssueSelection campaign={campaign} pageIndex={+issue_page-1} /> }
                     { page == "issue" && id && <CampaignIssue campaign={campaign} issue={campaign.getIssue(+id)} /> }
+                    <div>
+                    { page == 'intro-and-conclusion' && <FinishCampaignDraft campaign={campaign}/>}
+                    { page == 'subject-line' && <DraftSubjectLine />}
+                    { page == 'review' && <FinishCampaignDraft />}
+                    { page == 'stay-involved' && <FinishCampaignDraft />}
+                    { page == 'send-email' && <FinishCampaignDraft />}
+                    { page == 'more-info' && <FinishCampaignDraft />}
+                    {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
+        <Link
+            className="campaign_button campaign_button-emphasized campaign_button-two"
+            href={`/draft/issues?`}>
+                Next
+        </Link>
+                    </div>
                 </div>
             )
         }
