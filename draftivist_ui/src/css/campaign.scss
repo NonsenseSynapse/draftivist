@@ -1,0 +1,118 @@
+.campaign_content-wrapper {
+    border-top: 3px solid #666;
+}
+
+.campaign_content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+    margin: 0 20px 40px 20px;
+}
+
+.campaign_hero {
+    width: 100%;
+    height: 100vw;
+    max-height: 50vh;
+    border-bottom: 1px solid $border-color;
+    background: #eee;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.campaign_title {
+    margin: 0 30px;
+    text-align: center;
+    font-family: 'PT Serif', serif;
+}
+
+.campaign_description {
+    margin-top: 20px;
+    font-family: "PT Serif", serif;
+    grid-column: 1 / span 4;
+    min-height: 3em;
+    text-align: center;
+}
+
+.campaign_description_issue {
+    grid-column: 1 / span 4;
+    position: relative;
+    margin: 25px 0;
+}
+
+.campaign_description_issue_counter {
+    position: absolute;
+    top: 0;
+    margin-top: -25px;
+    background: #eee;
+    font-size: 0.8em;
+    padding: 1px 8px;
+}
+
+.campaign_button {
+    background-color: #eee;
+    border: 1px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    grid-column: 2 / span 2;
+    height: 45px;
+
+    &[disabled] {
+        background-color: #999;
+    }
+}
+
+.campaign_button-emphasized {
+    background-color: #333;
+    color: #fff !important; // otherwise default a:visited is used
+
+    &[disabled] {
+        background-color: #999;
+    }
+}
+
+.campaign_button-one {
+    grid-column: 1 / span 2;
+}
+
+.campaign_button-two {
+    grid-column: 3 / span 2;
+}
+
+.campaign_issues {
+    grid-column: 1 / span 4;
+}
+
+.campaign_issue {
+    display: flex;
+    background-color: #eee;
+    padding: 10px 20px;
+    margin-bottom: 12px;
+
+    &.selected {
+        background-color: $primary-color;
+    }
+
+    &.selected-disabled {
+        background-color: #999;
+    }
+}
+
+.campaign_custom_draft {
+    display: grid;
+    grid-column: 1 / span 4;
+
+    input[type=text] {
+        grid-column: 1 / span 4;
+    }
+
+    button[type=submit] {
+        grid-column: 2 / span 2;
+        margin-top: 5px;
+        padding: 5px 10px;
+        font-size: 1em;
+    }
+}

@@ -64,7 +64,6 @@ export class Campaign {
     selectIssue(id: number) {
         if (!this.isSelected(id)) {
             this.selectedIssues.push(id)
-            this.selectedIssues.sort()
         }
     }
 
