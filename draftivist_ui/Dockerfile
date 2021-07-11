@@ -8,4 +8,4 @@ WORKDIR /code/draftivist_ui
 
 COPY package.json /code/draftivist_ui/
 
-RUN  yarn install
+RUN yarn install
