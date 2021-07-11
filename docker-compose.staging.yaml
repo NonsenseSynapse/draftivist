@@ -2,7 +2,7 @@ version: "3.8"
 services:
   staging:
     image: nonsensesynapse/draftivist:staging
-    command: gunicorn cyoa.wsgi -b 0.0.0.0:8000 --workers 3
+    command: gunicorn config.wsgi -b 0.0.0.0:8000 --workers 3
     restart: always
     ports:
       - "8000:8000"
