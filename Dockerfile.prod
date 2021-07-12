@@ -33,7 +33,10 @@ RUN pip install -r requirements.txt
 COPY draftivist_api /code/draftivist_api
 
 RUN mkdir -p /code/draftivist_api/frontend
-COPY --from=frontend_build /code/draftivist_ui/dist /code/draftivist_api/frontend/static/
+COPY --from=frontend_build /code/draftivist_ui/dist/ /code/draftivist_api/frontend/static/
+
+RUN echo "SECOND DEBUG SPOT"
+RUN ls /code/draftivist_api/frontend/static
 
 # COPY ca-certificate.crt /root/.postgres/root.crt
 
