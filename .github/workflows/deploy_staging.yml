@@ -72,7 +72,7 @@ jobs:
             -e POSTGRES_PORT=$POSTGRES_PORT \
             -e PROJECT_ENVIRONMENT=$PROJECT_ENVIRONMENT \
             -e SECRET_KEY=SECRET_KEY \
-            nonsensesynapse/draftivist:staging
+            nonsensesynapse/draftivist:latest
 
             # Give the container access to the other staging containers
             docker network connect draftivist_default draftivist_staging
