@@ -2,6 +2,7 @@ import os
 from .base import PROJECT_ROOT
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
+# True value is required to serve static files locally through Django
 DEBUG = True
 
 ALLOWED_HOSTS = ['staging.draftivist.com']

@@ -14,9 +14,6 @@ RUN yarn install
 COPY draftivist_ui /code/draftivist_ui/
 RUN yarn build
 
-RUN echo "LOOK HERE"
-RUN ls /code/draftivist_ui/dist
-
 # API Environment
 FROM python:3.9-buster
 
@@ -34,9 +31,6 @@ COPY draftivist_api /code/draftivist_api
 
 RUN mkdir -p /code/draftivist_api/frontend
 COPY --from=frontend_build /code/draftivist_ui/dist/ /code/draftivist_api/frontend/static/
-
-RUN echo "SECOND DEBUG SPOT"
-RUN ls /code/draftivist_api/frontend/static
 
 # COPY ca-certificate.crt /root/.postgres/root.crt
 
