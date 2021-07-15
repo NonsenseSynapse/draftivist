@@ -22,10 +22,12 @@ export class Issue {
 
     statements: Statement[]
     selectedStatement: number = -1
-    customStatement: string
-    customStatementDraft: string
+    
+    customStatement: string = null
+    customStatementDraft: string = ""
 
     selectStatement(id: number): void {
+        this.customStatement = null;
         this.selectedStatement = id;
     }
 
@@ -39,6 +41,7 @@ export class Issue {
     }
 
     clearSelectedStatements(): void {
+        this.customStatement = null;
         this.selectedStatement = -1;
     }
 }
