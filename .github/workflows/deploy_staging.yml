@@ -49,11 +49,12 @@ jobs:
           POSTGRES_HOST: db
           POSTGRES_PORT: 5432
           PROJECT_ENVIRONMENT: STAGING
+          SECRET_KEY: ${{ secrets.DJANGO_SECRET_STAGING }}
         with:
           HOST: ${{ secrets.STAGING_HOST }}
           USERNAME: ${{ secrets.STAGING_USER }}
           KEY: ${{ secrets.STAGING_SSH_PRIVATE_KEY }}
-          envs: POSTGRES_DB,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_HOST,POSTGRES_PORT,PROJECT_ENVIRONMENT
+          envs: POSTGRES_DB,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_HOST,POSTGRES_PORT,PROJECT_ENVIRONMENT,SECRET_KEY
           script: |
             # Pull latest
             docker image pull nonsensesynapse/draftivist:latest
@@ -70,7 +71,8 @@ jobs:
             -e POSTGRES_HOST=$POSTGRES_HOST \
             -e POSTGRES_PORT=$POSTGRES_PORT \
             -e PROJECT_ENVIRONMENT=$PROJECT_ENVIRONMENT \
-            nonsensesynapse/draftivist:staging
+            -e SECRET_KEY=SECRET_KEY \
+            nonsensesynapse/draftivist:latest
 
             # Give the container access to the other staging containers
             docker network connect draftivist_default draftivist_staging

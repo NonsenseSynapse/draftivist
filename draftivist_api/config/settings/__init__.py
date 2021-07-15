@@ -6,5 +6,7 @@ load_dotenv()
 
 if IS_PROD:
     from .prod import *
+elif IS_STAGING:
+    from .staging import *
 else:
     from .dev import *
