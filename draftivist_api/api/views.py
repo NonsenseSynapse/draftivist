@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 
-from api.models.models import (
+from api.models import (
     Campaign,
     Recipient,
     Issue,
@@ -11,7 +11,7 @@ from api.models.models import (
     SessionMeta,
 )
 
-from api.serializers.serializers import (
+from api.serializers import (
     CampaignSerializer,
     RecipientSerializer,
     IssueSerializer,

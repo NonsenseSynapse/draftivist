@@ -1,7 +1,9 @@
 import os
+
 from django.db import models
 from django.contrib.auth.models import User, Group
 from django.utils.translation import gettext_lazy as _
+from storages.backends.s3boto3 import S3Boto3Storage
 
 
 class Campaign(models.Model):
@@ -127,3 +129,8 @@ class SessionMeta(models.Model):
 
     def __str__(self):
         return f'{str(self.pk)}: {self.session_key}'
+
+
+class MediaStorage(S3Boto3Storage):
+    location = 'media'
+    file_overwrite = False

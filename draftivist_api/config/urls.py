@@ -20,7 +20,7 @@ from django.urls import path, include, re_path
 from rest_framework import routers
 
 from frontend.views import index
-from api.views.views import (
+from api.views import (
 	CampaignViewSet,
 	RecipientViewSet,
 	IssueViewSet,

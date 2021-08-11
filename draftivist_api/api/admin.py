@@ -3,7 +3,7 @@ import pathlib
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from api.models.models import Campaign, Recipient, Issue, Image, Statement, Draft, StatementSubmission, SessionMeta
+from api.models import Campaign, Recipient, Issue, Image, Statement, Draft, StatementSubmission, SessionMeta
 from django.utils.html import format_html
 from django.db.models.signals import post_save
 from django.dispatch import receiver
