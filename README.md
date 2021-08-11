@@ -30,14 +30,14 @@ See below for more helpful Docker commands.
 When first setting up your environment (or any time there are changes to the database schema), just run the following to
 update your database to the latest:
 ```
-docker-compose run draftivist_api python manage.py migrate
+docker-compose run api python manage.py migrate
 ```
 
 #### Seeding local test data
 To load an initial campaign that is pre-populated with issues and statements (note, you must run the database initialize
 command above first so the expected DB tables are already set up):
 ```
-docker-compose run draftivist_api python manage.py loaddata api/fixtures/test_campaign.json
+docker-compose run api python manage.py loaddata api/fixtures/test_campaign.json
 ```
 
 ### Manual (optional)
@@ -148,7 +148,7 @@ that these should all be run in the project's root directory.
 
 Also, there are some commands where I mention being able to pass in a container name. To view the list of possible
 containers, check the `docker-compose.yaml` file. The containers are each listed at the first nested level, under
-`services` (i.e. `draftivist_api`, `db`, `draftivist_ui`).
+`services` (i.e. `api`, `db`, `ui`).
 
 #### List all containers
 ```
