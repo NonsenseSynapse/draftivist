@@ -1,7 +1,8 @@
 import * as m from "mithril";
 import { Campaign, Issue } from "../models"
 import { BaseComponent, Link, elementAttrs } from "./base"
-import CampaignIssueSelection from "./CampaignIssueSelection";
+import CampaignStatement from "./CampaignStatement"
+import CampaignCustomStatement from "./CampaignCustomStatement"
 
 type Attrs = {
     campaign: Campaign
@@ -10,21 +11,17 @@ type Attrs = {
 
 export default function (): BaseComponent<Attrs> {
 
-    function selectStatement(issue: Issue, id: number) {
-        issue.selectStatement(id)
-    }
-
     function saveCustomStatement(issue: Issue, customStatement: string) {
         issue.saveCustomStatement();
         return false
     }
 
-    function isLinkDisabled(issue: Issue, selectedIssueIndex: number) {
-        return (issue.selectedStatement < 0 && !issue.customStatement) || selectedIssueIndex >= 2;
-    }
-
     function onChangeHandler(e: Event, issue: Issue) {
         issue.customStatementDraft = (e.target as HTMLInputElement).value;
+    }
+
+    function isLinkDisabled(issue: Issue, selectedIssueIndex: number) {
+        return (issue.selectedStatement < 0 && !issue.customStatement) || selectedIssueIndex >= 2;
     }
 
     return {
@@ -35,36 +32,20 @@ export default function (): BaseComponent<Attrs> {
 
             return (
             <div className="campaign_content">
-                <div className="campaign_description">Select a statement to represent this issue:</div>
-                <div className="campaign_description_issue">
-                    { issue.description }
-                    <div className="campaign_description_issue_counter">
-                        Issue { selectedIssueIndex+1 }
+                <div className="campaign_content_main campaign_content_main-issue">
+                    <div className="campaign_description">Select a statement to represent this issue:</div>
+                    <div className="campaign_description_issue">
+                        { issue.description }
+                        <div className="campaign_description_issue_counter">
+                            Issue { selectedIssueIndex+1 }
+                        </div>
+                    </div>
+                    <div className="campaign_statements">
+                        {issue.statements.map(statement => <CampaignStatement issue={issue} statement={statement} />)}
+                        <CampaignCustomStatement issue={issue} />
+                        <div className="campaign_statement_buffer"></div>
                     </div>
                 </div>
-                <ul className="campaign_issues" /* temporary: will be replaced with carousel */>
-                {issue.statements.map(statement => {
-                    const selectedClass = issue.isSelected(statement.id) ? " selected" : ""
-                    return (          
-                    <li className={`campaign_issue${selectedClass}`}  onclick={selectStatement.bind(this, issue, statement.id)}>
-                        {statement.description}
-                    </li>
-                    )
-                }
-                       
-                )}
-                </ul>
-                <div className="campaign_description">Or draft your own statement:</div>
-                {
-                    issue.customStatement ? (
-                        <div>{issue.customStatement}</div>
-                    ) : (
-                        <form className="campaign_custom_draft" onsubmit={saveCustomStatement.bind(this, issue)}>
-                            <input type='text' value={issue.customStatementDraft} oninput={(e: Event) => onChangeHandler(e, issue)} />
-                            <button type='submit'>Save Statement</button>
-                        </form>
-                    )
-                }
                 {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
                 <Link 
                     className="campaign_button campaign_button-emphasized campaign_button-two" 
