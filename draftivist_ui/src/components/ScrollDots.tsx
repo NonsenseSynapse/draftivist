@@ -13,9 +13,11 @@ export default function (): BaseComponent<Attrs> {
         ...elementAttrs,
         view: (vnode) => {
             const { index, count, shouldDisplay } = vnode.attrs
-            console.log(index, count)
+            const displayStyle = shouldDisplay ? {} : {
+                display: 'none'
+            }
             return (
-                <ol className="scroll-dots">
+                <ol className="scroll-dots" style={displayStyle}>
                     {Array.apply(null, Array(count)).map((_: any, i: number) => {
                         const className = i === index ? "selected scroll-dot" : "scroll-dot"
                         return <li className={className} />

@@ -1,5 +1,6 @@
 type ScrollAttrs = {
     onscroll: (e: Event) => void 
+    onresize: (e: Event) => void 
 }
 
 type ScrollHelper = {
@@ -13,7 +14,7 @@ type ScrollHelper = {
 export default function(): ScrollHelper {
 
     let index = 0;
-    let shouldDisplay = false;
+    let shouldDisplay = true;
     let numChildren = 0;
 
     let offsetWidth = 0;
@@ -35,7 +36,7 @@ export default function(): ScrollHelper {
         leftOffset = Math.floor(leftPadding + 3*childWidth/2 + childMargin - offsetWidth/2)
 
         // don't bother if window too wide
-        shouldDisplay = offsetWidth / childWidth <= 3
+        shouldDisplay = (offsetWidth / childWidth) <= 3
 
         // get number of children with maths
         numChildren = Math.round((element.scrollWidth - leftPadding*2)/(childWidth+childMargin))
@@ -64,7 +65,8 @@ export default function(): ScrollHelper {
 
     return {
         attrs: {
-            onscroll: onScroll
+            onscroll: onScroll,
+            onresize: onScroll
         },
         initialize,
         getIndex: () => index,
