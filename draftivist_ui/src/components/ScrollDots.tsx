@@ -7,12 +7,6 @@ type Attrs = {
     shouldDisplay: boolean
 }
 
-/*
-TODO:
-- style this
-- expand on comments in ScrollHelper
-*/
-
 export default function (): BaseComponent<Attrs> {
 
     return {
