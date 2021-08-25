@@ -42,7 +42,7 @@ export default function (): BaseComponent<Attrs> {
                         <CampaignCustomStatement issue={issue} />
                         <div className="campaign_statement_buffer"></div>
                     </div>
-                    <ScrollDots index={scrollHelper.getIndex()} />
+                    <ScrollDots index={scrollHelper.getIndex()} count={issue.statements.length + 1} />
                 </div>
                 {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
                 <Link 

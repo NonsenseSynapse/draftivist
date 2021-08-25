@@ -7,12 +7,14 @@ type ScrollHelper = {
     initialize: (e: HTMLElement) => void
     shouldDisplay: () => boolean
     getIndex: () => number
+    getCount: () => number
 }
 
 export default function(): ScrollHelper {
 
     let index = 0;
     let shouldDisplay = false;
+    let numChildren = 0;
 
     let offsetWidth = 0;
 
@@ -34,6 +36,9 @@ export default function(): ScrollHelper {
 
         // don't bother if window too wide
         shouldDisplay = offsetWidth / childWidth <= 3
+
+        // get number of children with maths
+        numChildren = Math.round((element.scrollWidth - leftPadding*2)/(childWidth+childMargin))
     }
 
     function initialize(e: HTMLElement) {
@@ -46,11 +51,13 @@ export default function(): ScrollHelper {
             calcOffsets(target)
         }
 
+        const rawIndex = (target.scrollLeft - leftOffset) / (childWidth+childMargin) + 0.2 // todo why constant
+
         const atScrollEnd = target.scrollLeft + target.offsetWidth >= target.scrollWidth
         // if we're at the very end we want to display the last index
         const roundFunc = atScrollEnd ? Math.ceil : Math.floor
-
-        index = roundFunc((target.scrollLeft - leftOffset) / childWidth) + 1
+        
+        index = Math.min(numChildren-1, Math.max(0, roundFunc(rawIndex) + 1))
     }
 
 
@@ -60,6 +67,7 @@ export default function(): ScrollHelper {
         },
         initialize,
         getIndex: () => index,
+        getCount: () => numChildren,
         shouldDisplay: () => shouldDisplay
     }
 }

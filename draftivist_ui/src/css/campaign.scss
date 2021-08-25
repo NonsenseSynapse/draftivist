@@ -26,6 +26,10 @@
     &.campaign_content_main-issue {
         grid-template-rows: auto auto 1fr;
     }
+
+    & .scroll-dots {
+        grid-column: 1 / span 4;
+    }
 }
 
 .campaign_hero {
