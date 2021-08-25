@@ -51,7 +51,8 @@ export default function(): ScrollHelper {
             calcOffsets(target)
         }
 
-        const rawIndex = (target.scrollLeft - leftOffset) / (childWidth+childMargin) + 0.2 // todo why constant
+        // adds a buffer so index increments before strictly on the target
+        const rawIndex = (target.scrollLeft - leftOffset) / (childWidth+childMargin) + 0.2 
 
         const atScrollEnd = target.scrollLeft + target.offsetWidth >= target.scrollWidth
         // if we're at the very end we want to display the last index
