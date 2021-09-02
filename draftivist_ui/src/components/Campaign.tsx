@@ -4,8 +4,9 @@ import { Campaign } from "../models"
 import CampaignIssueSelection from "./CampaignIssueSelection";
 import CampaignLanding from "./CampaignLanding";
 import CampaignIssue from "./CampaignIssue";
-import FinishCampaignDraft from "./FinishCampaignDraft";
-import DraftSubjectLine from "./draft-subject-line";
+import DraftIntro from "./DraftIntro";
+import DraftClosing from "./DraftClosing";
+import DraftSubjectLine from "./DraftSubjectLine";
 
 import { BaseComponent, Link, elementAttrs } from "./base"
 
@@ -41,7 +42,8 @@ export default function() : BaseComponent<Attrs> {
                     { page == "issues" && <CampaignIssueSelection campaign={campaign} pageIndex={+issue_page-1} /> }
                     { page == "issue" && id && <CampaignIssue campaign={campaign} issue={campaign.getIssue(+id)} /> }
                     <div>
-                    { page == 'intro-and-conclusion' && <FinishCampaignDraft campaign={campaign}/>}
+                    { page == 'intro' && <DraftIntro campaign={campaign}/>}
+                    { page == 'conclusion' && <DraftClosing campaign={campaign}/>}
                     { page == 'subject-line' && <DraftSubjectLine />}
                     { page == 'review' && <FinishCampaignDraft />}
                     { page == 'stay-involved' && <FinishCampaignDraft />}

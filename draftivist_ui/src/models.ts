@@ -1,6 +1,12 @@
 import * as Mithril from "mithril"
 import * as m from "mithril";
 
+interface DraftType {
+    intro: string,
+    conclusion: string,
+    subjectLine: string
+}
+
 export class Statement {
     id: number
     description: string
@@ -22,7 +28,7 @@ export class Issue {
 
     statements: Statement[]
     selectedStatement: number = -1
-    
+
     customStatement: string = null
     customStatementDraft: string = ""
 
@@ -36,7 +42,7 @@ export class Issue {
         this.customStatement = this.customStatementDraft;
     }
 
-    isSelected(id: number) : boolean {
+    isSelected(id: number): boolean {
         return this.selectedStatement === id
     }
 
@@ -44,6 +50,7 @@ export class Issue {
         this.customStatement = null;
         this.selectedStatement = -1;
     }
+
 }
 
 export class Campaign {
@@ -53,6 +60,7 @@ export class Campaign {
 
     issues: Issue[]
     selectedIssues: number[] = []
+    draft: DraftType
 
     constructor(id: number, title: string, description: string) {
         this.id = id
@@ -77,8 +85,12 @@ export class Campaign {
         }
     }
 
-    isSelected(id: number) : boolean {
+    isSelected(id: number): boolean {
         return this.selectedIssues.indexOf(id) > -1
+    }
+
+    saveToDraft(draftSection: keyof DraftType, content: string): void {
+        this.draft[draftSection] = content;
     }
 
     static parse(campaignData: any) {
@@ -94,6 +106,6 @@ export class Campaign {
 
     static load(id: number): Promise<Campaign> {
         return m.request(`${__API_HOSTNAME__}/campaign/${id}`)
-        .then(this.parse)
+            .then(this.parse)
     }
 }

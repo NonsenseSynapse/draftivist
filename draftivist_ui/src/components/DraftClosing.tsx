@@ -1,6 +1,7 @@
 import * as m from "mithril";
 import { Campaign, Issue } from "../models"
 import { BaseComponent, Link, elementAttrs } from "./base"
+import { PreviewDraftCTA} from './PreviewDraftCTA';
 
 type Attrs = {
   campaign: Campaign
@@ -17,28 +18,21 @@ export default function (): BaseComponent<Attrs> {
       return (
         <div className='draft_body'>
           <div className="draft_section_heading">
-            Adding a personal touch helps your email stand out.
-          </div>
-          <div className="draft_contents">
-            <div className="draft_section_title">
-              Introduction
-            </div>
-            <textarea className="draft_custom_input" rows='6' cols='35' placeholder='My name is John Doe, a citizen of the silver district, and I’m writing to you today to defund the Evil Alliance.'>
-            </textarea>
-            <div className="draft_section_description">
-              Make sure to include your name, where you live, and why you’re writing today!
-            </div>
+            ...and a brief outro:
           </div>
           <div className='draft_contents'>
             <div class="draft_section_title">
               Closing
             </div>
-            <textarea className="draft_custom_input" rows='6' cols='35' placeholder='Thank you for your time,
+            <textarea className="draft_custom_input_text_area" rows='6' cols='35' placeholder='For these reasons and more, we must pursue defunding as soon as possible, before even more damage is done to our fair city.
+
+Thank you for your time,
 John Doe'>
             </textarea>
             <div className="draft_section_description">
-              Add a sign off and your name.
+            Include a closing thought, a sign off, and your name.
             </div>
+            <PreviewDraftCTA />
           </div>
         </div>
       );

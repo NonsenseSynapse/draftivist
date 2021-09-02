@@ -3,7 +3,7 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 6rem 18.5rem 18.5rem;
   column-gap: 20px;
-  margin: 0 20px 40px 20px;
+  margin: 0 30px 40px 30px;
 }
 
 .draft_contents {
@@ -14,6 +14,7 @@
   grid-column: 1 / span 4;
   margin-top: 1.3125rem;
   text-align: center;
+  font-size: 18px;
 }
 
 .draft_section_title {
@@ -22,13 +23,16 @@
   line-height: 25px;
   margin-bottom: 0.325px;
 }
+
 .draft_section_description {
   font-size: 13px;
   font-weight: 400;
   line-height: 17.7px;
 }
 
-.draft_custom_input {
+.draft_custom_input_text_area {
+  border: 1px solid $border-secondary;
+  color: $font-color;
   column-span: all;
   resize: none;
   padding: 0.8125rem 1.6875rem 3.0625rem 1rem;
@@ -39,5 +43,6 @@
     font-weight: normal;
     font-size: 16px;
     line-height: 25px;
+    color: $font-color-placeholder;
   }
 }
