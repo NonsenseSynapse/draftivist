@@ -60,6 +60,7 @@ class Recipient(models.Model):
 
 class Issue(models.Model):
     campaign = models.ForeignKey(Campaign, null=True, on_delete=models.SET_NULL, related_name='issues')
+    title = models.CharField(max_length=255, null=True)
     text = models.CharField(max_length=1024)
     created = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
@@ -69,6 +70,17 @@ class Issue(models.Model):
         ordering = ['id']
 
     def __str__(self):
+        return self.title or str(self.id)
+
+    @property
+    def display_title(self):
+        """Short description of the issue used to identify it on the admin dashboard."""
+        if self.title:
+           return self.title
+
+        if len(self.text) > 75:
+            return f'{self.text[0:72]}...'
+
         return self.text
 
 
@@ -77,6 +89,7 @@ class Statement(models.Model):
     text = models.CharField(max_length=1024)
     created = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
+    # TODO: this should probably move to StatementSubmission?
     submission_id = models.ForeignKey('StatementSubmission', null=True, on_delete=models.SET_NULL, related_name='statement')
 
     class Meta:
