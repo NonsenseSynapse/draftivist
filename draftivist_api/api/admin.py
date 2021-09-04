@@ -57,8 +57,8 @@ class ImageInline(admin.StackedInline):
 
 @admin.register(Campaign)
 class CampaignAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'group', 'description', 'created', 'start_date', 'end_date', 'is_active',
-                    'allow_custom_statements']
+    list_display = ['name', 'created', 'start_date', 'end_date', 'is_active']
+    list_display_links = ['name']
     ordering = ['id']
     inlines = [RecipientInline, IssueInline, ImageInline]
     fieldsets = [
@@ -103,7 +103,7 @@ class IssueAdmin(admin.ModelAdmin):
     ordering = ['id']
     readonly_fields = ['campaign']
     inlines = [StatementInline]
-    
+
 
 admin.site.register(Recipient)
 admin.site.register(Statement)
