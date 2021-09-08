@@ -1,12 +1,11 @@
 import * as m from "mithril";
-import { Campaign } from "../models"
-import localData from "../data"
+import { Campaign } from "../../models"
 
 import CampaignIssueSelection from "./CampaignIssueSelection";
 import CampaignLanding from "./CampaignLanding";
 import CampaignIssue from "./CampaignIssue";
 
-import { BaseComponent, Link, elementAttrs } from "./base"
+import { BaseComponent, elementAttrs } from "../base"
 
 type Attrs = {
     page: string

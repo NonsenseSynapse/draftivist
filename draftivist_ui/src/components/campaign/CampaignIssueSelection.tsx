@@ -1,6 +1,6 @@
 import * as m from "mithril";
-import { Campaign, Issue } from "../models"
-import { elementAttrs, BaseComponent, Link } from "./base"
+import { Campaign, Issue } from "../../models"
+import { elementAttrs, BaseComponent, Link } from "../base"
 
 type Attrs = {
     campaign: Campaign

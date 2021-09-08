@@ -50,6 +50,7 @@ export class Campaign {
     id: number
     title: string
     description: string
+    organizer: string
 
     issues: Issue[]
     selectedIssues: number[] = []
@@ -58,6 +59,7 @@ export class Campaign {
         this.id = id
         this.title = title
         this.description = description
+        this.organizer = "Metropolis Civil Liberties Union" // todo: load from api
     }
 
     getIssue(id: number): Issue {

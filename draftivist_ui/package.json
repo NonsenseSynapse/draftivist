@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "a11y-dialog": "^7.3.0",
     "include-media": "^1.4.10",
     "mithril": "^2.0.4"
   },
