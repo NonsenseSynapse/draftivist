@@ -44,11 +44,11 @@ export default function() : BaseComponent<Attrs> {
                     <div>
                     { page == 'intro' && <DraftIntro campaign={campaign}/>}
                     { page == 'conclusion' && <DraftClosing campaign={campaign}/>}
-                    { page == 'subject-line' && <DraftSubjectLine />}
-                    { page == 'review' && <FinishCampaignDraft />}
+                    { page == 'subject-line' && <DraftSubjectLine campaign={campaign}/>}
+                    {/* { page == 'review' && <FinishCampaignDraft />}
                     { page == 'stay-involved' && <FinishCampaignDraft />}
                     { page == 'send-email' && <FinishCampaignDraft />}
-                    { page == 'more-info' && <FinishCampaignDraft />}
+                    { page == 'more-info' && <FinishCampaignDraft />} */}
                     {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
         <Link
             className="campaign_button campaign_button-emphasized campaign_button-two"

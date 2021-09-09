@@ -12,9 +12,12 @@ type Attrs = {
 export default function (): BaseComponent<Attrs> {
   // add a function to save the subject line
   function saveDraft(campaign: Campaign, content: string) {
-
     campaign.saveToDraft('intro', content);
+    console.log(content, campaign)
+    // add navigation to the next page here
   }
+
+  let inputValue = '';
 
   return {
     ...elementAttrs,
@@ -24,12 +27,12 @@ export default function (): BaseComponent<Attrs> {
           <div className="draft_section_heading">
             Finally, let’s get their attention with a strong subject line:
           </div>
-          <form className="draft_contents" onSubmit={this.saveDraft(e.currentTarget.value)} >
+          <form className="draft_contents" onSubmit={saveDraft(vnode.attrs.campaign, inputValue)} >
             <div className="draft_section_title">
               Subject Line
             </div>
             <input />
-            <textarea className="draft_custom_input_text_area" rows='6' cols='35'/>
+            <textarea className="draft_custom_input_text_area" rows='6' cols='35' value={inputValue} oninput={(e: Event) => inputValue = (e.target as HTMLInputElement).value}/>
             <div className="draft_section_description">
               Make it as short or as long as you’d like — and remember: the more unique, the better!
             </div>
@@ -38,6 +41,7 @@ export default function (): BaseComponent<Attrs> {
             OR do an m.route.set(route) in the on click for a button
             https://mithril.js.org/route.html#navigating-to-different-routes
             */}
+            <button type='submit' value="Next"/>
           </form>
         </div>
       );

@@ -60,7 +60,7 @@ export class Campaign {
 
     issues: Issue[]
     selectedIssues: number[] = []
-    draft: DraftType
+    draft: DraftType = {intro: '', conclusion: '', subjectLine: ''}
 
     constructor(id: number, title: string, description: string) {
         this.id = id
