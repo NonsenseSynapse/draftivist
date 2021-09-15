@@ -93,6 +93,10 @@ export class Campaign {
         this.draft[draftSection] = content;
     }
 
+    saveDraftAll(): void {
+        
+    }
+
     static parse(campaignData: any) {
         const campaign = new Campaign(campaignData.id, campaignData.name, campaignData.description)
         campaign.issues = campaignData.issues.map((issueData: any) => {

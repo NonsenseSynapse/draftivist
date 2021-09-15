@@ -12,11 +12,13 @@ type Attrs = {
 export default function (): BaseComponent<Attrs> {
 
   function saveDraft(campaign: Campaign, content: string) {
-    campaign.saveToDraft('subjectLine', content);
+    campaign.saveToDraft('intro', content);
     // add navigation to the next page here
   }
 
-  let inputValue = '';
+  let emailInputValue: string;
+  let subjectLineInputValue: string;
+  let draftReviewInputValue: string;
 
   return {
     ...elementAttrs,
@@ -24,17 +26,21 @@ export default function (): BaseComponent<Attrs> {
       return (
         <div className='draft_body'>
           <div className="draft_section_heading">
-            Finally, let’s get their attention with a strong subject line:
+            Review your draft.
           </div>
-          <form className="draft_contents" onSubmit={() => saveDraft(vnode.attrs.campaign, inputValue)} >
+          <form className="draft_contents" onSubmit={() => saveDraft(vnode.attrs.campaign, emailInputValue)} >
+            <div className="draft_section_title">
+              This email is going to
+            </div>
+            <input />
             <div className="draft_section_title">
               Subject Line
             </div>
-            <input />
-            <textarea className="draft_custom_input_text_area" rows='6' cols='35' value={inputValue} oninput={(e: Event) => inputValue = (e.target as HTMLInputElement).value}/>
-            <div className="draft_section_description">
-              Make it as short or as long as you’d like — and remember: the more unique, the better!
+            <input value={subjectLineInputValue} oninput={(e: Event) => subjectLineInputValue = (e.target as HTMLInputElement).value}/>
+            <div className="draft_section_title">
+              Review your draft
             </div>
+            <textarea className="draft_custom_input_text_area" rows='6' cols='35' value={draftReviewInputValue} oninput={(e: Event) => draftReviewInputValue = (e.target as HTMLInputElement).value}/>
             <PreviewDraftCTA />
             {/* make an m.route.Link component that is actually a button instead ofa n a under the hood
             OR do an m.route.set(route) in the on click for a button
@@ -45,5 +51,5 @@ export default function (): BaseComponent<Attrs> {
         </div>
       );
     }
-  };
+  }
 }

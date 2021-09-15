@@ -7,6 +7,7 @@ import CampaignIssue from "./CampaignIssue";
 import DraftIntro from "./DraftIntro";
 import DraftClosing from "./DraftClosing";
 import DraftSubjectLine from "./DraftSubjectLine";
+import DraftReview from "./DraftReview";
 
 import { BaseComponent, Link, elementAttrs } from "./base"
 
@@ -45,8 +46,8 @@ export default function() : BaseComponent<Attrs> {
                     { page == 'intro' && <DraftIntro campaign={campaign}/>}
                     { page == 'conclusion' && <DraftClosing campaign={campaign}/>}
                     { page == 'subject-line' && <DraftSubjectLine campaign={campaign}/>}
-                    {/* { page == 'review' && <FinishCampaignDraft />}
-                    { page == 'stay-involved' && <FinishCampaignDraft />}
+                    { page == 'review' && <DraftReview campaign={campaign}/>}
+                    {/* { page == 'stay-involved' && <FinishCampaignDraft />}
                     { page == 'send-email' && <FinishCampaignDraft />}
                     { page == 'more-info' && <FinishCampaignDraft />} */}
                     {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
