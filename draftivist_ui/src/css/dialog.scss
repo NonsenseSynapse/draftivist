@@ -10,13 +10,21 @@
 .dialog_container {
   z-index: 2;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 27px;
 }
  
 .dialog_container[aria-hidden='true'] {
   display: none;
+}
+
+.dialog_container-default {
+  align-items: center;
+  justify-content: center;
+  padding: 27px;
+}
+
+.dialog_container-full {
+  align-items: stretch;
+  justify-content: stretch;
 }
  
 .dialog_overlay {
@@ -30,14 +38,21 @@
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   background-color: #fff;
+  animation: fade-in 200ms 150ms both, slide-up 250ms 150ms both;
+}
+
+.dialog_content-default {
   min-height: 280px;
   box-sizing: border-box;
+  justify-content: center;
   padding: 2em;
   border-radius: 3px;
-  animation: fade-in 200ms 150ms both, slide-up 250ms 150ms both;
+}
+
+.dialog_content-full {
+  padding: 2em;
 }
 
 .dialog_close {

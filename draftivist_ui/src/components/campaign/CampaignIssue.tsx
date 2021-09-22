@@ -6,6 +6,7 @@ import ScrollDots from "../ScrollDots"
 import Dialog from "../Dialog"
 import CampaignStatement from "./CampaignStatement"
 import CampaignCustomStatement from "./CampaignCustomStatement"
+import CampaignInterstitial, { showInterstitial } from "./CampaignInterstitial"
 
 type Attrs = {
     campaign: Campaign
@@ -18,6 +19,14 @@ export default function (): BaseComponent<Attrs> {
 
     function isLinkDisabled(issue: Issue, selectedIssueIndex: number) {
         return (issue.selectedStatement < 0 && !issue.customStatement) || selectedIssueIndex >= 2;
+    }
+
+    function navigateForward(issue: Issue, selectedIssueIndex: number) {
+        if (isLinkDisabled(issue, selectedIssueIndex)) {
+            return
+        }
+
+        showInterstitial(selectedIssueIndex, `issues?issue_page=${selectedIssueIndex+2}`)
     }
 
     return {
@@ -47,16 +56,23 @@ export default function (): BaseComponent<Attrs> {
                     <a className="campaign_source" data-a11y-dialog-show="source">source</a>
                     <ScrollDots index={scrollHelper.getIndex()} count={issue.statements.length + 1} shouldDisplay={scrollHelper.shouldDisplay()} />
                 </div>
-                {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
-                <Link 
-                    className="campaign_button campaign_button-emphasized campaign_button-two" 
+                <a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>
+                <a 
+                    className="campaign_button campaign_button-emphasized campaign_button-two"
+                    disabled={isLinkDisabled(issue, selectedIssueIndex)} 
+                    onclick={() => navigateForward(issue, selectedIssueIndex)}>
+                        Next
+                </a>
+                {/* <Link 
+                    className="" 
                     disabled={isLinkDisabled(issue, selectedIssueIndex)} 
                     href={`/draft/issues?issue_page=${selectedIssueIndex+2}`}>
                         Next
-                </Link>
+                </Link> */}
                 <Dialog id="source">
                     <span>These statements were provided by the <strong>{campaign.organizer}</strong>.</span>
                 </Dialog> 
+                <CampaignInterstitial index={selectedIssueIndex} />
             </div>
             )
         }

@@ -202,3 +202,30 @@
     color: #A6A2A2 !important;
     text-decoration: underline;
 }
+
+// interstitial
+
+.campaign_interstitial_icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 2em;
+    margin-top: 60%;
+}
+
+.campaign_interstitial_step {
+    margin-bottom: .75em;
+}
+
+.campaign_interstitial_message {
+    font-size: 2em;
+    font-family: "PT Serif", serif;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.5em;
+
+
+    em {
+        font-style: normal;
+        background: #ffed60;
+    }
+}
