@@ -29,6 +29,22 @@ export default function (): BaseComponent<Attrs> {
         showInterstitial(selectedIssueIndex, `issues?issue_page=${selectedIssueIndex+2}`)
     }
 
+    function scrollToStatement(index: number) {
+        const scrollX = scrollHelper.positionForIndex(index)
+        scrollHelper.getElement().scrollTo({ left: scrollX })
+    }
+
+    function scrollToRandomStatement(issue: Issue) {
+        const index = Math.floor(Math.random() * issue.statements.length)
+        scrollToStatement(index)
+
+        issue.selectStatement(issue.statements[index].id)
+    }
+
+    function scrollToCustomStatement(issue: Issue) {
+        scrollToStatement(issue.statements.length)
+    }
+
     return {
         ...elementAttrs,
         oncreate: (vnode) => {
@@ -48,6 +64,10 @@ export default function (): BaseComponent<Attrs> {
                             Issue { selectedIssueIndex+1 }
                         </div>
                     </div>
+                    <div className="campaign_actions">
+                        <a className="campaign_action" onclick={() => scrollToRandomStatement(issue)}>Choose For Me</a>
+                        <a className="campaign_action" onclick={() => scrollToCustomStatement(issue)}>Write My Own</a>
+                    </div>
                     <div className="campaign_statements" id="campaign_statements" {...scrollHelper.attrs}>
                         {issue.statements.map(statement => <CampaignStatement issue={issue} statement={statement} />)}
                         <CampaignCustomStatement issue={issue} />
@@ -63,12 +83,6 @@ export default function (): BaseComponent<Attrs> {
                     onclick={() => navigateForward(issue, selectedIssueIndex)}>
                         Next
                 </a>
-                {/* <Link 
-                    className="" 
-                    disabled={isLinkDisabled(issue, selectedIssueIndex)} 
-                    href={`/draft/issues?issue_page=${selectedIssueIndex+2}`}>
-                        Next
-                </Link> */}
                 <Dialog id="source">
                     <span>These statements were provided by the <strong>{campaign.organizer}</strong>.</span>
                 </Dialog> 

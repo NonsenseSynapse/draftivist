@@ -5,13 +5,19 @@ type ScrollAttrs = {
 
 type ScrollHelper = {
     attrs: ScrollAttrs
+
     initialize: (e: HTMLElement) => void
+    positionForIndex: (index: number) => number
+
     shouldDisplay: () => boolean
+    getElement: () => HTMLElement
     getIndex: () => number
     getCount: () => number
 }
 
 export default function(): ScrollHelper {
+
+    let element: HTMLElement
 
     let index = 0;
     let shouldDisplay = true;
@@ -43,6 +49,7 @@ export default function(): ScrollHelper {
     }
 
     function initialize(e: HTMLElement) {
+        element = e
         calcOffsets(e)
     }
 
@@ -62,15 +69,22 @@ export default function(): ScrollHelper {
         index = Math.min(numChildren-1, Math.max(0, roundFunc(rawIndex) + 1))
     }
 
+    function positionForIndex(index: number) {
+        return (childWidth+childMargin)*(index-1) + leftOffset
+    }
 
     return {
         attrs: {
             onscroll: onScroll,
             onresize: onScroll
         },
+
         initialize,
+        positionForIndex,
+
+        shouldDisplay: () => shouldDisplay,
+        getElement: () => element,
         getIndex: () => index,
         getCount: () => numChildren,
-        shouldDisplay: () => shouldDisplay
     }
 }

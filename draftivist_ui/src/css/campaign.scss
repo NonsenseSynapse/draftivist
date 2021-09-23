@@ -109,6 +109,25 @@
     grid-column: 3 / span 2;
 }
 
+.campaign_actions {
+    display: flex;
+    justify-content: center;
+    grid-column: 1 / span 4;
+    margin-bottom: 25px;
+}
+
+.campaign_action {
+    padding: .35em 1.5em;
+    font-size: 0.75em;
+    border: 1px solid #333;
+    border-radius: 3px;
+    margin-right: 20px;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
 .campaign_issues {
     grid-column: 1 / span 4;
 }
@@ -131,6 +150,7 @@
 .campaign_statements {
     display: flex;
     overflow-x: scroll;
+    scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     
     grid-column: 1 / span 4;
