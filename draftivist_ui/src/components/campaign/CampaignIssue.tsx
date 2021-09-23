@@ -35,7 +35,13 @@ export default function (): BaseComponent<Attrs> {
     }
 
     function scrollToRandomStatement(issue: Issue) {
-        const index = Math.floor(Math.random() * issue.statements.length)
+        const selectedIndex = issue.statements.indexOf(issue.getStatement(issue.selectedStatement))
+        let index = -1
+        // guarantees the same index is never selected twice
+        do {
+            index = Math.floor(Math.random() * issue.statements.length)
+        } while (index == selectedIndex)
+
         scrollToStatement(index)
 
         issue.selectStatement(issue.statements[index].id)

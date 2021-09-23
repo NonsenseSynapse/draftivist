@@ -5,7 +5,8 @@
   "dependencies": {
     "a11y-dialog": "^7.3.0",
     "include-media": "^1.4.10",
-    "mithril": "^2.0.4"
+    "mithril": "^2.0.4",
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "scripts": {
     "start": "webpack serve --config config/webpack.config.development.js",
@@ -15,6 +16,7 @@
   "proxy": "http://draftivist_api:8000",
   "devDependencies": {
     "@types/mithril": "^2.0.6",
+    "@types/smoothscroll-polyfill": "^0.3.1",
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.1",
     "dotenv": "^8.2.0",
