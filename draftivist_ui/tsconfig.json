@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
       "noImplicitAny": true,
+      "allowSyntheticDefaultImports": true,
       "module": "esnext",
       "moduleResolution": "node",
       "sourceMap": true,

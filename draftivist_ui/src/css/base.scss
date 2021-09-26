@@ -35,8 +35,16 @@ ul {
   padding: 0;
 }
 
-input {
-  font-size: 1em;
+input, textarea {
+  appearance: none;
+  outline: none;
+  background: none;
+  border: none;
   font-family: "Open Sans", sans-serif;
-  padding: 5px 8px;
+  font-size: inherit;
+  line-height: inherit;
+
+  &::placeholder {
+    color: #000;
+  }
 }

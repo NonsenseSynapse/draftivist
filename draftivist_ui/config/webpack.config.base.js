@@ -24,6 +24,10 @@ module.exports = {
           'sass-loader'
         ],
       },
+      {
+        test: /\.(svg|png)$/,
+        type: 'asset/resource'
+      },
     ],
   },
   plugins: [
