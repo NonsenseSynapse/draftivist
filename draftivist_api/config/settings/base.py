@@ -21,7 +21,6 @@ IS_STAGING = os.environ.get('PROJECT_ENVIRONMENT', '') == 'STAGING'
 # Application definition
 
 INSTALLED_APPS = [
-
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
