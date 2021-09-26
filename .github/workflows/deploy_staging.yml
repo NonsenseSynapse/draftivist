@@ -63,17 +63,6 @@ jobs:
             docker stop draftivist_staging
             docker rm draftivist_staging
 
-            # Run the latest DB migrations
-            docker run -d \
-            -e POSTGRES_DB=$POSTGRES_DB \
-            -e POSTGRES_USER=$POSTGRES_USER \
-            -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
-            -e POSTGRES_HOST=$POSTGRES_HOST \
-            -e POSTGRES_PORT=$POSTGRES_PORT \
-            -e PROJECT_ENVIRONMENT=$PROJECT_ENVIRONMENT \
-            nonsensesynapse/draftivist:latest \
-            python manage.py migrate
-
             # Run the new container
             docker run -d -p 8000:8000 --name draftivist_staging \
             -e POSTGRES_DB=$POSTGRES_DB \
@@ -84,6 +73,9 @@ jobs:
             -e PROJECT_ENVIRONMENT=$PROJECT_ENVIRONMENT \
             -e SECRET_KEY=SECRET_KEY \
             nonsensesynapse/draftivist:latest
+
+            # Run the latest DB migrations
+            docker exec -d draftivist_staging python manage.py migrate
 
             # Give the container access to the other staging containers
             docker network connect draftivist_default draftivist_staging
