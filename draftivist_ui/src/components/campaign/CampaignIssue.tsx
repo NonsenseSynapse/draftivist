@@ -6,6 +6,7 @@ import ScrollDots from "../ScrollDots"
 import Dialog from "../Dialog"
 import CampaignStatement from "./CampaignStatement"
 import CampaignCustomStatement from "./CampaignCustomStatement"
+import CampaignInterstitial, { showInterstitial } from "./CampaignInterstitial"
 
 type Attrs = {
     campaign: Campaign
@@ -18,6 +19,36 @@ export default function (): BaseComponent<Attrs> {
 
     function isLinkDisabled(issue: Issue, selectedIssueIndex: number) {
         return (issue.selectedStatement < 0 && !issue.customStatement) || selectedIssueIndex >= 2;
+    }
+
+    function navigateForward(issue: Issue, selectedIssueIndex: number) {
+        if (isLinkDisabled(issue, selectedIssueIndex)) {
+            return
+        }
+
+        showInterstitial(selectedIssueIndex, `issues?issue_page=${selectedIssueIndex+2}`)
+    }
+
+    function scrollToStatement(index: number) {
+        const scrollX = scrollHelper.positionForIndex(index)
+        scrollHelper.getElement().scrollTo({ left: scrollX })
+    }
+
+    function scrollToRandomStatement(issue: Issue) {
+        const selectedIndex = issue.statements.indexOf(issue.getStatement(issue.selectedStatement))
+        let index = -1
+        // guarantees the same index is never selected twice
+        do {
+            index = Math.floor(Math.random() * issue.statements.length)
+        } while (index == selectedIndex)
+
+        scrollToStatement(index)
+
+        issue.selectStatement(issue.statements[index].id)
+    }
+
+    function scrollToCustomStatement(issue: Issue) {
+        scrollToStatement(issue.statements.length)
     }
 
     return {
@@ -39,6 +70,10 @@ export default function (): BaseComponent<Attrs> {
                             Issue { selectedIssueIndex+1 }
                         </div>
                     </div>
+                    <div className="campaign_actions">
+                        <a className="campaign_action" onclick={() => scrollToRandomStatement(issue)}>Choose For Me</a>
+                        <a className="campaign_action" onclick={() => scrollToCustomStatement(issue)}>Write My Own</a>
+                    </div>
                     <div className="campaign_statements" id="campaign_statements" {...scrollHelper.attrs}>
                         {issue.statements.map(statement => <CampaignStatement issue={issue} statement={statement} />)}
                         <CampaignCustomStatement issue={issue} />
@@ -47,16 +82,17 @@ export default function (): BaseComponent<Attrs> {
                     <a className="campaign_source" data-a11y-dialog-show="source">source</a>
                     <ScrollDots index={scrollHelper.getIndex()} count={issue.statements.length + 1} shouldDisplay={scrollHelper.shouldDisplay()} />
                 </div>
-                {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
-                <Link 
-                    className="campaign_button campaign_button-emphasized campaign_button-two" 
+                <a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>
+                <a 
+                    className="campaign_button campaign_button-emphasized campaign_button-two"
                     disabled={isLinkDisabled(issue, selectedIssueIndex)} 
-                    href={`/draft/issues?issue_page=${selectedIssueIndex+2}`}>
+                    onclick={() => navigateForward(issue, selectedIssueIndex)}>
                         Next
-                </Link>
+                </a>
                 <Dialog id="source">
                     <span>These statements were provided by the <strong>{campaign.organizer}</strong>.</span>
                 </Dialog> 
+                <CampaignInterstitial index={selectedIssueIndex} />
             </div>
             )
         }

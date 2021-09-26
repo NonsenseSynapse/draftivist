@@ -109,6 +109,25 @@
     grid-column: 3 / span 2;
 }
 
+.campaign_actions {
+    display: flex;
+    justify-content: center;
+    grid-column: 1 / span 4;
+    margin-bottom: 25px;
+}
+
+.campaign_action {
+    padding: .35em 1.5em;
+    font-size: 0.75em;
+    border: 1px solid #333;
+    border-radius: 3px;
+    margin-right: 20px;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
 .campaign_issues {
     grid-column: 1 / span 4;
 }
@@ -131,6 +150,7 @@
 .campaign_statements {
     display: flex;
     overflow-x: scroll;
+    scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     
     grid-column: 1 / span 4;
@@ -201,4 +221,31 @@
     font-size: .8em;
     color: #A6A2A2 !important;
     text-decoration: underline;
+}
+
+// interstitial
+
+.campaign_interstitial_icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 2em;
+    margin-top: 60%;
+}
+
+.campaign_interstitial_step {
+    margin-bottom: .75em;
+}
+
+.campaign_interstitial_message {
+    font-size: 2em;
+    font-family: "PT Serif", serif;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.5em;
+
+
+    em {
+        font-style: normal;
+        background: #ffed60;
+    }
 }

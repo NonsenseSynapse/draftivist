@@ -31,6 +31,10 @@ export class Issue {
         this.selectedStatement = id;
     }
 
+    getStatement(id: number): Statement {
+        return this.statements.find(s => s.id === id)
+    }
+
     saveCustomStatement(): void {
         this.clearSelectedStatements();
         this.customStatement = this.customStatementDraft;
