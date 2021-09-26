@@ -4,8 +4,9 @@
   border-top: 5px solid $primary-color;
   display: flex;
   justify-content: center;
-  padding: 1.5em;
+  align-items: center;
   background-color: $background-color;
+  height: 70px; // todo make var
 }
 
 .header_logo {

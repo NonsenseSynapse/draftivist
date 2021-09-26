@@ -1,7 +1,11 @@
 import * as m from "mithril";
-import Campaign from "./components/Campaign";
+import smoothscroll from "smoothscroll-polyfill";
+
+import Campaign from "./components/campaign/Campaign";
 
 import './css/main.scss'
+
+smoothscroll.polyfill()
 
 m.route(document.getElementById('mount'), "/draft/landing", {
     "/draft/:page": Campaign,

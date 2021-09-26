@@ -1,6 +1,6 @@
 import * as m from "mithril";
-import { Campaign, Issue } from "../models"
-import { elementAttrs, BaseComponent, Link } from "./base"
+import { Campaign, Issue } from "../../models"
+import { elementAttrs, BaseComponent, Link } from "../base"
 
 type Attrs = {
     campaign: Campaign
@@ -41,33 +41,34 @@ export default function() : BaseComponent<Attrs> {
         ...elementAttrs,
         view: (vnode) => {
             const { campaign, pageIndex } = vnode.attrs
-            console.log(campaign.selectedIssues)
             return (
             <div className="campaign_content">
-                <h3 className="campaign_description">{descriptions[pageIndex]}</h3>
-                <ul className="campaign_issues">
-                {campaign.issues.map(issue => {
-                    const isSelected = campaign.isSelected(issue.id)
-                    let selectedClass = ""
-                    if (isSelected) {
-                        if (campaign.selectedIssues.indexOf(issue.id) == pageIndex) {
-                            selectedClass = " selected"
-                        } else {
-                            selectedClass = " selected-disabled"
+                <div className="campaign_content_main">
+                    <h3 className="campaign_description">{descriptions[pageIndex]}</h3>
+                    <ul className="campaign_issues">
+                    {campaign.issues.map(issue => {
+                        const isSelected = campaign.isSelected(issue.id)
+                        let selectedClass = ""
+                        if (isSelected) {
+                            if (campaign.selectedIssues.indexOf(issue.id) == pageIndex) {
+                                selectedClass = " selected"
+                            } else {
+                                selectedClass = " selected-disabled"
+                            }
                         }
-                    }
 
-                    const clickFn = isSelected ? 
-                        deselectIssue.bind(this, campaign, pageIndex, issue.id) :
-                        selectIssue.bind(this, campaign, pageIndex, issue.id)
+                        const clickFn = isSelected ? 
+                            deselectIssue.bind(this, campaign, pageIndex, issue.id) :
+                            selectIssue.bind(this, campaign, pageIndex, issue.id)
 
-                    return (
-                        <li className={`campaign_issue${selectedClass}`} onclick={clickFn}>
-                            {issue.description}
-                        </li>
-                    )
-                })}
-                </ul>
+                        return (
+                            <li className={`campaign_issue${selectedClass}`} onclick={clickFn}>
+                                {issue.description}
+                            </li>
+                        )
+                    })}
+                    </ul>
+                </div>
                 {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
                 <Link 
                     className="campaign_button campaign_button-emphasized campaign_button-two" 

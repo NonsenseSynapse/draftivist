@@ -22,11 +22,17 @@ export class Issue {
 
     statements: Statement[]
     selectedStatement: number = -1
-    customStatement: string
-    customStatementDraft: string
+    
+    customStatement: string = null
+    customStatementDraft: string = ""
 
     selectStatement(id: number): void {
+        this.customStatement = null;
         this.selectedStatement = id;
+    }
+
+    getStatement(id: number): Statement {
+        return this.statements.find(s => s.id === id)
     }
 
     saveCustomStatement(): void {
@@ -39,6 +45,7 @@ export class Issue {
     }
 
     clearSelectedStatements(): void {
+        this.customStatement = null;
         this.selectedStatement = -1;
     }
 }
@@ -47,6 +54,7 @@ export class Campaign {
     id: number
     title: string
     description: string
+    organizer: string
 
     issues: Issue[]
     selectedIssues: number[] = []
@@ -55,6 +63,7 @@ export class Campaign {
         this.id = id
         this.title = title
         this.description = description
+        this.organizer = "Metropolis Civil Liberties Union" // todo: load from api
     }
 
     getIssue(id: number): Issue {

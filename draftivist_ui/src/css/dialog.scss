@@ -1,0 +1,76 @@
+.dialog_container,
+.dialog_overlay {
+  position: fixed; 
+  top: 0;
+  right: 0;
+  bottom: 0; 
+  left: 0;
+}
+ 
+.dialog_container {
+  z-index: 2;
+  display: flex;
+}
+ 
+.dialog_container[aria-hidden='true'] {
+  display: none;
+}
+
+.dialog_container-default {
+  align-items: center;
+  justify-content: center;
+  padding: 27px;
+}
+
+.dialog_container-full {
+  align-items: stretch;
+  justify-content: stretch;
+}
+ 
+.dialog_overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: fade-in 150ms both;
+}
+ 
+.dialog_content {
+  z-index: 2;
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  animation: fade-in 200ms 150ms both, slide-up 250ms 150ms both;
+}
+
+.dialog_content-default {
+  min-height: 280px;
+  box-sizing: border-box;
+  justify-content: center;
+  padding: 2em;
+  border-radius: 3px;
+}
+
+.dialog_content-full {
+  padding: 2em;
+}
+
+.dialog_close {
+  position: absolute;
+  top: 0.6em;
+  right: 0.7em;
+  font-size: 1.6em;
+  color: #444;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(10%);
+  }
+}
