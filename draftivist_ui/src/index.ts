@@ -1,5 +1,5 @@
 import * as m from "mithril";
-import Campaign from "./components/Campaign";
+import Campaign from "./components/campaign/Campaign";
 
 import './css/main.scss'
 

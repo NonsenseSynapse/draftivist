@@ -128,31 +128,13 @@
     }
 }
 
-/*
-.campaign_custom_draft {
-    display: grid;
-    grid-column: 1 / span 4;
-
-    input[type=text] {
-        grid-column: 1 / span 4;
-    }
-
-    button[type=submit] {
-        grid-column: 2 / span 2;
-        margin-top: 5px;
-        padding: 5px 10px;
-        font-size: 1em;
-    }
-}
-*/
-
 .campaign_statements {
     display: flex;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     
     grid-column: 1 / span 4;
-    margin: 0 -20px 20px -20px;
+    margin: 0 -20px 0 -20px;
     padding: 0 45px;
 }
 
@@ -210,4 +192,13 @@
 
 .campaign_statement_buffer {
     flex: 0 0 45px;
+}
+
+.campaign_source {
+    margin-bottom: 15px;
+    margin-top: 3px;
+    grid-column: 4;
+    font-size: .8em;
+    color: #A6A2A2 !important;
+    text-decoration: underline;
 }

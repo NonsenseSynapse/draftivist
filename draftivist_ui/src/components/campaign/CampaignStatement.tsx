@@ -1,6 +1,6 @@
 import * as m from "mithril";
-import { Statement, Issue } from "../models"
-import { BaseComponent, elementAttrs } from "./base"
+import { Statement, Issue } from "../../models"
+import { BaseComponent, elementAttrs } from "../base"
 
 type Attrs = {
     issue: Issue

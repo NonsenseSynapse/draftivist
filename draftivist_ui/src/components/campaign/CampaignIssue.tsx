@@ -1,8 +1,9 @@
 import * as m from "mithril";
-import { Campaign, Issue } from "../models"
-import { BaseComponent, Link, elementAttrs } from "./base"
-import ScrollHelper from "./helpers/ScrollHelper"
-import ScrollDots from "./ScrollDots"
+import { Campaign, Issue } from "../../models"
+import { BaseComponent, Link, elementAttrs } from "../base"
+import ScrollHelper from "../helpers/ScrollHelper"
+import ScrollDots from "../ScrollDots"
+import Dialog from "../Dialog"
 import CampaignStatement from "./CampaignStatement"
 import CampaignCustomStatement from "./CampaignCustomStatement"
 
@@ -43,6 +44,7 @@ export default function (): BaseComponent<Attrs> {
                         <CampaignCustomStatement issue={issue} />
                         <div className="campaign_statement_buffer"></div>
                     </div>
+                    <a className="campaign_source" data-a11y-dialog-show="source">source</a>
                     <ScrollDots index={scrollHelper.getIndex()} count={issue.statements.length + 1} shouldDisplay={scrollHelper.shouldDisplay()} />
                 </div>
                 {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
@@ -52,6 +54,9 @@ export default function (): BaseComponent<Attrs> {
                     href={`/draft/issues?issue_page=${selectedIssueIndex+2}`}>
                         Next
                 </Link>
+                <Dialog id="source">
+                    <span>These statements were provided by the <strong>{campaign.organizer}</strong>.</span>
+                </Dialog> 
             </div>
             )
         }
