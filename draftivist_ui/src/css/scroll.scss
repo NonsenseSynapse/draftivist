@@ -1,0 +1,26 @@
+.scroll-dots {
+    width: 100%;
+    list-style: none;
+    text-align: center;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.scroll-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 8px;
+    background: #e2dfdf;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &.selected {
+        background: #2e2e30;;
+    }
+}
