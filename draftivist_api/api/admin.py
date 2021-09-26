@@ -3,6 +3,7 @@ import pathlib
 from django.contrib import admin
 from django.db import models
 from django.forms import Textarea, TextInput, ModelForm
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from api.models import (Campaign, Recipient, Issue, Image, Statement,
@@ -28,11 +29,11 @@ class RecipientInline(admin.TabularInline):
 
 class IssueInline(admin.TabularInline):
     model = Issue
-    extra = 0
+    extra = 1
     verbose_name = "Issue"
     verbose_name_plural = "Issues"
-    fields = ['display_title', 'get_edit_link']
-    readonly_fields = ['display_title', 'get_edit_link']
+    fields = ['title', 'get_edit_link']
+    readonly_fields = ['get_edit_link']
 
     def get_edit_link(self, obj):
         if obj.pk:
@@ -103,6 +104,31 @@ class IssueAdmin(admin.ModelAdmin):
     ordering = ['id']
     readonly_fields = ['campaign']
     inlines = [StatementInline]
+
+    def response_add(self, request, obj, post_url_continue=None):
+        """
+        This makes the response after adding go to another
+        app's changelist for some model
+        """
+
+        url = reverse(f'admin:{obj.campaign._meta.app_label}_{obj.campaign._meta.model_name}_change',
+                      args=str(obj.campaign.pk)) + "#issues-tab"
+
+        return HttpResponseRedirect(
+            url
+        )
+
+    def response_change(self, request, obj, post_url_continue=None):
+        """
+        This makes the response go to the newly created
+        model's change page without using reverse
+        """
+        url = reverse(f'admin:{obj.campaign._meta.app_label}_{obj.campaign._meta.model_name}_change',
+                      args=str(obj.campaign.pk)) + "#issues-tab"
+
+        return HttpResponseRedirect(
+            url
+        )
 
 
 admin.site.register(Recipient)
