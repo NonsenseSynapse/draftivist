@@ -10,9 +10,9 @@ type Attrs = {
 const page_index_to_ordinal = ["first", "second", "third"]
 
 const descriptions = [
-    "Your email will focus on 3 key issues. Choose your 1st issue below:",
-    "Now, choose your 2nd issue:",
-    "Finally, choose your 3rd issue:"
+    <span>Your email will focus on 3 key issues. <em className="highlight">Choose your 1st issue below:</em></span>,
+    <span>Now, <em className="highlight">choose your 2nd issue:</em></span>,
+    <span>Finally, <em className="highlight">choose your 3rd issue:</em></span>
 ]
 
 export default function() : BaseComponent<Attrs> {

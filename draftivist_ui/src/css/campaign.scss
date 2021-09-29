@@ -36,13 +36,14 @@
     height: 100vw;
     max-height: 50vh;
     border-bottom: 1px solid $border-color;
-    background: #eee;
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 30px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column-reverse;
+    padding-bottom: 20px;
     grid-column: 1 / span 4;
     margin: 0 -20px; // todo vars
+    background: no-repeat center / 14% url('../assets/images/placeholder-image.svg'), #eee;
 }
 
 .campaign_title {
@@ -50,6 +51,18 @@
     text-align: center;
     font-family: 'PT Serif', serif;
     line-height: 1.25em;
+}
+
+.campaign_organizer {
+    margin: 10px 50px;
+    text-align: center;
+}
+
+.campaign_landing_description {
+    margin-top: 20px;
+    font-family: "Open Sans", sans-serif;
+    grid-column: 1 / span 4;
+    min-height: 3em;
 }
 
 .campaign_description {
@@ -242,10 +255,4 @@
     font-weight: 700;
     text-align: center;
     line-height: 1.5em;
-
-
-    em {
-        font-style: normal;
-        background: #ffed60;
-    }
 }

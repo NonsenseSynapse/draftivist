@@ -28,7 +28,7 @@ export default function() : BaseComponent<Attrs> {
                 <Dialog style="full" id="interstitial">
                     <img className="campaign_interstitial_icon" src={draftIcon} />
                     <div className="campaign_interstitial_step">Step {index+1} of 4</div>
-                    <div className="campaign_interstitial_message">Adding <em>statement {index+1}</em> to your draft...</div>
+                    <div className="campaign_interstitial_message">Adding <em className="highlight">statement {index+1}</em> to your draft...</div>
                 </Dialog>
             )
         }
