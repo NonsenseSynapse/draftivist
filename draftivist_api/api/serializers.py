@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import Group
-from api.models.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta
+from api.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta
 
 
 class RecipientSerializer(serializers.ModelSerializer):
