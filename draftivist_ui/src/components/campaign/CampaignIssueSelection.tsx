@@ -73,7 +73,7 @@ export default function() : BaseComponent<Attrs> {
                 <Link 
                     className="campaign_button campaign_button-emphasized campaign_button-two" 
                     disabled={campaign.selectedIssues.length <= pageIndex} 
-                    href={`/draft/issue?id=${campaign.selectedIssues[pageIndex]}`}>
+                    href={`/draft/issue?id=${campaign.selectedIssues[pageIndex]}&issue_page=${pageIndex+1}`}>
                         Next
                 </Link>
             </div>

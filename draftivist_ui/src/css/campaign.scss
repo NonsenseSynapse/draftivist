@@ -1,5 +1,11 @@
+.campaign_progress {
+    height: 4px;
+    width: 100%;
+    background-color: $primary-color;
+    transition: transform 200ms;
+}
+
 .campaign_content-wrapper {
-    border-top: 3px solid #666;
     overflow-x: hidden;
 }
 
