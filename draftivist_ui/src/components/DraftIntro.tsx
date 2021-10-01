@@ -9,22 +9,29 @@ type Attrs = {
 
 export default function (): BaseComponent<Attrs> {
   // add a function to save the intro to the campaign object
-  // add a function to save the conclusion
 
   function saveDraft(campaign: Campaign, content: string) {
     campaign.saveToDraft('intro', content);
     console.log("in on save", content, campaign.draft)
     m.route.set(`/draft/conclusion`)
-    // add navigation to the next page here
   }
 
+
+
+  // add functionality to pull current draft as value
   let inputValue = '';
 
 
   return {
     ...elementAttrs,
+    oninit: (vnode) => {
+      if (vnode.attrs.campaign.draft.intro) {
+        inputValue = vnode.attrs.campaign.draft.intro;
+      }
+      console.log("inputValue", inputValue)
+      console.log(vnode.attrs.campaign.draft)
+    },
     view: (vnode) => {
-      console.log(inputValue)
       return (
         <div className='draft_body'>
           <div className="draft_section_heading">
@@ -35,7 +42,7 @@ export default function (): BaseComponent<Attrs> {
             <div className="draft_section_title">
               Introduction
             </div>
-            <textarea className="draft_custom_input_text_area" rows='6' cols='35' placeholder='My name is John Doe, a citizen of the silver district, and I’m writing to you today to defund the Evil Alliance.' oninput={(e: Event) => {
+            <textarea className="draft_custom_input_text_area" rows='6' cols='35' placeholder='My name is John Doe, a citizen of the silver district, and I’m writing to you today to defund the Evil Alliance.' value={inputValue} oninput={(e: Event) => {
               inputValue = (e.target as HTMLInputElement).value
             }}>
             </textarea>
@@ -44,14 +51,14 @@ export default function (): BaseComponent<Attrs> {
             </div>
             <PreviewDraftCTA />
             {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
-            <button type='submit'>
-
-        <Link
-            className="campaign_button campaign_button-emphasized campaign_button-two"
-            href={`/draft/conclusion`}>
+              <button type='submit'>
                 Next
-        </Link>
-            </button>
+              </button>
+
+            <Link
+              className="campaign_button campaign_button-emphasized campaign_button-two"
+              href={`/draft/conclusion`}>
+            </Link>
             {/* <button type='submit' value="Next" /> */}
           </form>
         </div >

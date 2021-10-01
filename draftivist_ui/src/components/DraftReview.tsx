@@ -16,37 +16,56 @@ export default function (): BaseComponent<Attrs> {
     // add navigation to the next page here
   }
 
-  let emailInputValue: string;
+  let emailAddressInputValue: string;
   let subjectLineInputValue: string;
   let draftReviewInputValue: string;
 
   return {
     ...elementAttrs,
+    oninit: (vnode) => {
+      const { intro, conclusion, subjectLine } = vnode.attrs.campaign.
+        draft;
+      subjectLineInputValue = subjectLine;
+      draftReviewInputValue = `${intro} ${conclusion}`;
+    },
     view: (vnode) => {
+      const { intro, conclusion} = vnode.attrs.campaign.draft;
       return (
         <div className='draft_body'>
           <div className="draft_section_heading">
             Review your draft.
           </div>
-          <form className="draft_contents" onSubmit={() => saveDraft(vnode.attrs.campaign, emailInputValue)} >
+          <form className="draft_contents" onSubmit={() => saveDraft(vnode.attrs.campaign, emailAddressInputValue)} >
             <div className="draft_section_title">
               This email is going to
             </div>
-            <input />
+            <input className="draft_input" value={emailAddressInputValue} />
             <div className="draft_section_title">
               Subject Line
             </div>
-            <input value={subjectLineInputValue} oninput={(e: Event) => subjectLineInputValue = (e.target as HTMLInputElement).value}/>
+            <input className="draft_input" value={subjectLineInputValue} oninput={(e: Event) => subjectLineInputValue = (e.target as HTMLInputElement).value} />
             <div className="draft_section_title">
               Review your draft
             </div>
-            <textarea className="draft_custom_input_text_area" rows='6' cols='35' value={draftReviewInputValue} oninput={(e: Event) => draftReviewInputValue = (e.target as HTMLInputElement).value}/>
+            <textarea className="draft_custom_input_text_area" rows='6' cols='35' oninput={(e: Event) => draftReviewInputValue = (e.target as HTMLInputElement).value}>{intro}
+            <br />
+            {conclusion}
+            <br />
+            </textarea>
             <PreviewDraftCTA />
-            {/* make an m.route.Link component that is actually a button instead ofa n a under the hood
+            {/* make an m.route.Link component that is actually a button instead of an under the hood
             OR do an m.route.set(route) in the on click for a button
             https://mithril.js.org/route.html#navigating-to-different-routes
             */}
-            <button type='submit' value="Next"/>
+            {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
+            <button type='submit'>
+
+              <Link
+                className="campaign_button campaign_button-emphasized campaign_button-two"
+                href={`/draft/conclusion`}>
+                Next
+              </Link>
+            </button>
           </form>
         </div>
       );

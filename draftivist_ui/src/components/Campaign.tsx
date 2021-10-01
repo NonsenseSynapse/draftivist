@@ -50,12 +50,12 @@ export default function() : BaseComponent<Attrs> {
                     {/* { page == 'stay-involved' && <FinishCampaignDraft />}
                     { page == 'send-email' && <FinishCampaignDraft />}
                     { page == 'more-info' && <FinishCampaignDraft />} */}
-                    {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
+                    {/* {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
         <Link
             className="campaign_button campaign_button-emphasized campaign_button-two"
             href={`/draft/issues?`}>
                 Next
-        </Link>
+        </Link> */}
                     </div>
                 </div>
             )
