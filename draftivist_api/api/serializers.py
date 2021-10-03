@@ -43,7 +43,7 @@ class CampaignSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Campaign
-        fields = ['id', 'name', 'description', 'group', 'start_date', 'end_date', 'created', 'recipients', 'issues',
+        fields = ['id', 'name', 'description', 'group', 'start_date', 'end_date', 'recipients', 'issues',
                   'is_active', 'allow_custom_statements']
 
     def get_issues(self, campaign):
