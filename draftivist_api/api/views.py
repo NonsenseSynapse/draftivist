@@ -3,9 +3,6 @@ from rest_framework import viewsets
 
 from api.models import (
     Campaign,
-    Recipient,
-    Issue,
-    Statement,
     Draft,
     StatementSubmission,
     SessionMeta,
@@ -13,32 +10,15 @@ from api.models import (
 
 from api.serializers import (
     CampaignSerializer,
-    RecipientSerializer,
-    IssueSerializer,
-    StatementSerializer,
     DraftSerializer,
     StatementSubmissionSerializer,
     SessionMetaSerializer,
 )
 
-class CampaignViewSet(viewsets.ModelViewSet):
+
+class CampaignViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Campaign.objects.all()
     serializer_class = CampaignSerializer
-
-
-class RecipientViewSet(viewsets.ModelViewSet):
-    queryset = Recipient.objects.all()
-    serializer_class = RecipientSerializer
-
-
-class IssueViewSet(viewsets.ModelViewSet):
-    queryset = Issue.objects.all()
-    serializer_class = IssueSerializer
-
-
-class StatementViewSet(viewsets.ModelViewSet):
-    queryset = Statement.objects.all()
-    serializer_class = StatementSerializer
 
 
 class DraftViewSet(viewsets.ModelViewSet):
