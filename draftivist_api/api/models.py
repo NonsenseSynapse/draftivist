@@ -10,11 +10,11 @@ class Campaign(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=1024)
     created = models.DateTimeField(auto_now=True)
-    start_date = models.DateField(null=True)
-    end_date = models.DateField(null=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     allow_custom_statements = models.BooleanField(default=True)
-    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, related_name='campaigns')
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, blank=True, null=True, related_name='campaigns')
 
     class Meta:
         db_table = "campaign"
@@ -46,7 +46,7 @@ class Image(models.Model):
 class Recipient(models.Model):
     email_address = models.EmailField()
     full_name = models.CharField(max_length=255)
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(max_length=20, null=True, blank=True)
     created = models.DateTimeField(auto_now=True)
     campaigns = models.ManyToManyField(Campaign, related_name='recipients', blank=True)
 
@@ -60,6 +60,7 @@ class Recipient(models.Model):
 
 class Issue(models.Model):
     campaign = models.ForeignKey(Campaign, null=True, on_delete=models.SET_NULL, related_name='issues')
+    title = models.CharField(max_length=255, null=True)
     text = models.CharField(max_length=1024)
     created = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
@@ -69,14 +70,27 @@ class Issue(models.Model):
         ordering = ['id']
 
     def __str__(self):
+        return self.title or str(self.id)
+
+    @property
+    def display_title(self):
+        """Short description of the issue used to identify it on the admin dashboard."""
+        if self.title:
+           return self.title
+
+        if len(self.text) > 75:
+            return f'{self.text[0:72]}...'
+
         return self.text
 
 
 class Statement(models.Model):
+    # TODO: should this support null=True?
     issue = models.ForeignKey(Issue, null=True, on_delete=models.SET_NULL, related_name='statements')
     text = models.CharField(max_length=1024)
     created = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
+    # TODO: this should probably move to StatementSubmission?
     submission_id = models.ForeignKey('StatementSubmission', null=True, on_delete=models.SET_NULL, related_name='statement')
 
     class Meta:
