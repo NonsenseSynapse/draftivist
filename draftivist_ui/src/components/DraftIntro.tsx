@@ -13,7 +13,7 @@ export default function (): BaseComponent<Attrs> {
     campaign.saveToDraft('intro', content);
   }
   let inputValue = '';
-  
+
   return {
     ...elementAttrs,
     oninit: (vnode) => {
@@ -28,7 +28,7 @@ export default function (): BaseComponent<Attrs> {
           <div className="draft_section_heading">
             Almost there! We just need a brief intro…
           </div>
-          <form className="draft_contents" onsubmit={() => saveDraft(vnode.attrs.campaign, inputValue)}>
+          <div>
 
             <div className="draft_section_title">
               Introduction
@@ -49,7 +49,7 @@ export default function (): BaseComponent<Attrs> {
               href={`/draft/conclusion`}>
               Next
             </Link>
-          </form>
+          </div>
         </div >
       );
     }

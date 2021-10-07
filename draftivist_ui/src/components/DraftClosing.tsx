@@ -29,7 +29,7 @@ export default function (): BaseComponent<Attrs> {
           <div className="draft_section_heading">
             ...and a brief outro:
           </div>
-          <form className='draft_contents' onsubmit={() => saveDraft(vnode.attrs.campaign, inputValue)}>
+          <div>
             <div class="draft_section_title">
               Closing
             </div>
@@ -49,10 +49,10 @@ John Doe' value={inputValue} oninput={(e: Event) => {
 
             <Link
               className="campaign_button campaign_button-emphasized campaign_button-two"
-              href={`/draft/review`}>
+              href={`/draft/subject-line`}>
               Next
             </Link>
-          </form>
+          </div>
         </div>
       );
     }
