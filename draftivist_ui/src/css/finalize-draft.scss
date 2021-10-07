@@ -37,6 +37,7 @@
   resize: none;
   padding: 0.8125rem 1.6875rem 3.0625rem 1rem;
   margin-bottom: 0.6875rem;
+  white-space: pre-wrap;
   &::placeholder {
     font-family: "Open Sans", sans-serif;
     font-style: normal;
@@ -49,4 +50,8 @@
 
 .draft_input {
   border: 1px solid $border-secondary;
+}
+
+.draft_review_body {
+  white-space: pre-wrap;
 }

@@ -9,13 +9,9 @@ type Attrs = {
 }
 
 export default function (): BaseComponent<Attrs> {
-  // add a function to save the intro
-  // add a function to save the conclusion
 
   function saveDraft(campaign: Campaign, content: string) {
-    console.log("running conclusion")
     campaign.saveToDraft('conclusion', content);
-    m.route.set(`/draft/review`)
   }
 
   let inputValue = '';
@@ -41,7 +37,8 @@ export default function (): BaseComponent<Attrs> {
 
 Thank you for your time,
 John Doe' value={inputValue} oninput={(e: Event) => {
-                inputValue = (e.target as HTMLInputElement).value
+                inputValue = (e.target as HTMLInputElement).value;
+                saveDraft(vnode.attrs.campaign, inputValue)
               }}>
             </textarea>
             <div className="draft_section_description">
@@ -49,15 +46,12 @@ John Doe' value={inputValue} oninput={(e: Event) => {
             </div>
             <PreviewDraftCTA />
             {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
-            <button type='submit'>
-              Save
-              </button>
 
-              <Link
-                className="campaign_button campaign_button-emphasized campaign_button-two"
-                href={`/draft/conclusion`}>
-                Next
-              </Link>
+            <Link
+              className="campaign_button campaign_button-emphasized campaign_button-two"
+              href={`/draft/review`}>
+              Next
+            </Link>
           </form>
         </div>
       );

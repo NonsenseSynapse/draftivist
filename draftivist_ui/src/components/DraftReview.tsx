@@ -13,7 +13,6 @@ export default function (): BaseComponent<Attrs> {
 
   function saveDraft(campaign: Campaign, content: string) {
     campaign.saveToDraft('intro', content);
-    // add navigation to the next page here
   }
 
   let emailAddressInputValue: string;
@@ -29,7 +28,7 @@ export default function (): BaseComponent<Attrs> {
       draftReviewInputValue = `${intro} ${conclusion}`;
     },
     view: (vnode) => {
-      const { intro, conclusion} = vnode.attrs.campaign.draft;
+      const { intro, conclusion } = vnode.attrs.campaign.draft;
       return (
         <div className='draft_body'>
           <div className="draft_section_heading">
@@ -47,25 +46,21 @@ export default function (): BaseComponent<Attrs> {
             <div className="draft_section_title">
               Review your draft
             </div>
-            <textarea className="draft_custom_input_text_area" rows='6' cols='35' oninput={(e: Event) => draftReviewInputValue = (e.target as HTMLInputElement).value}>{intro}
-            <br />
-            {conclusion}
-            <br />
+            <textarea className="draft_custom_input_text_area" rows='6' cols='35' oninput={(e: Event) => draftReviewInputValue = (e.target as HTMLInputElement).value}>
+
+                {intro}&#10;&#10;
+              <br />
+              {conclusion}
+              <br />
             </textarea>
             <PreviewDraftCTA />
-            {/* make an m.route.Link component that is actually a button instead of an under the hood
-            OR do an m.route.set(route) in the on click for a button
-            https://mithril.js.org/route.html#navigating-to-different-routes
-            */}
             {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
-            <button type='submit'>
 
               <Link
                 className="campaign_button campaign_button-emphasized campaign_button-two"
                 href={`/draft/conclusion`}>
                 Next
               </Link>
-            </button>
           </form>
         </div>
       );
