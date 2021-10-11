@@ -22,9 +22,6 @@ from rest_framework import routers
 from frontend.views import index
 from api.views import (
 	CampaignViewSet,
-	RecipientViewSet,
-	IssueViewSet,
-	StatementViewSet,
 	DraftViewSet,
 	StatementSubmissionViewSet,
 	SessionMetaViewSet,
@@ -32,9 +29,6 @@ from api.views import (
 
 router = routers.DefaultRouter()
 router.register(r'campaign', CampaignViewSet)
-router.register(r'recipient', RecipientViewSet)
-router.register(r'issue', IssueViewSet)
-router.register(r'statement', StatementViewSet)
 router.register(r'draft', DraftViewSet)
 router.register(r'statementsubmission', StatementSubmissionViewSet)
 router.register(r'sessionmeta', SessionMetaViewSet)
