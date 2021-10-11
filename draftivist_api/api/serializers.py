@@ -1,14 +1,12 @@
 from rest_framework import serializers
-from django.contrib.auth.models import Group
-from api.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta
+from api.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta, Organization
 
 
 class RecipientSerializer(serializers.ModelSerializer):
-    campaigns = serializers.PrimaryKeyRelatedField(queryset=Campaign.objects.all(), many=True)
-
+    
     class Meta:
         model = Recipient
-        fields = ['id', 'email_address', 'full_name', 'phone']
+        fields = ['id', 'email_address', 'name', 'phone']
 
 
 class CampaignStatementSerializer(serializers.ModelSerializer):
@@ -30,20 +28,20 @@ class CampaignIssueSerializer(serializers.ModelSerializer):
         return CampaignStatementSerializer(statements, many=True).data
 
 
-class GroupSerializer(serializers.ModelSerializer):
+class OrganizationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Group
-        fields = ['id', 'name']
+        model = Organization
+        fields = ['id', 'name', 'short_name']
 
 
 class CampaignSerializer(serializers.ModelSerializer):
     recipients = RecipientSerializer(many=True, read_only=True)
     issues = serializers.SerializerMethodField()
-    group = GroupSerializer(read_only=True)
+    organization = OrganizationSerializer(read_only=True)
 
     class Meta:
         model = Campaign
-        fields = ['id', 'name', 'description', 'group', 'start_date', 'end_date', 'recipients', 'issues',
+        fields = ['id', 'name', 'description', 'organization', 'start_date', 'end_date', 'recipients', 'issues',
                   'is_active', 'allow_custom_statements']
 
     def get_issues(self, campaign):
