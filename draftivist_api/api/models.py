@@ -6,6 +6,15 @@ from django.utils.translation import gettext_lazy as _
 from storages.backends.s3boto3 import S3Boto3Storage
 
 
+class Organization(models.Model):
+    name = models.CharField(max_length=255)
+    short_name = models.CharField(max_length=20)
+    created = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "organization"
+
+
 class Campaign(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=1024)
@@ -14,7 +23,7 @@ class Campaign(models.Model):
     end_date = models.DateField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     allow_custom_statements = models.BooleanField(default=True)
-    group = models.ForeignKey(Group, on_delete=models.SET_NULL, blank=True, null=True, related_name='campaigns')
+    organization = models.ForeignKey(Organization, null=True, on_delete=models.SET_NULL, related_name='campaigns')
 
     class Meta:
         db_table = "campaign"
@@ -45,10 +54,11 @@ class Image(models.Model):
 
 class Recipient(models.Model):
     email_address = models.EmailField()
-    full_name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     phone = models.CharField(max_length=20, null=True, blank=True)
     created = models.DateTimeField(auto_now=True)
     campaigns = models.ManyToManyField(Campaign, related_name='recipients', blank=True)
+    organization = models.ForeignKey(Organization, null=True, on_delete=models.SET_NULL, related_name='recipients')
 
     class Meta:
         db_table = "recipient"
