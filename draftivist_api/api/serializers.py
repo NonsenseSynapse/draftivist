@@ -1,47 +1,52 @@
 from rest_framework import serializers
-from django.contrib.auth.models import Group
-from api.models.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta
+from api.models import Campaign, Recipient, Issue, Statement, Draft, StatementSubmission, SessionMeta, Organization
 
 
 class RecipientSerializer(serializers.ModelSerializer):
-    campaigns = serializers.PrimaryKeyRelatedField(queryset=Campaign.objects.all(), many=True)
-
+    
     class Meta:
         model = Recipient
-        fields = ['id', 'email_address', 'full_name', 'phone', 'created', 'campaigns']
+        fields = ['id', 'email_address', 'name', 'phone']
 
 
-class StatementSerializer(serializers.ModelSerializer):
-    issue = serializers.PrimaryKeyRelatedField(queryset=Issue.objects.all(), allow_null=True)
+class CampaignStatementSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Statement
-        fields = ['id', 'text', 'issue', 'created', 'is_active']
+        fields = ['id', 'text', 'is_active']
 
 
-class IssueSerializer(serializers.ModelSerializer):
-    statements = StatementSerializer(many=True, read_only=True)
-    campaign = serializers.PrimaryKeyRelatedField(queryset=Campaign.objects.all(), allow_null=True)
+class CampaignIssueSerializer(serializers.ModelSerializer):
+    statements = serializers.SerializerMethodField()
 
     class Meta:
         model = Issue
-        fields = ['id', 'text', 'is_active', 'created', 'campaign', 'statements']
+        fields = ['id', 'title', 'text', 'is_active', 'statements']
+
+    def get_statements(self, issue):
+        statements = issue.statements.filter(is_active=True)
+        return CampaignStatementSerializer(statements, many=True).data
 
 
-class GroupSerializer(serializers.ModelSerializer):
+class OrganizationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Group
-        fields = ['id', 'name']
+        model = Organization
+        fields = ['id', 'name', 'short_name']
 
 
 class CampaignSerializer(serializers.ModelSerializer):
     recipients = RecipientSerializer(many=True, read_only=True)
-    issues = IssueSerializer(many=True, read_only=True)
-    group = GroupSerializer(read_only=True)
+    issues = serializers.SerializerMethodField()
+    organization = OrganizationSerializer(read_only=True)
 
     class Meta:
         model = Campaign
-        fields = ['id', 'name', 'description', 'group', 'start_date', 'end_date', 'created', 'recipients', 'issues', 'is_active', 'allow_custom_statements']
+        fields = ['id', 'name', 'description', 'organization', 'start_date', 'end_date', 'recipients', 'issues',
+                  'is_active', 'allow_custom_statements']
+
+    def get_issues(self, campaign):
+        issues = campaign.issues.filter(is_active=True)
+        return CampaignIssueSerializer(issues, many=True).data
 
 
 class DraftSerializer(serializers.ModelSerializer):

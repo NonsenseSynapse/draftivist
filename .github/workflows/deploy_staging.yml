@@ -74,5 +74,8 @@ jobs:
             -e SECRET_KEY=SECRET_KEY \
             nonsensesynapse/draftivist:latest
 
+            # Run the latest DB migrations
+            docker exec -d draftivist_staging python manage.py migrate
+
             # Give the container access to the other staging containers
             docker network connect draftivist_default draftivist_staging
