@@ -34,7 +34,7 @@ jobs:
           push: true
           tags: nonsensesynapse/draftivist:latest
           build-args: |
-            "STATIC_PATH=http://staging.draftivist.com/static"
+            "STATIC_PATH=http://staging.draftivist.com/static/"
             "API_HOST=http://staging.draftivist.com/api"
       -
         name: Image digest
