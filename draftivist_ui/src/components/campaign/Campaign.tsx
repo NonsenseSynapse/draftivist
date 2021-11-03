@@ -17,8 +17,11 @@ export default function() : BaseComponent<Attrs> {
 
     let campaign: Campaign = new Campaign(0, "", "")
 
+    // Quick and dirty way to update the progress bar when 
+    // navigating to a new page. If adding more pages to the
+    // campaign flow, make sure to both add the page name to
+    // the switch block and increment the totalPages var
     function getTranslateX(page: string, issue_page?: string): string {
-        // quick and dirty
         let pageOrder = 0;
         const totalPages = 8;
         switch (page) {

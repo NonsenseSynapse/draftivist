@@ -41,7 +41,7 @@ export default function() : BaseComponent<Attrs> {
             <div className="campaign_content">
                 <div className="campaign_hero">
                     <h1 className="campaign_title">{title}</h1>
-                    <div className="campaign_organizer">Created by the {organizer}</div>
+                    <div className="campaign_organizer">Created by {organizer}</div>
                 </div>
                 <div className="campaign_content_main">
                     <div className="campaign_landing_description">
