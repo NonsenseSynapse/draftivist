@@ -90,7 +90,7 @@ export default function (): BaseComponent<Attrs> {
                         Next
                 </a>
                 <Dialog id="source">
-                    <span>These statements were provided by the <strong>{campaign.organizer}</strong>.</span>
+                    <span>These statements were written and verified by the {campaign.organizer}.</span>
                 </Dialog> 
                 <CampaignInterstitial index={selectedIssueIndex} />
             </div>

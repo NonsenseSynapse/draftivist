@@ -3,11 +3,17 @@ import { Campaign } from "../../models"
 import { BaseComponent, Link, elementAttrs } from "../base"
 import Dialog, { getDialog } from "../Dialog";
 
-let placeholderImage = require("../../assets/images/placeholder-image.svg")
-
 type Attrs = {
     campaign: Campaign
 }
+
+const IMAGES = [
+    require("../../assets/images/tutorial/page1.png"),
+    require("../../assets/images/tutorial/page2.png"),
+    require("../../assets/images/tutorial/page3.png"),
+    require("../../assets/images/tutorial/page4.png"),
+    require("../../assets/images/tutorial/page5.png")
+]
 
 const TUTORIAL_DESCRIPTIONS = [
     "You’ll be drafting this email using Draftivist!",
@@ -30,18 +36,25 @@ export default function() : BaseComponent<Attrs> {
             }, 300)
         },
         view: (vnode) => {
-            const { title, description } = vnode.attrs.campaign
+            const { title, organizer } = vnode.attrs.campaign
             return (
             <div className="campaign_content">
                 <div className="campaign_hero">
                     <h1 className="campaign_title">{title}</h1>
+                    <div className="campaign_organizer">Created by {organizer}</div>
                 </div>
                 <div className="campaign_content_main">
-                    <div className="campaign_description">{description}</div>
-                    <div className="campaign_description"><strong>Reach out to your elected officials today.</strong></div>
+                    <div className="campaign_landing_description">
+                        {/** Note: dummy API needs to be updated with this new copy */}
+                        <strong>Reaching out to:</strong> Mayor Hypnos, Councilmember Xavier
+                    </div>
+                    <div className="campaign_landing_description">
+                        <strong>Call to action:</strong> The Evil Alliance, a group of city-funded super villains, have repeatedly harmed our city and evaded meaningful reform. We must defund the evil alliance, and refund our harmed communities.
+                    </div>
                     <Dialog id="tutorial">
-                        <img className="tutorial_image" src={placeholderImage} />
+                        <img className="tutorial_image" src={IMAGES[tutorialIndex]} />
                         <div className="tutorial_description">
+                            { tutorialIndex == 0 && <div className="tutorial_subtitle">MCLU + Draftivist</div>}
                             {TUTORIAL_DESCRIPTIONS[tutorialIndex]}
                         </div>
                         <div className="tutorial_buttons">
