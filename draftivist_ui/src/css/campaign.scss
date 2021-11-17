@@ -81,6 +81,22 @@
     font-size: 1.125em;
 }
 
+.campaign_description_small {
+    margin-top: 20px;
+    font-family: "Open Sans", sans-serif;
+    grid-column: 1 / span 4;
+    text-align: left;
+    font-size: 1em;
+}
+
+.campaign_description_tiny {
+    margin-top: 20px;
+    font-family: "Open Sans", sans-serif;
+    grid-column: 1 / span 4;
+    text-align: center;
+    font-size: 0.8125em;
+}
+
 .campaign_description_issue {
     grid-column: 1 / span 4;
     position: relative;
@@ -127,6 +143,10 @@
 
 .campaign_button-two {
     grid-column: 3 / span 2;
+}
+
+.campaign_button-solo {
+    grid-column: 2 / span 2;
 }
 
 .campaign_actions {
