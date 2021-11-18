@@ -29,7 +29,7 @@ export default function (): BaseComponent<Attrs> {
           <div className="draft_section_heading">
             ...and a brief outro:
           </div>
-          <div>
+          <div className="draft_content">
             <div class="draft_section_title">
               Closing
             </div>

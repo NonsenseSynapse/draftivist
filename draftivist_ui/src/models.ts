@@ -7,6 +7,11 @@ interface DraftType {
     subjectLine: string
 }
 
+interface StatementType {
+    id: number
+    description: string
+}
+
 export class Statement {
     id: number
     description: string
@@ -94,7 +99,7 @@ export class Campaign {
     }
 
     saveDraftAll(): void {
-        
+
     }
 
     static parse(campaignData: any) {

@@ -26,7 +26,7 @@ export default function (): BaseComponent<Attrs> {
           <div className="draft_section_heading">
             Finally, let’s get their attention with a strong subject line:
           </div>
-          <div>
+          <div className="draft_content">
             <div className="draft_section_title">
               Subject Line
             </div>

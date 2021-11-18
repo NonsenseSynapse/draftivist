@@ -6,7 +6,7 @@
   margin: 0 30px 40px 30px;
 }
 
-.draft_contents {
+.draft_content {
   grid-column: 1 / span 4;
 }
 
@@ -50,8 +50,4 @@
 
 .draft_input {
   border: 1px solid $border-secondary;
-}
-
-.draft_review_body {
-  white-space: pre-wrap;
 }

@@ -24,11 +24,11 @@ export default function (): BaseComponent<Attrs> {
     },
     view: (vnode) => {
       return (
-        <div className='draft_body'>
+        <div className='campaign_content'>
           <div className="draft_section_heading">
             Almost there! We just need a brief intro…
           </div>
-          <div>
+          <div className="draft_content">
 
             <div className="draft_section_title">
               Introduction
