@@ -37,7 +37,6 @@ export default function (): BaseComponent<Attrs> {
     return {
         ...elementAttrs,
         view: (vnode) => {
-            console.log("does view re-render")
             const { campaign, issue } = vnode.attrs
             const selectedIssueIndex = campaign.selectedIssues.indexOf(issue.id)
             console.log("in issue", "selectedIssueIndex:", selectedIssueIndex, "campaign:", campaign)
@@ -68,8 +67,6 @@ export default function (): BaseComponent<Attrs> {
                             Next
                         </Link>
                     ) : (
-
-
                         <Link
                             className="campaign_button campaign_button-emphasized campaign_button-two"
                             disabled={isLinkDisabled(issue, selectedIssueIndex)}

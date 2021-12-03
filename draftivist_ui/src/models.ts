@@ -1,25 +1,15 @@
 import * as Mithril from "mithril"
 import * as m from "mithril";
 
-interface DraftType {
+export interface Draft {
     intro: string,
     conclusion: string,
     subjectLine: string
 }
 
-interface StatementType {
+export interface Statement {
     id: number
     description: string
-}
-
-export class Statement {
-    id: number
-    description: string
-
-    constructor(id: number, description: string) {
-        this.id = id
-        this.description = description
-    }
 }
 
 export class Issue {
@@ -65,7 +55,7 @@ export class Campaign {
 
     issues: Issue[]
     selectedIssues: number[] = []
-    draft: DraftType = {intro: '', conclusion: '', subjectLine: ''}
+    draft: Draft = { intro: '', conclusion: '', subjectLine: '' }
 
     constructor(id: number, title: string, description: string) {
         this.id = id
@@ -94,12 +84,8 @@ export class Campaign {
         return this.selectedIssues.indexOf(id) > -1
     }
 
-    saveToDraft(draftSection: keyof DraftType, content: string): void {
+    saveToDraft(draftSection: keyof Draft, content: string): void {
         this.draft[draftSection] = content;
-    }
-
-    saveDraftAll(): void {
-
     }
 
     static parse(campaignData: any) {
@@ -107,9 +93,11 @@ export class Campaign {
         campaign.issues = campaignData.issues.map((issueData: any) => {
             const issue = new Issue(issueData.id, issueData.text)
             issue.statements = issueData.statements.map((statementData: any) =>
-                new Statement(statementData.id, statementData.text))
-            return issue
-        })
+            ({
+                id: statementData.id,
+                description: statementData.text
+            })
+        )})
         return campaign
     }
 

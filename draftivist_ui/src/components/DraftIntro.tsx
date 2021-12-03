@@ -24,7 +24,7 @@ export default function (): BaseComponent<Attrs> {
     },
     view: (vnode) => {
       return (
-        <div className='campaign_content'>
+        <div className='draft_body'>
           <div className="draft_section_heading">
             Almost there! We just need a brief intro…
           </div>
@@ -42,13 +42,16 @@ export default function (): BaseComponent<Attrs> {
               Include your name, where you live, and why you’re writing today.
             </div>
             <PreviewDraftCTA />
-            {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
+          </div>
+          <div>
 
-            <Link
-              className="campaign_button campaign_button-emphasized campaign_button-two"
-              href={`/draft/conclusion`}>
-              Next
-            </Link>
+              {<a className="campaign_button draft_button-one" onclick={() => history.back()}>Back</a>}
+
+              <Link
+                className="campaign_button campaign_button-emphasized draft_button-two"
+                href={`/draft/conclusion`}>
+                Next
+              </Link>
           </div>
         </div >
       );

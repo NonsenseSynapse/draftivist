@@ -51,3 +51,12 @@
 .draft_input {
   border: 1px solid $border-secondary;
 }
+
+.draft_button-one {
+  grid-column: 2 / span 1;
+
+}
+.draft_button-two {
+  grid-column: 3 / span 1;
+
+}
