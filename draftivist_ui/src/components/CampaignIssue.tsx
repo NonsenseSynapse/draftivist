@@ -25,13 +25,10 @@ export default function (): BaseComponent<Attrs> {
     }
     let link: string;
     function generateLink(issue: Issue, selectedIssueIndex: number) {
-        console.log("in generate link", selectedIssueIndex)
         if (selectedIssueIndex = 2) {
-            console.log('in intro link')
             link = `/draft/intro`
         }
         link = `/draft/issues?issue_page=${selectedIssueIndex + 2}`
-        console.log("in normal", link)
     }
 
     return {
@@ -39,7 +36,7 @@ export default function (): BaseComponent<Attrs> {
         view: (vnode) => {
             const { campaign, issue } = vnode.attrs
             const selectedIssueIndex = campaign.selectedIssues.indexOf(issue.id)
-            console.log("in issue", "selectedIssueIndex:", selectedIssueIndex, "campaign:", campaign)
+
             generateLink(issue, selectedIssueIndex)
 
             return (

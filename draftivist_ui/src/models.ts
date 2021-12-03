@@ -98,6 +98,7 @@ export class Campaign {
                 description: statementData.text
             })
         )})
+        console.log(campaign)
         return campaign
     }
 
