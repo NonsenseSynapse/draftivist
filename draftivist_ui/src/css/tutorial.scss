@@ -1,0 +1,43 @@
+.tutorial_image {
+    width: 140px;
+    height: 140px;
+}
+
+.tutorial_description {
+    width: 100%;
+    min-height: 8.5em;
+    margin: 1.5em 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.tutorial_subtitle {
+    font-weight: 700;
+    margin-bottom: 1em;
+}
+
+.tutorial_buttons {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.tutorial_button {
+    padding: 10px 24px;
+    border-radius: 3px;
+    border: 1px solid #2e2e30;
+    margin-right: 14px;
+    font-size: .9em;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.tutorial_button-emphasized {
+    background: #2e2e30;
+    color: #fff !important; // otherwise default a:visited is used
+}

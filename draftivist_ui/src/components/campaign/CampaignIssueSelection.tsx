@@ -1,6 +1,6 @@
 import * as m from "mithril";
-import { Campaign, Issue } from "../models"
-import { elementAttrs, BaseComponent, Link } from "./base"
+import { Campaign, Issue } from "../../models"
+import { elementAttrs, BaseComponent, Link } from "../base"
 
 type Attrs = {
     campaign: Campaign
@@ -10,9 +10,9 @@ type Attrs = {
 const page_index_to_ordinal = ["first", "second", "third"]
 
 const descriptions = [
-    "Your email will focus on 3 key issues. Choose your 1st issue below:",
-    "Now, choose your 2nd issue:",
-    "Finally, choose your 3rd issue:"
+    <span>Your email will focus on 3 key issues. <em className="highlight">Choose your 1st issue below:</em></span>,
+    <span>Now, <em className="highlight">choose your 2nd issue:</em></span>,
+    <span>Finally, <em className="highlight">choose your 3rd issue:</em></span>
 ]
 
 export default function() : BaseComponent<Attrs> {
@@ -41,7 +41,6 @@ export default function() : BaseComponent<Attrs> {
         ...elementAttrs,
         view: (vnode) => {
             const { campaign, pageIndex } = vnode.attrs
-            console.log("campaign", campaign)
             return (
             <div className="campaign_content">
                 <div className="campaign_content_main">
@@ -74,7 +73,7 @@ export default function() : BaseComponent<Attrs> {
                 <Link
                     className="campaign_button campaign_button-emphasized campaign_button-two"
                     disabled={campaign.selectedIssues.length <= pageIndex}
-                    href={`/draft/issue?id=${campaign.selectedIssues[pageIndex]}`}>
+                    href={`/draft/issue?id=${campaign.selectedIssues[pageIndex]}&issue_page=${pageIndex+1}`}>
                         Next
                 </Link>
             </div>

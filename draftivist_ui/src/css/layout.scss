@@ -1,17 +1,16 @@
 // header
 
 .header {
-  border-top: 5px solid $primary-color;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $background-color;
-  height: 70px; // todo make var
+  background-color: #eee;
+  height: 42px;
 }
 
 .header_logo {
-  width: 6.25rem;
-  height: 1.125rem;
+  width: 5rem;
+  height: 1rem;
 }
 
 // footer

@@ -32,6 +32,10 @@ export class Issue {
         this.selectedStatement = id;
     }
 
+    getStatement(id: number): Statement {
+        return this.statements.find(s => s.id === id)
+    }
+
     saveCustomStatement(): void {
         this.clearSelectedStatements();
         this.customStatement = this.customStatementDraft;
@@ -52,6 +56,7 @@ export class Campaign {
     id: number
     title: string
     description: string
+    organizer: string
 
     issues: Issue[]
     selectedIssues: number[] = []
@@ -61,6 +66,7 @@ export class Campaign {
         this.id = id
         this.title = title
         this.description = description
+        this.organizer = "Metropolis Civil Liberties Union" // todo: load from api
     }
 
     getIssue(id: number): Issue {
