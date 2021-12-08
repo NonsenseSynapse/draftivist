@@ -65,7 +65,7 @@ class Recipient(models.Model):
         ordering = ['id']
 
     def __str__(self):
-        return self.full_name
+        return self.name
 
 
 class Issue(models.Model):
