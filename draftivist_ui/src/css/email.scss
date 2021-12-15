@@ -1,0 +1,29 @@
+.campaign_email_section {
+    font-family: "Open Sans", sans-serif;
+    grid-column: 1 / span 4;
+    text-align: center;
+}
+
+.campaign_emails {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -0.5em;
+    justify-content: center;
+    margin-top: 6px;
+}
+
+.campaign_email {
+    background: no-repeat right 14px center / 1em url('../assets/images/arrow.svg'), #2e2e30;
+    border-radius: 3px;
+    padding: 0.75em 3em 0.75em 1em;
+    color: #fff !important;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    margin: 0.5em;
+}
+
+.campaign_email_icon {
+    margin-right: 0.75em;
+}
