@@ -74,7 +74,7 @@ fi
 Restart your shell. Now that `PYENV_ROOT` is set, install python version 3.9.0 and create a virtualenv for draftivist: 
 ```
 pyenv install 3.9.0
-pyenv virtualenv 3.9 draftivist
+pyenv virtualenv 3.9.0 draftivist
 ```
 Restart your shell once more. At this point, if you navigate to `draftivist/draftivist_api` in a terminal, you should 
 see something like this:
