@@ -4,6 +4,11 @@ import { Campaign } from "../../models"
 import CampaignIssueSelection from "./CampaignIssueSelection";
 import CampaignLanding from "./CampaignLanding";
 import CampaignIssue from "./CampaignIssue";
+import DraftIntro from "./DraftIntro";
+import DraftClosing from "./DraftClosing";
+import DraftSubjectLine from "./DraftSubjectLine";
+import DraftReview from "./DraftReview";
+
 
 import { BaseComponent, elementAttrs } from "../base"
 import CampaignSendEmail from "./CampaignSendEmail";
@@ -18,7 +23,7 @@ export default function() : BaseComponent<Attrs> {
 
     let campaign: Campaign = new Campaign(0, "", "")
 
-    // Quick and dirty way to update the progress bar when 
+    // Quick and dirty way to update the progress bar when
     // navigating to a new page. If adding more pages to the
     // campaign flow, make sure to both add the page name to
     // the switch block and increment the totalPages var
@@ -27,14 +32,14 @@ export default function() : BaseComponent<Attrs> {
         const totalPages = 8;
         switch (page) {
             case "landing": pageOrder = 0; break;
-            case "issues": 
+            case "issues":
                 switch (issue_page) {
                     case "1": pageOrder = 1; break;
                     case "2": pageOrder = 3; break;
                     case "3": pageOrder = 5; break;
                 }
                 break;
-            case "issue": 
+            case "issue":
                 switch (issue_page) {
                     case "1": pageOrder = 2; break;
                     case "2": pageOrder = 4; break;
@@ -63,13 +68,17 @@ export default function() : BaseComponent<Attrs> {
 
             const { page, id, issue_page } = vnode.attrs
             return (
-                <div className="campaign_content-wrapper"> 
+                <div className="campaign_content-wrapper">
                     { page != "landing" && // messes with landing page styling
-                        <div className="campaign_progress" style={{transform: `translateX(${getTranslateX(page, issue_page)})`}}/>  
-                    }                 
+                        <div className="campaign_progress" style={{transform: `translateX(${getTranslateX(page, issue_page)})`}}/>
+                    }
                     { page == "landing" && <CampaignLanding campaign={campaign} /> }
                     { page == "issues" && <CampaignIssueSelection campaign={campaign} pageIndex={+issue_page-1} /> }
                     { page == "issue" && id && <CampaignIssue campaign={campaign} issue={campaign.getIssue(+id)} /> }
+                    { page == 'intro' && <DraftIntro campaign={campaign}/>}
+                    { page == 'conclusion' && <DraftClosing campaign={campaign}/>}
+                    { page == 'subject-line' && <DraftSubjectLine campaign={campaign}/>}
+                    { page == 'review' && <DraftReview campaign={campaign}/>}
                     { page == "send-email" && <CampaignSendEmail campaign={campaign} /> }
                 </div>
             )

@@ -1,7 +1,7 @@
 import * as m from "mithril";
-import { Campaign, Issue } from "../models"
-import { BaseComponent, Link, elementAttrs } from "./base"
-import { PreviewDraftCTA } from './PreviewDraftCTA';
+import { Campaign, Issue } from "../../models"
+import { BaseComponent, Link, elementAttrs } from "../base"
+import { PreviewDraftCTA } from '../PreviewDraftCTA';
 
 type Attrs = {
   campaign: Campaign
