@@ -98,12 +98,14 @@ export class Campaign {
         const campaign = new Campaign(campaignData.id, campaignData.name, campaignData.description)
         campaign.issues = campaignData.issues.map((issueData: any) => {
             const issue = new Issue(issueData.id, issueData.text)
-            return issue.statements = issueData.statements.map((statementData: any) =>
+            issue.statements = issueData.statements.map((statementData: any) =>
             ({
                 id: statementData.id,
                 description: statementData.text
             })
-        )})
+
+        )
+    return issue;})
         return campaign
     }
 
