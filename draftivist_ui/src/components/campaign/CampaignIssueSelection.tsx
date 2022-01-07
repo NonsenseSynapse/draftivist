@@ -57,7 +57,7 @@ export default function() : BaseComponent<Attrs> {
                             }
                         }
 
-                        const clickFn = isSelected ? 
+                        const clickFn = isSelected ?
                             deselectIssue.bind(this, campaign, pageIndex, issue.id) :
                             selectIssue.bind(this, campaign, pageIndex, issue.id)
 
@@ -70,9 +70,9 @@ export default function() : BaseComponent<Attrs> {
                     </ul>
                 </div>
                 {<a className="campaign_button campaign_button-one" onclick={() => history.back()}>Back</a>}
-                <Link 
-                    className="campaign_button campaign_button-emphasized campaign_button-two" 
-                    disabled={campaign.selectedIssues.length <= pageIndex} 
+                <Link
+                    className="campaign_button campaign_button-emphasized campaign_button-two"
+                    disabled={campaign.selectedIssues.length <= pageIndex}
                     href={`/draft/issue?id=${campaign.selectedIssues[pageIndex]}&issue_page=${pageIndex+1}`}>
                         Next
                 </Link>
