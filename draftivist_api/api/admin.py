@@ -101,6 +101,14 @@ class OrganizationAdmin(admin.ModelAdmin):
     readonly_fields = ['created']
     inlines = [OrganizationCampaignInline]
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        org = request.user.profile.get().organization
+        return qs.filter(pk=org.id)
+
 
 class StatementInline(admin.TabularInline):
     model = Statement
@@ -130,6 +138,14 @@ class IssueAdmin(admin.ModelAdmin):
     ordering = ['id']
     readonly_fields = ['campaign']
     inlines = [StatementInline]
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        org = request.user.profile.get().organization
+        return qs.filter(campaign__organization=org)
 
     def response_add(self, request, obj, post_url_continue=None):
         """
@@ -166,10 +182,50 @@ class UserAdmin(admin.ModelAdmin):
     inlines = (UserProfileAdmin,)
 
 
-admin.site.register(Recipient)
-admin.site.register(Statement)
-admin.site.register(Draft)
-admin.site.register(StatementSubmission)
+@admin.register(Statement)
+class StatementAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        org = request.user.profile.get().organization
+        return qs.filter(issue__campaign__organization=org)
+
+
+@admin.register(Draft)
+class DraftAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        org = request.user.profile.get().organization
+        return qs.filter(campaign__organization=org)
+
+
+@admin.register(Recipient)
+class RecipientAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        org = request.user.profile.get().organization
+        return qs.filter(campaign__organization=org)
+
+
+@admin.register(StatementSubmission)
+class StatementSubmissionAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        org = request.user.profile.get().organization
+        return qs.filter(issue__campaign__organizatio=org)
+
+
 admin.site.register(SessionMeta)
 
 # In order to replace the default User admin with a custom one, you must unregister it and re-register it
