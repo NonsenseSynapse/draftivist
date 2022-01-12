@@ -98,6 +98,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+# This allows us to use a custom model as the base auth model, rather than the default User model
+AUTH_PROFILE_MODULE = 'models.UserProfile'
 
 
 # Internationalization

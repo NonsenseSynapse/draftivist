@@ -6,18 +6,19 @@ from django.forms import Textarea, TextInput, ModelForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from api.models import (Campaign, Recipient, Issue, Image, Statement,
-                        Draft, StatementSubmission, SessionMeta, Organization)
+from api.models import (Campaign, Recipient, Issue, Image, Statement, Draft, StatementSubmission, SessionMeta,
+                        Organization, UserProfile)
 from django.utils.html import format_html
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
 from PIL import Image as Img
-
+from django.contrib.auth.models import User
 
 admin.site.site_header = 'Draftivist'
 admin.site.index_title = 'Data Admin'
 admin.site.site_title = 'Draftivist Admin'
+
 
 class InlineEditLink():
     """Mixin to add a link to a related model's edit page as part of a nested inline admin model"""
@@ -73,13 +74,14 @@ class CampaignAdmin(admin.ModelAdmin):
         ('Dates', {'fields': ['start_date', 'end_date']}),
     ]
 
-    # def get_queryset(self, request):
-    #     qs = super().get_queryset(request)
-    #     if request.user.is_superuser:
-    #         return qs
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
 
-    #     grp = request.user.groups.first()
-    #     return qs.filter(group=grp)
+        org = request.user.profile.get().organization
+        return qs.filter(organization=org)
+
 
 class OrganizationCampaignInline(admin.TabularInline, InlineEditLink):
     model = Campaign
@@ -98,6 +100,7 @@ class OrganizationAdmin(admin.ModelAdmin):
     list_display = ['name', 'short_name', 'created']
     readonly_fields = ['created']
     inlines = [OrganizationCampaignInline]
+
 
 class StatementInline(admin.TabularInline):
     model = Statement
@@ -154,11 +157,25 @@ class IssueAdmin(admin.ModelAdmin):
         )
 
 
+class UserProfileAdmin(admin.TabularInline):
+    model = UserProfile
+    can_delete = False
+
+
+class UserAdmin(admin.ModelAdmin):
+    inlines = (UserProfileAdmin,)
+
+
 admin.site.register(Recipient)
 admin.site.register(Statement)
 admin.site.register(Draft)
 admin.site.register(StatementSubmission)
 admin.site.register(SessionMeta)
+
+# In order to replace the default User admin with a custom one, you must unregister it and re-register it
+# with the new admin class
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 
 
 @receiver(post_save, sender=Image)
