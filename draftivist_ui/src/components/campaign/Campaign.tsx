@@ -7,6 +7,7 @@ import CampaignIssue from "./CampaignIssue";
 
 import { BaseComponent, elementAttrs } from "../base"
 import CampaignSendEmail from "./CampaignSendEmail";
+import CampaignGetInvolved from "./CampaignGetInvolved";
 
 type Attrs = {
     page: string
@@ -42,6 +43,7 @@ export default function() : BaseComponent<Attrs> {
                 }
                 break;
             case "send-email": pageOrder = 7; break;
+            case "get-involved": pageOrder = 8; break;
         }
         return `-${(1-pageOrder/totalPages)*100}%`
     }
@@ -71,6 +73,7 @@ export default function() : BaseComponent<Attrs> {
                     { page == "issues" && <CampaignIssueSelection campaign={campaign} pageIndex={+issue_page-1} /> }
                     { page == "issue" && id && <CampaignIssue campaign={campaign} issue={campaign.getIssue(+id)} /> }
                     { page == "send-email" && <CampaignSendEmail campaign={campaign} /> }
+                    { page == "get-involved" && <CampaignGetInvolved />}
                 </div>
             )
         }

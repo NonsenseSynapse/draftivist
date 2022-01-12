@@ -35,12 +35,18 @@ export default function (): BaseComponent<Attrs> {
             .replace("$3", "TO")
     }
 
+    function onclick() {
+        setTimeout(() => {
+            m.route.set(`/draft/get-involved`)
+        }, 100)
+    }
+
     return {
         ...elementAttrs,
         view: (vnode) => {
             const { client, campaign } = vnode.attrs
             return (
-                <a className="campaign_email" target="_blank" href={url(client, campaign)}>
+                <a className="campaign_email" target="_blank" href={url(client, campaign)} onclick={onclick}>
                     {ICONS[client] && <img src={ICONS[client]} className="campaign_email_icon" />}
                     {vnode.children}
                 </a>
