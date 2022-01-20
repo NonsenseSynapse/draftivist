@@ -12,6 +12,7 @@ import DraftReview from "./DraftReview";
 
 import { BaseComponent, elementAttrs } from "../base"
 import CampaignSendEmail from "./CampaignSendEmail";
+import CampaignGetInvolved from "./CampaignGetInvolved";
 
 type Attrs = {
     page: string
@@ -47,6 +48,7 @@ export default function() : BaseComponent<Attrs> {
                 }
                 break;
             case "send-email": pageOrder = 7; break;
+            case "get-involved": pageOrder = 8; break;
         }
         return `-${(1-pageOrder/totalPages)*100}%`
     }
@@ -80,6 +82,7 @@ export default function() : BaseComponent<Attrs> {
                     { page == 'subject-line' && <DraftSubjectLine campaign={campaign}/>}
                     { page == 'review' && <DraftReview campaign={campaign}/>}
                     { page == "send-email" && <CampaignSendEmail campaign={campaign} /> }
+                    { page == "get-involved" && <CampaignGetInvolved />}
                 </div>
             )
         }
