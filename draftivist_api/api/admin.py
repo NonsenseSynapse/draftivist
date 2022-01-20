@@ -6,18 +6,33 @@ from django.forms import Textarea, TextInput, ModelForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from api.models import (Campaign, Recipient, Issue, Image, Statement,
-                        Draft, StatementSubmission, SessionMeta)
+from api.models import (Campaign, Recipient, Issue, Image, Statement, Draft, StatementSubmission, SessionMeta,
+                        Organization, UserProfile)
 from django.utils.html import format_html
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
 from PIL import Image as Img
-
+from django.contrib.auth.models import User
 
 admin.site.site_header = 'Draftivist'
 admin.site.index_title = 'Data Admin'
 admin.site.site_title = 'Draftivist Admin'
+
+
+class InlineEditLink():
+    """Mixin to add a link to a related model's edit page as part of a nested inline admin model"""
+    # def __init__():
+    #     pass
+    
+    def edit_link(self, obj):
+        if obj.pk:
+            url = reverse(f'admin:{obj._meta.app_label}_{obj._meta.model_name}_change',
+                          args=str(obj.pk))
+            return mark_safe(f'<a href={url}>Edit</a>')
+        return '-'
+
+    edit_link.short_description = 'Edit'
 
 
 class RecipientInline(admin.TabularInline):
@@ -27,21 +42,13 @@ class RecipientInline(admin.TabularInline):
     verbose_name_plural = "Recipients"
 
 
-class IssueInline(admin.TabularInline):
+class IssueInline(admin.TabularInline, InlineEditLink):
     model = Issue
     extra = 1
     verbose_name = "Issue"
     verbose_name_plural = "Issues"
-    fields = ['title', 'get_edit_link']
-    readonly_fields = ['get_edit_link']
-
-    def get_edit_link(self, obj):
-        if obj.pk:
-            url = reverse(f'admin:{obj._meta.app_label}_{obj._meta.model_name}_change',
-                          args=str(obj.pk))
-            return mark_safe(f'<a href={url}>Edit</a>')
-        return '-'
-    get_edit_link.short_description = 'Edit Issue'
+    fields = ['title', 'edit_link']
+    readonly_fields = ['edit_link']
 
 
 class ImageInline(admin.StackedInline):
@@ -63,7 +70,7 @@ class CampaignAdmin(admin.ModelAdmin):
     ordering = ['id']
     inlines = [RecipientInline, IssueInline, ImageInline]
     fieldsets = [
-        (None, {'fields': ['name', 'group', 'description', 'allow_custom_statements', 'is_active']}),
+        (None, {'fields': ['name', 'description', 'allow_custom_statements', 'is_active']}),
         ('Dates', {'fields': ['start_date', 'end_date']}),
     ]
 
@@ -72,8 +79,35 @@ class CampaignAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return qs
 
-        grp = request.user.groups.first()
-        return qs.filter(group=grp)
+        org = request.user.profile.get().organization
+        return qs.filter(organization=org)
+
+
+class OrganizationCampaignInline(admin.TabularInline, InlineEditLink):
+    model = Campaign
+    verbose_name = 'Campaign'
+    verbose_name_plural = 'Campaigns'
+    fields = ['name', 'created', 'start_date', 'end_date', 'edit_link']
+    readonly_fields = ['name', 'created', 'start_date', 'end_date', 'edit_link']
+    extra = 0
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+@admin.register(Organization)
+class OrganizationAdmin(admin.ModelAdmin):
+    list_display = ['name', 'short_name', 'created']
+    readonly_fields = ['created']
+    inlines = [OrganizationCampaignInline]
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        org = request.user.profile.get().organization
+        return qs.filter(pk=org.id)
 
 
 class StatementInline(admin.TabularInline):
@@ -105,6 +139,14 @@ class IssueAdmin(admin.ModelAdmin):
     readonly_fields = ['campaign']
     inlines = [StatementInline]
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        org = request.user.profile.get().organization
+        return qs.filter(campaign__organization=org)
+
     def response_add(self, request, obj, post_url_continue=None):
         """
         This makes the response after adding go to another
@@ -131,11 +173,65 @@ class IssueAdmin(admin.ModelAdmin):
         )
 
 
-admin.site.register(Recipient)
-admin.site.register(Statement)
-admin.site.register(Draft)
-admin.site.register(StatementSubmission)
+class UserProfileAdmin(admin.TabularInline):
+    model = UserProfile
+    can_delete = False
+
+
+class UserAdmin(admin.ModelAdmin):
+    inlines = (UserProfileAdmin,)
+
+
+@admin.register(Statement)
+class StatementAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        org = request.user.profile.get().organization
+        return qs.filter(issue__campaign__organization=org)
+
+
+@admin.register(Draft)
+class DraftAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        org = request.user.profile.get().organization
+        return qs.filter(campaign__organization=org)
+
+
+@admin.register(Recipient)
+class RecipientAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        org = request.user.profile.get().organization
+        return qs.filter(campaign__organization=org)
+
+
+@admin.register(StatementSubmission)
+class StatementSubmissionAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        org = request.user.profile.get().organization
+        return qs.filter(issue__campaign__organizatio=org)
+
+
 admin.site.register(SessionMeta)
+
+# In order to replace the default User admin with a custom one, you must unregister it and re-register it
+# with the new admin class
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 
 
 @receiver(post_save, sender=Image)

@@ -14,6 +14,17 @@ class Organization(models.Model):
     class Meta:
         db_table = "organization"
 
+    def __str__(self):
+        return self.name
+
+
+class UserProfile(models.Model):
+    user = models.ForeignKey(User, unique=True, on_delete=models.CASCADE, related_name='profile')
+    organization = models.ForeignKey(Organization, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.user.username
+
 
 class Campaign(models.Model):
     name = models.CharField(max_length=255)
@@ -65,7 +76,7 @@ class Recipient(models.Model):
         ordering = ['id']
 
     def __str__(self):
-        return self.full_name
+        return self.name
 
 
 class Issue(models.Model):
